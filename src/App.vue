@@ -39,6 +39,6 @@ export default {
 </script>
 <style scoped>
   .wrapper{
-    background-color: grey;
+    background-color: white;
   }
 </style>
