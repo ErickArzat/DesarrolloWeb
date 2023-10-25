@@ -13,7 +13,6 @@
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
       <input type="submit" class="fadeIn fourth" value="Log In">
-      <input type="button" class="fadeIn fourth" value="Sign Up" id="Sign_up">
     </form>
 
     <!-- Remind Passowrd -->

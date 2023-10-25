@@ -34,13 +34,6 @@ export default {
 <style scoped>
   .wrapper{
     background-color: white;
-    align-content: center;
-    margin: auto;
   }
 
-  footer{
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
 </style>
