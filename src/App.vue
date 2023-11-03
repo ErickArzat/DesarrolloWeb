@@ -1,14 +1,14 @@
 <script setup>
-import NavBar from './components/NavBar.vue';
 import AppFooter from './components/AppFooter.vue'
 import ContactUs  from './components/ContactUs.vue';
+import NavBar from './components/NavBar.vue'
 
 </script>
 
 <template>
-  <header>
+  <navbar>
     <NavBar/>
-  </header>
+  </navbar>
   <div class="wrapper">
     <router-view></router-view>
   </div> 
@@ -45,5 +45,7 @@ export default {
 <style scoped>
   .wrapper{
     background-color: #fff;
+    margin: auto;
   }
+
 </style>
