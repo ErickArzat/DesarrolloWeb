@@ -89,6 +89,7 @@
   </script>
 <style scoped>
 .card-inner {
+  border-radius: 10px;
   position: relative;
   width: 130px;
   overflow: hidden;

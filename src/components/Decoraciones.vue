@@ -117,6 +117,7 @@ export default {
 <style scoped>
 
   .card-inner {
+    border-radius: 10px;
     position: relative;
     width: 170px;
     overflow: hidden;
@@ -147,7 +148,7 @@ export default {
     }
   }
 
-  @media screen and (min-width: 1120px) {
+  @media screen and (min-width: 1350px) {
    
     .card__container {
       grid-template-columns: repeat(5, 1fr);

@@ -69,6 +69,7 @@ export default {
   
 <style scoped>
 .card-inner {
+    border-radius: 10px;
     position: relative;
     width: 200px;
     overflow: hidden;

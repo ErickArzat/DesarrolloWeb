@@ -1,6 +1,6 @@
 <template>
 
-<div class="container">
+<div class="container-c">
     <component :is="componenteActual"></component>
     <div class="navigation">
         <button type="button" class="btn btn-outline-dark"  @click="goBack" >Atrás</button>
@@ -36,6 +36,9 @@ export default {
   methods: {
     goForward() {
       this.contadorClicks++;
+      if(this.contadorClicks > 4){
+        
+      }
     },
     goBack() {
       this.contadorClicks--;

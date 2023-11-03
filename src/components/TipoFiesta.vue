@@ -7,7 +7,7 @@
       <div class="card" v-for="card in cards" :key="card.id">
         <input type="radio" :id="'card-' + card.id" v-model="selectedTipe" :value="card.id">
         <label :for="'card-' + card.id">
-          <div class="card-inner" >
+          <div class="card-inner">
             <img :src="card.image" class="card-img-top" :alt="card.alt" />
             <div class="card-body">
               <p class="card-text">{{ card.text }}</p>
@@ -94,6 +94,7 @@ export default {
 </script>
 <style scoped>
   .card-inner {
+    border-radius: 10px;
     position: relative;
     width: 130px;
     overflow: hidden;
@@ -106,7 +107,7 @@ export default {
     height: 140px;
     object-fit: cover;
   }
-
+ 
  
  
   @media screen and (max-width: 340px) {
@@ -124,9 +125,10 @@ export default {
     }
   }
 
-  @media screen and (min-width: 1120px) {
+  @media screen and (min-width: 1350px) {
     .card__container {
       grid-template-columns: repeat(7, 1fr);
     }
   }
+  
 </style>

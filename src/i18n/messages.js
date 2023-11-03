@@ -36,7 +36,7 @@ export default{
        planeacion:{
         tipe:{
             title: "Elige tu tipo de fiesta", 
-            young:"Fiesta Juvenil", 
+            young:"Juvenil", 
             birthday:"Cumpleaños",
             graduation:"Graduación", 
             wedding: "Boda", 
@@ -129,7 +129,7 @@ export default{
            planeacion:{
             tipe:{
                 title: "Elige tu tipo de fiesta", 
-                young:"Fiesta Juvenil", 
+                young:"Juvenil", 
                 birthday:"Cumpleaños",
                 graduation:"Graduación", 
                 wedding: "Boda", 

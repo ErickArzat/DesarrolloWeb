@@ -104,6 +104,7 @@ export default {
 </script>
 <style scoped>
   .card-inner {
+    border-radius: 10px;
     position: relative;
     width: 200px;
     overflow: hidden;
@@ -117,7 +118,7 @@ export default {
   }
   
   .card input[type="radio"]:checked + label {
-    border: 2px solid #5B83FF;
+    border: 4px solid #5B83FF;
   }
   .card { 
     background-color: #fff;

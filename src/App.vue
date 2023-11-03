@@ -9,9 +9,9 @@ import ContactUs  from './components/ContactUs.vue';
   <header>
     <NavBar/>
   </header>
-  <!-- <div class="wrapper">
+  <div class="wrapper">
     <router-view></router-view>
-  </div> -->
+  </div> 
   <div class="contact-us">
     <ContactUs/>
   </div>
@@ -44,6 +44,6 @@ export default {
 </script>
 <style scoped>
   .wrapper{
-    background-color: #000;
+    background-color: #fff;
   }
 </style>
