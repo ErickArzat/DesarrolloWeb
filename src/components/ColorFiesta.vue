@@ -1,0 +1,140 @@
+<template>
+  
+<div id="component-2">
+<div class="title">
+  <p>{{$t("planeacion.color.title")}}</p>
+</div>
+    <div class="card__container">
+      <div class="card" v-for="card in cards" :key="card.id">
+        <input type="radio" :id="'card-' + card.id" v-model="selectedColors" :value="card.id">
+        <label :for="'card-' + card.id">
+          <div class="card-inner">
+            <img :src="card.image" class="card-img-top" :alt="card.alt" />
+          </div>
+        </label>
+      </div>
+    </div>
+    
+</div>
+</template>
+<script>
+
+import img1 from "../assets/imagenes/Paleta1.jpg";
+import img2 from "../assets/imagenes/Paleta2.jpg";
+import img3 from "../assets/imagenes/Paleta3.jpg";
+import img4 from "../assets/imagenes/Paleta4.jpg";
+import img5 from "../assets/imagenes/Paleta5.jpg";
+import img6 from "../assets/imagenes/Paleta6.jpg";
+import img7 from "../assets/imagenes/Paleta7.jpg";
+import img8 from "../assets/imagenes/Paleta8.jpg";
+import img9 from "../assets/imagenes/Paleta9.jpg";
+import img10 from "../assets/imagenes/Paleta10.jpg";
+
+export default {
+  data() {
+    return {
+      selectedColors: null, 
+      cards: [
+        {
+          id: 1,
+          image: img1,
+          alt: this.$t('planeacion.tipe.young'),
+        },
+        {
+          id: 2,
+          image: img2,
+          alt: this.$t('planeacion.tipe.birthday'),
+        },
+        {
+          id: 3,
+          image: img3,
+          alt: this.$t('planeacion.tipe.graduation'),
+        },
+        {
+          id: 4,
+          image: img4,
+          alt: this.$t('planeacion.tipe.wedding'),
+        },
+        {
+          id: 5,
+          image: img5,
+          alt: this.$t('planeacion.tipe.babyShower'),
+        },
+        {
+          id: 6,
+          image: img6,
+          alt: this.$t('planeacion.tipe.christening'),
+        },
+        {
+          id: 7,
+          image: img7,
+          alt: this.$t('planeacion.tipe.visitation'),
+        },
+        {
+          id: 8,
+          image: img8,
+          alt: this.$t('planeacion.tipe.visitation'),
+        },
+        {
+          id: 9,
+          image: img9,
+          alt: this.$t('planeacion.tipe.visitation'),
+        },
+        {
+          id: 10,
+          image: img10,
+          alt: this.$t('planeacion.tipe.visitation'),
+        },
+      ],
+    };
+  },
+  watch: {
+    selectedColors(newVal) {
+      localStorage.setItem('selectedColors', newVal);
+    },
+  },
+  created() {
+    const storedTipe = localStorage.getItem('selectedColors');
+    if (storedTipe) {
+      this.selectedColors = parseInt(storedTipe);
+    }
+  },
+};
+
+</script>
+<style scoped>
+  .card-inner {
+    position: relative;
+    width: 200px;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card img {
+    width: 200px;
+    height: 70px;
+    object-fit: cover;
+  }
+  
+  .card input[type="radio"]:checked + label {
+    border: 2px solid #5B83FF;
+  }
+  .card { 
+    background-color: #fff;
+  }
+  /* For medium devices */
+  @media screen and (min-width: 768px) {
+    .card__container {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      column-gap: 1.5rem;
+      border-radius: 5%;
+    }
+  }
+  
+  /* For large devices */
+  @media screen and (min-width: 1120px) {
+        .card__container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+  }
+</style>

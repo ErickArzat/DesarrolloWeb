@@ -1,1 +1,58 @@
 @import './base.css';
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+  }
+   .title{
+      color: pink;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+   }
+  
+    .card__container {
+      display: grid;
+      row-gap: 1rem;
+      place-items: center;
+      margin-inline: 5%;
+      margin-bottom: 3rem;
+    }
+    .card-text {
+        font-size: var(--h2-font-size);
+        font-weight: 500;
+        margin-bottom: .75rem;
+        color: #fff;
+    }
+    .card-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .selected-text {
+      color: #fff; 
+    }
+    .card input[type="radio"]:checked + label {
+      background-color: #5B83FF; 
+      transform: scale(1.1);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .card { 
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+      background-color: #000;
+    }
+    .card input[type="radio"] {
+        display: none; 
+    }
+    .card input[type="checkbox"] {
+      display: none;
+    }
+    .card input[type="checkbox"]:checked+label {
+      background-color: #5B83FF; 
+      transform: scale(1.1);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  

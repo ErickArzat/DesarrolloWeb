@@ -31,7 +31,58 @@ export default{
        }, 
        aboutus:{
         title:"¿Quiénes somos?", 
-        
+       },
+       planeacion:{
+        tipe:{
+            title: "Elige tu tipo de fiesta", 
+            young:"Fiesta Juvenil", 
+            birthday:"Cumpleaños",
+            graduation:"Graduación", 
+            wedding: "Boda", 
+            babyShower: "Baby Shower",
+            christening: "Bautizo",
+            visitation: "Velorio"
+        },
+        color:{
+            title: "Elige de que color quieres pintar tu fiesta."
+        }, 
+        decoration:{
+            title: "¿Qué decoraciones quieres para tu fiesta?", 
+            balloons: "Globos", 
+            confetti: "Confetti",
+            curtain: "Cortina", 
+            castle: "Castillo Inflable", 
+            ball:"Bola Disco", 
+            balloonarch: "Arco", 
+            letters: "Letras", 
+            lights: "Luces", 
+            smoke: "Humo", 
+            piniata: "Piñata",
+            flowers: "Flores", 
+            hats: "Sombreros", 
+            recuerdos: "Recuerdos", 
+            cross: "Cruz de Flores", 
+            crown: "Corona de Flores", 
+        },
+        cake:{
+            title: "Elige tu pastel",
+            none: "Sin pastel",
+            chocolate: "Chocolate", 
+            aesthetic: "Aesthetic", 
+            confetti: "Confetti", 
+            cheesecake: "Cheesecake", 
+            cupcakes: "Cupcakes"
+        }, 
+        extras:{
+            title:"Extras", 
+            theme: "Temática", 
+            food: "Comida", 
+            animators: "Animadores", 
+            candy: "Mesa Dulces", 
+            invitations: "Invitaciones", 
+            show: "Show"
+        }
+    
        },
        contact:{
         title:"¿Tienes alguna duda?", 
@@ -70,13 +121,67 @@ export default{
         refferals:{
             title:"¿Quiénes somos?"
         },
+        aboutus:{
+            title:"¿Quiénes somos?", 
+           },
+           planeacion:{
+            tipe:{
+                title: "Elige tu tipo de fiesta", 
+                young:"Fiesta Juvenil", 
+                birthday:"Cumpleaños",
+                graduation:"Graduación", 
+                wedding: "Boda", 
+                babyShower: "Baby Shower",
+                christening: "Bautizo",
+                visitation: "Velorio"
+            },
+            color:{
+                title: "Elige de que color quieres pintar tu fiesta."
+            }, 
+            decoration:{
+                title: "¿Qué decoraciones quieres para tu fiesta?", 
+                balloons: "Globos", 
+                confetti: "Confetti",
+                curtain: "Curtain",
+                castle: "Castillo Inflable", 
+                ball:"Bola Disco", 
+                balloonarch: "Arco", 
+                letters: "Letras", 
+                lights: "Luces", 
+                smoke: "Humo", 
+                piniata: "Piñata",
+                flowers: "Flores", 
+                hats: "Sombreros", 
+                recuerdos: "Recuerdos", 
+                cross: "Cruz de Flores", 
+                crown: "Corona de Flores", 
+            },
+            cake:{
+                title: "Choose your cake",
+                none: "None",
+                chocolate: "Chocolate", 
+                aesthetic: "Aesthetic", 
+                confetti: "Confetti", 
+                cheesecake: "Cheesecake", 
+                cupcakes: "Cupcakes"
+            }, 
+            extras:{
+                title:"Extras", 
+                theme: "Theme", 
+                food: "Food", 
+                animators: "Animators", 
+                candy: "Candy Table", 
+                invitations: "Invitations", 
+                show: "Show"
+            }
+        },
         contact:{
             title:"¿Tienes alguna duda?", 
             sendmessage: "Envíanos un mensaje",
             contact: "Contáctanos", 
             name: "Nombre", 
             message: "Mensaje"
-           }
+        }
 
     }
 }

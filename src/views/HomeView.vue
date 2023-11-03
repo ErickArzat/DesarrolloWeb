@@ -1,13 +1,45 @@
 <template>
-    
-    <div id="start">
-        <h1>{{$t('btn.login')}}</h1>
-    </div>
-    <div id="services"></div>
-    <div id="refferals"></div>
-    <div id="aboutus"></div>
-    <div id="contact"></div>
-</template>
-<script setup>
 
+<div class="container">
+    <component :is="componenteActual"></component>
+    <div class="navigation">
+        <button type="button" class="btn btn-outline-dark"  @click="goBack" >Atrás</button>
+        <button type="button" class="btn btn-outline-dark" @click="goForward">Siguiente</button>
+    </div>
+</div>
+
+</template>
+<script> 
+import TipoFiesta from '../components/TipoFiesta.vue';
+import ExtrasFiesta from '../components/ExtrasFiesta.vue'
+import ColorFiesta from '../components/ColorFiesta.vue';
+import PastelFiesta from '../components/PastelFiesta.vue';
+import Decoraciones from '../components/Decoraciones.vue';
+
+export default {
+  data() {
+    return {
+      contadorClicks: 0,
+      componentes: [
+        TipoFiesta, 
+        ColorFiesta, 
+        Decoraciones,
+        PastelFiesta, 
+        ExtrasFiesta],
+    };
+  },
+  computed: {
+    componenteActual() {
+      return this.componentes[this.contadorClicks % this.componentes.length];
+    },
+  },
+  methods: {
+    goForward() {
+      this.contadorClicks++;
+    },
+    goBack() {
+      this.contadorClicks--;
+    },
+  },
+};
 </script>
