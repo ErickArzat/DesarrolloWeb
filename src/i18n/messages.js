@@ -36,7 +36,7 @@ export default{
        contact:{
         title:"¿Tienes alguna duda?", 
         sendmessage: "Envíanos un mensaje",
-        contact: "Contáctanos", 
+        contact: "Contáctanos",
         name: "Nombre", 
         message: "Mensaje"
        }
@@ -74,8 +74,7 @@ export default{
             title:"¿Tienes alguna duda?", 
             sendmessage: "Envíanos un mensaje",
             contact: "Contáctanos", 
-            name: "Nombre", 
-            message: "Mensaje"
+            name: "Nombre"
            }
 
     }
