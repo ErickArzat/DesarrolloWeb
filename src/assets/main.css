@@ -1,5 +1,74 @@
 @import './base.css';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+body{
+  background-color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+  }
+   .title{
+      color: #636363;
+      font-size: clamp(2rem, 5vw, 4rem);
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+   }
+   
+    .card__container {
+      border-radius: 10px;
+      display: grid;
+      row-gap: 1rem;
+      place-items: center;
+      margin-inline: 5%;
+      margin-bottom: 3rem;
+    }
+    .card-text {
+        font-size: var(--h2-font-size);
+        font-weight: 500;
+        margin-bottom: .75rem;
+       color: #fff;
+    }
+    .card-body {
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+    .card input[type="radio"]:checked + label {
+      border-radius: 10px;
+      background-color: #5B83FF; 
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      
+    }
+    .card { 
+      border-radius: 10px;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+      background-color: #8EAAEA;
+     
+    }
+    .card input[type="radio"] {
+        display: none; 
+    }
+    .card input[type="checkbox"] {
+      display: none;
+    }
+    .card input[type="checkbox"]:checked+label {
+      border-radius: 10px;
+      background-color: #5B83FF; 
+      color: #000;
+      transform: scale(1.1);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+
 
 /*Nav*/
 .header{
@@ -89,8 +158,12 @@
   .col-md-7 {
     flex: 3;
   }
+  .container-c{
+    padding-left: 10%;
+    padding-right: 10%;
+  }
   .container{
-    width: 70%;
+    width: 80%;
     padding: 30px;
     position: relative; 
   }
@@ -122,7 +195,7 @@
   }
   .title-message, .form-label, .content p, .form-control{
     font-family: 'Poppins', sans-serif;
-    color: #787878;
+    color: #636363;
   }
   .content{
     display: flex;
