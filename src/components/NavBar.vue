@@ -6,16 +6,16 @@
         </label>
         
         <div class="name-holder">
-            <h3>NAME HOLDER</h3>
+            <a href=""><h3>NAME HOLDER</h3></a>
         </div>
         <nav class="nav">
             <ul class="nav-links">
-                <li><a href="#">{{ $t('nav.meetus') }}</a></li>
-                <li><a href="#">{{ $t('nav.plan') }}</a></li>
+                <li><a href="#aboutus">{{ $t('nav.meetus') }}</a></li>
+                <li><a href="#planner">{{ $t('nav.plan') }}</a></li>
                 <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
-        <a class="btn" href=""><button>{{ $t('btn.login') }}</button></a>
+        <a class="btn" href="/login"><button>{{ $t('btn.login') }}</button></a>
     </header>     
 </template>
 
