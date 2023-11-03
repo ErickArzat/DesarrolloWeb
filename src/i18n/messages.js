@@ -9,7 +9,8 @@ export default{
        btn:{
         begin:"Comienza", 
         back:"Atrás",
-        login: "Inicia sesión"
+        login: "Inicia sesión",
+        submit: "Enviar"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -101,7 +102,8 @@ export default{
         btn:{
             begin:"Comienza", 
             back: "Back", 
-            login: "Log In"
+            login: "Log In",
+            submit: "Submit"
         },
         home:{
             pgraf1: "¡Hacemos de tus sueños una fiesta!", 
