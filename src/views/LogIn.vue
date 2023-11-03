@@ -25,9 +25,6 @@
 </template>
 
 <style scoped>
-html {
-  background-color: #5B83FF;
-}
 
 body {
   font-family: "Poppins", sans-serif;
@@ -127,9 +124,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
-}
+
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
   -moz-transform: scale(0.95);

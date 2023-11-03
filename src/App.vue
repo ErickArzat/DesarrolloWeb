@@ -1,9 +1,13 @@
 <script setup>
 import AppFooter from './components/AppFooter.vue'
+import NavBar from './components/NavBAr.vue'
 
 </script>
 
 <template>
+  <navbar>
+    <NavBar/>
+  </navbar>
   <div class="wrapper">
     <router-view></router-view>
   </div>
@@ -15,7 +19,8 @@ import AppFooter from './components/AppFooter.vue'
 <script>
 export default {
   components:{
-    AppFooter
+    AppFooter,
+    NavBar
   },
   data() {
     return {
@@ -34,6 +39,7 @@ export default {
 <style scoped>
   .wrapper{
     background-color: white;
+    margin: auto;
   }
 
 </style>
