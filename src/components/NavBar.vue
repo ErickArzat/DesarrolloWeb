@@ -10,17 +10,16 @@
         </div>
         <nav class="nav">
             <ul class="nav-links">
-                <li><a href="#"><!--{{ $t('nav.meetus') }}--></a></li>
-                <li><a href="#"><!--{{ $t('nav.plan') }}--></a></li>
-                <li id="btnLogIn"><a href="#"><!--{{ $t('btn.login') }}--></a></li>
+                <li><a href="#">{{ $t('nav.meetus') }}</a></li>
+                <li><a href="#">{{ $t('nav.plan') }}</a></li>
+                <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
-        <a class="btn" href=""><button><!--{{ $t('btn.login') }}--></button></a>
+        <a class="btn" href=""><button>{{ $t('btn.login') }}</button></a>
     </header>     
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
 
 @media screen and (min-width: 744px) { /**Pantalla mas chica --> Pantalla Mediana*/ 
     .header .nav-links #btnLogIn {
