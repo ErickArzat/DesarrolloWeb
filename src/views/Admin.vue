@@ -8,7 +8,7 @@
         margin-bottom: 25px; 
         border-radius: 25px; 
         box-shadow: 0 3px 5px rgba(0,0,0,.1); 
-        border-color: rgb(75, 96, 255);}
+        border-color: black}
 
     .card-title{ 
         font-size: 28px;}
@@ -19,12 +19,12 @@
     }
     a{
         text-decoration: none;
-        color: rgb(75, 96, 255);;
+        color: white;
         transition: 1s;
       }
 
     a:hover{
-      color: gray;
+      color: black;
     }
     
     .estado{

@@ -1,50 +1,89 @@
-<template>
+<template>    
     <header class="header">
+        <input type="checkbox" name="" id="check">
+        <label for="check" class="checkbtn">
+            <i class="bi bi-list"></i>
+        </label>
+        
         <div class="name-holder">
             <h3>NAME HOLDER</h3>
         </div>
-        <nav>
+        <nav class="nav">
             <ul class="nav-links">
                 <li><a href="#">Conócenos</a></li>
                 <li><a href="#">Planea tu fiesta</a></li>
+                <li id="btnLogIn"><a href="#">Iniciar Sesión</a></li>
             </ul>
         </nav>
-        <a class="btn" href=""><button>Inicia sesión</button></a>
-    </header>
-        
+        <a class="btn" href=""><button>Iniciar sesión</button></a>
+    </header>     
 </template>
 
 <style>
-.header{
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 85px;
-    padding: 5px 5%;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
+
+@media screen and (min-width: 744px) { /**Pantalla mas chica --> Pantalla Mediana*/ 
+    .header .nav-links #btnLogIn {
+        display: none; /**Block -> None */ 
+    }
+    .header .nav{
+        transition: none;
+    }
+    .header .btn button {
+        display: block;  /**None -> Block*/ 
+    }
+
+    .checkbtn {
+        display: none; /**Block -> None */ 
+    }
+    .header .nav-links a {
+        transition: none;
+        color: #797474; /**Cambio de color*/ 
+    }
+    .header .nav-links li a:hover{
+        font-size: 15px;
+    }
+
+    .header h3{
+        font-size: 25px;
+    }
+    .header .nav{
+        width: auto;
+        height: 75px;
+        left: 0;
+        margin-top: 18px;
+        position: static;
+        background: none;
+    }
+    .header .nav-links li{
+        display: inline-block;
+        margin-top: 15px;
+        padding: 0 20px; 
+    }
+    .header .btn button{
+        font-size: 15px;
+    }
 }
-.header h3{
-    color: rgb(75, 96, 255);
-}
-.header .nav-links{
-    list-style: none;
-}
-.header .nav-links li{
-    display: inline-block;
-    padding: 12px 20px 0 20px;    
-}
-.header .nav-links a{
-    font-size: 20px;
-    color: #797474;
-    text-decoration: none;    
-}
-.header .btn button{
-    font-weight: 700;
-    color: #000;
-    padding: 9px 25px;
-    border: 2px solid rgb(107, 115, 171);;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease 0s;
+
+@media screen and (min-width: 953px){ /**Pantalla mediana --> Pantalla Grande*/
+    .header h3{
+        font-size: 28px;
+    }
+    .header .nav{
+        height: 100px;
+    }
+    .header .nav-links a{
+        font-size: 20px;
+    }
+    .header .nav-links li a:hover{
+        font-size: 20px;
+    }
+    .header .nav-links li{
+        padding: 12px 40px 0 40px;    
+    }
+    .header .btn button{
+        font-size: 18px;
+    }
+
 }
 </style>

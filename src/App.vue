@@ -1,6 +1,7 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
 import AppFooter from './components/AppFooter.vue'
+import ContactUs  from './components/ContactUs.vue';
 
 </script>
 
@@ -10,10 +11,13 @@ import AppFooter from './components/AppFooter.vue'
   </header>
   <div class="wrapper">
     <router-view></router-view>
+  </div> 
+  <div class="contact-us">
+    <ContactUs/>
   </div>
-  <footer>
+  <!-- <footer>
     <AppFooter/>
-  </footer>
+  </footer> -->
 
 </template>
 
@@ -21,7 +25,8 @@ import AppFooter from './components/AppFooter.vue'
 export default {
   components:{
     NavBar,
-    AppFooter
+    AppFooter,
+    ContactUs
   },
   data() {
     return {
@@ -39,6 +44,6 @@ export default {
 </script>
 <style scoped>
   .wrapper{
-    background-color: grey;
+    background-color: #fff;
   }
 </style>
