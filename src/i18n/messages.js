@@ -37,6 +37,39 @@ export default{
         }
     }, 
     en:{
-        
+        landing:{
+            title: 'We make a party out of your dreams!',
+            desc: 'We help you create the event of your dreams: Wedding, Birthdays, Sweet Sixteens, etc.',
+            button: 'Start'
+        },
+        services:{
+            title: 'Services',
+            title_ubication: 'Ubication',
+            title_decoration: 'Decoration',
+            title_music: 'Music',
+            title_food: 'Food',
+            desc_ubication: 'We take care of providing the ideal location for your event',
+            desc_decoration: 'We work side-to-side to find the right decoration for you',
+            desc_music: 'With our huge pool of artists we search for the one that adapts perfectly to the tone of your event',
+            desc_food: 'Variety of food to accomodate to the client´s palete and necesities'
+        },
+        carousel:{
+            title: 'Satisfied Customers'
+        },
+        about:{
+            title: 'Who Are We?',
+            desc_title:'NAME HOLDER',
+            desc1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lobortis commodo odio, in auctor dui vulputate sed. Nam id nulla sit amet erat viverra ultricies. Proin gravida mauris id tortor commodo, in venenatis arcu elementum. Donec eu eros mauris. Morbi ut consequat arcu. Etiam eget justo diam. Vivamus vehicula enim metus, eu tincidunt risus semper et.',
+            desc2:'Donec at lorem sagittis, pharetra erat at, sodales quam. Nunc euismod pretium eros, tincidunt blandit sem consectetur sit amet. Phasellus iaculis malesuada elit, quis volutpat lorem condimentum sit amet. Suspendisse gravida ullamcorper felis, sed vehicula ex vehicula id. Maecenas sed felis sem.'
+        },
+        contact:{
+            title: 'Any doubts?',
+            contact_title: 'Contact Us',
+            form_title:'Send us a message',
+            name_label: 'Name',
+            email_label: 'E-mail',
+            message: 'Message',
+            button: 'Send'
+        }
     }
 }
