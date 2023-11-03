@@ -28,12 +28,6 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-## Carousel Setup
-
-```sh
-npm install vue3-carousel
-```
-
 ### Compile and Hot-Reload for Development
 
 ```sh
