@@ -36,9 +36,6 @@ export default {
   methods: {
     goForward() {
       this.contadorClicks++;
-      if(this.contadorClicks > 4){
-        
-      }
     },
     goBack() {
       this.contadorClicks--;
