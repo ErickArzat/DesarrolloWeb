@@ -14,7 +14,7 @@
     <div class="landing_text">
       <h1 id="Tittle">{{ $t('landing.title') }}</h1>
       <p id="desc">{{ $t('landing.desc') }}</p>
-      <button id="btn_start">{{ $t('landing.button') }}</button>
+      <button id="btn_start" onclick="planner()">{{ $t('landing.button') }}</button>
     </div>
     <img src="../assets/HomeImg1.png" alt="">
   </div>
@@ -41,7 +41,7 @@
           <p>{{ $t('services.desc_food') }}</p>
       </div>
   </div>
-  <div class="container-c">
+  <div class="container-c" id="planner">
     <component :is="componenteActual"></component>
     <div class="navigation">
         <button type="button" class="btn btn-outline-dark"  @click="goBack" >Atrás</button>
@@ -113,6 +113,13 @@ export default {
     goBack() {
       this.contadorClicks--;
     },
+    planner(){
+      sectionPlanner = document.getElementById("planner");
+      if (sectionPlanner) {
+        sectionPlanner.scrollIntoView({ behavior: "smooth" });
+      }
+      
+    }
   },
 };
 </script>
