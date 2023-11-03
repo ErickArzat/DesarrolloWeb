@@ -1,5 +1,6 @@
 @import './base.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
 body{
   background-color: #fff;
   font-family: 'Poppins', sans-serif;
@@ -15,9 +16,12 @@ body{
       display:flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
       padding: 2rem;
    }
-   
+   .title>p{
+    font-weight: 600;
+   }
     .card__container {
       border-radius: 10px;
       display: grid;
@@ -94,7 +98,7 @@ body{
     font-weight: 800;
     color: #5B83FF;
 }
-.header .nav { /*Links */
+.header .nav {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -181,6 +185,10 @@ body{
     font-family: 'Poppins', sans-serif;
     font-size: 25px;
   }
+  .container > h3{
+    color: #787878;
+    font-weight: 600;
+  }
   .col-md-5{
     background: #5B83FF;
     padding: 30px;
@@ -218,7 +226,7 @@ body{
   }
   
   .form-control:focus {
-    background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
+    background: #fff;
   }
   
   .bi{

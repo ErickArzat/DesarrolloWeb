@@ -1,12 +1,12 @@
 <script setup>
       const slides = [
-        'src/assets/image 1.png',
-        'src/assets/image 2.png',
-        'src/assets/grupo-amigos-divirtiendose-fiesta-blanca-bebidas 1.png',
-        'src/assets/grupo-ninos-pie-contra-pared-disfrutando-fiesta-cumpleanos 1.png',
-        'src/assets/nochebuena-amigos 1.png',
-        'src/assets/parejas-celebrando-cumpleanos 1.png',
-        'src/assets/retrato-nino-sonriente-regalo-cumpleanos-casa 1.png'
+        'src/assets/imagenes/image 1.png',
+        'src/assets/imagenes/image 2.png',
+        'src/assets/imagenes/grupo-amigos-divirtiendose-fiesta-blanca-bebidas 1.png',
+        'src/assets/imagenes/grupo-ninos-pie-contra-pared-disfrutando-fiesta-cumpleanos 1.png',
+        'src/assets/imagenes/nochebuena-amigos 1.png',
+        'src/assets/imagenes/parejas-celebrando-cumpleanos 1.png',
+        'src/assets/imagenes/retrato-nino-sonriente-regalo-cumpleanos-casa 1.png'
       ];
 </script>
 <template>
@@ -16,27 +16,27 @@
       <p id="desc">{{ $t('landing.desc') }}</p>
       <button id="btn_start" onclick="planner()">{{ $t('landing.button') }}</button>
     </div>
-    <img src="../assets/HomeImg1.png" alt="">
+    <img src="../assets/imagenes/HomeImg1.png" alt="">
   </div>
   <div class="services">
       <p>{{ $t('services.title') }}</p>
       <div class="ubication">
-          <img src="src/assets/7125203 1.png" alt="">
+          <img src="src/assets/imagenes/7125203 1.png" alt="">
           <h4>{{ $t('services.title_ubication') }}</h4>
           <p>{{ $t('services.desc_ubication') }}</p>
       </div>
       <div class="decoration">
-          <img src="src/assets/7802380 1.png" alt="">
+          <img src="src/assets/imagenes/7802380 1.png" alt="">
           <h4>{{ $t('services.title_decoration') }}</h4>
           <p>{{ $t('services.desc_decoration') }}</p>
       </div>
       <div class="music">
-          <img src="src/assets/7802400 1.png" alt="">
+          <img src="src/assets/imagenes/7802400 1.png" alt="">
           <h4>{{ $t('services.title_music') }}</h4>
           <p>{{ $t('services.desc_music') }}</p>
       </div>
       <div class="food">
-          <img src="src/assets/5996669 1.png" alt="">
+          <img src="src/assets/imagenes/5996669 1.png" alt="">
           <h4>{{ $t('services.title_food') }}</h4>
           <p>{{ $t('services.desc_food') }}</p>
       </div>
@@ -64,7 +64,7 @@
     <p><span>{{ $t('about.desc_title') }}</span><br>{{ $t('about.desc1') }} <br> {{ $t('about.desc2') }}
        
     </p>
-    <img src="src/assets/Rectangle 21.png" alt="">
+    <img src="src/assets/imagenes/Rectangle 21.png" alt="">
   </div>
   
 
