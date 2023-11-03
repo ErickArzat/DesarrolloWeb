@@ -9,7 +9,8 @@ export default{
        btn:{
         begin:"Comienza", 
         back:"Atrás",
-        login: "Inicia sesión"
+        login: "Inicia sesión",
+        submit: "Enviar"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -36,7 +37,7 @@ export default{
        contact:{
         title:"¿Tienes alguna duda?", 
         sendmessage: "Envíanos un mensaje",
-        contact: "Contáctanos",
+        contact: "Contáctanos", 
         name: "Nombre", 
         message: "Mensaje"
        }
@@ -50,7 +51,8 @@ export default{
         btn:{
             begin:"Comienza", 
             back: "Back", 
-            login: "Log In"
+            login: "Log In",
+            submit: "Submit"
         },
         home:{
             pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -74,7 +76,8 @@ export default{
             title:"¿Tienes alguna duda?", 
             sendmessage: "Envíanos un mensaje",
             contact: "Contáctanos", 
-            name: "Nombre"
+            name: "Nombre", 
+            message: "Mensaje"
            }
 
     }

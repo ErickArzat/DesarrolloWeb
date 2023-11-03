@@ -114,7 +114,9 @@
     border-radius: 20px 20px 0 0 ;
     color: white;
   }
-  
+  .mt-4 a{
+    color: #fff;
+  }
   .title-message, .form-label, .content p, .form-control{
     font-family: 'Poppins', sans-serif;
     color: #787878;
@@ -140,6 +142,10 @@
     font-size: 15px;
     border-radius: 8px;
     border: 1px solid #b3b3b3;
+  }
+  
+  .form-control:focus {
+    background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
   }
   
   .bi{

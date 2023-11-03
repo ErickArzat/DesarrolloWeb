@@ -1,16 +1,16 @@
 
 <template>
     <div class="container">
-      <h3 class="text-center mb-5"><!--{{ $t('contact.title') }}--></h3>
+      <h3 class="text-center mb-5">{{ $t('contact.title') }}</h3>
         <div class="row">
             <div class="col-md-5">
               <div class="content">
-                <h4 class="title-contactUs mb-4"><!--{{ $t('contact.contact') }}--></h4>
+                <h4 class="title-contactUs mb-4">{{ $t('contact.contact') }}</h4>
               </div>
               <div class="mt-4">
                   <div class="content">
                     <i class="bi bi-telephone-fill"></i>
-                    <p class="mb-5"></p>
+                    <p class="mb-5">999-00-0099</p>
                   </div>
                   <div class="content">
                     <a href=""><i class="bi bi-envelope-fill"></i></a>
@@ -27,9 +27,9 @@
               </div>
             </div>
             <div class="col-md-7 grow-on-hover">
-              <h4 class="title-message">Envíanos un mensaje</h4>
+              <h4 class="title-message">{{ $t('contact.sendmessage') }}</h4>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Name</label>
+                    <label for="formGroupExampleInput" class="form-label">{{ $t('contact.name') }}</label>
                     <input type="text" class="form-control" id="formGroupExampleInput">
                   </div>
                   <div class="mb-3">
@@ -37,10 +37,10 @@
                     <input type="text" class="form-control" id="formGroupExampleInput2">
                   </div>
                   <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <label for="exampleFormControlTextarea1" class="form-label">{{ $t('contact.message') }}</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
-                  <button class="btn btn-primary">Submit</button>
+                  <button class="btn btn-primary">{{ $t('btn.submit') }}</button>
             </div>
         </div>
     </div>
