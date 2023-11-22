@@ -4,7 +4,8 @@ export default{
        nav:{
         meetus:"Conócenos", 
         plan:"Planea tu Fiesta", 
-        parties:"Fiestas", 
+        parties:"Fiestas",
+        contactus:"Contáctanos", 
        },
        btn:{
         begin:"Comienza", 
@@ -85,13 +86,6 @@ export default{
         }
     
        },
-       contact:{
-        title:"¿Tienes alguna duda?", 
-        sendmessage: "Envíanos un mensaje",
-        contact: "Contáctanos", 
-        name: "Nombre", 
-        message: "Mensaje"
-       },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
             desc: 'Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc.',
@@ -165,9 +159,10 @@ export default{
             button: 'Send'
         },
         nav:{
-            meetus:"Conócenos", 
-            plan:"Planea tu Fiesta", 
-            parties:"Fiestas", 
+            meetus:"know us", 
+            plan:"Plan your Party", 
+            parties:"Parties", 
+            contactus:"Contáctanos", 
            },
         btn:{
             begin:"Comienza", 
@@ -178,17 +173,6 @@ export default{
         home:{
             pgraf1: "¡Hacemos de tus sueños una fiesta!", 
             pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
-        },
-        services:{
-            title:"Sevicios", 
-            ubication:"Ubicación", 
-            ubidesc: "Nosotros nos encargamos de proporcionar una ubicación ideal para tu evento", 
-            decoration:"Decoración", 
-            decdesc: "Trabajamos en conjunto para poder encontrar la decoración adecuada para ti",
-            music: "Música", 
-            muscdesc:"Con nuestro basto repertorio de artistas buscamos el que se adapte perfectamente al tono de tu evento",
-            food: "Alimentos",
-            fdesc: "Variedad de alimentos para cumplir con el paladar y necesidades de nuestros clientes",
         },
         refferals:{
             title:"¿Quiénes somos?"
@@ -247,13 +231,6 @@ export default{
                 show: "Show"
             }
         },
-        contact:{
-            title:"¿Tienes alguna duda?", 
-            sendmessage: "Envíanos un mensaje",
-            contact: "Contáctanos", 
-            name: "Nombre", 
-            message: "Mensaje"
-        }
 
     }
 }
