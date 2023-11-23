@@ -1,68 +1,78 @@
 <template>    
     <header class="header">
-        <input type="checkbox" name="" id="check">
+        <input type="checkbox" name="" id="check" v-model="showMenu">
         
         
         <div class="name-holder">
-            <h3>NAME HOLDER</h3>
+            <a href=""><h3>NAME HOLDER</h3></a>
         </div>
-        <nav class="nav">
+        <nav class="nav" >
             <ul class="nav-links">
-                <li><a href="#">{{ $t('nav.meetus') }}</a></li>
-                <li><a href="#">{{ $t('nav.plan') }}</a></li>
-                <li><a href="#">Contactanos</a></li>
+                <li @click="handleNavigation('aboutus')"><a href="#aboutus">{{ $t('nav.meetus') }}</a></li>
+                <li @click="handleNavigation('planner')"><a href="#planner">{{ $t('nav.plan') }}</a></li>
+                <li @click="handleNavigation('contactus')"><a href="#contactus">{{ $t('nav.contactus') }}</a></li>
                 <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
-        <div class="lang-div">
+        <div class="lan-div">
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                <label class="form-check-label" >Default switch checkbox input</label>
+                <img id="lang-img" src="../assets/imagenes/idioma.png" alt="">
+                <input class="form-check-input custom-switch custom-control-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" @click="toggleLocale">
+                <a class="btn" href="/login"><button>{{ $t('btn.login') }}</button></a>
+                <label for="check" class="checkbtn">
+                    <i class="bi bi-list"></i>
+                </label>
             </div>
-            <a class="btn" href=""><button>{{ $t('btn.login') }}</button></a>
-            <label for="check" class="checkbtn">
-                <i class="bi bi-list"></i>
-            </label>
+            
         </div>
-        
     </header>     
 </template>
 
 <script>
-import i18n from '../i18n/index'; // Ajusta la ruta a tu archivo i18n
+    export default {
+        name: "MenuNav",
+        data() {
+            return {
+                locale: this.$i18n.locale,
+                showMenu: false,
+            };
+        },
+        computed: {
 
-export default {
-  methods: {
-    changeLanguage(event) {
-      const selectedLanguage = event.target.value;
-      i18n.global.locale = selectedLanguage;
-      console.log(i18n.global.locale);
-    },
-  },
-};
+        },
+        methods: {
+            toggleLocale() {
+                this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en';
+                localStorage.setItem('selectedLocale', this.$18n.locale);
+            },
+            handleNavigation(sectionId) {
+                this.showMenu = false;
+            },
+        },
+     }
 </script>
 <style>
 
-@media screen and (min-width: 744px) { /**Pantalla mas chica --> Pantalla Mediana*/ 
+@media screen and (min-width: 934px) { 
     .header .nav-links #btnLogIn {
-        display: none; /**Block -> None */ 
+        display: none; 
     }
     .header .nav{
         transition: none;
     }
-    .header .btn button {
-        display: block;  /**None -> Block*/ 
+    .header .btn{
+        display: block; 
     }
 
     .checkbtn {
-        display: none; /**Block -> None */ 
+        display: none; 
     }
     .header .nav-links a {
         transition: none;
-        color: #797474; /**Cambio de color*/ 
+        color: #797474; 
     }
     .header .nav-links li a:hover{
-        font-size: 15px;
+        font-size: 18px;
     }
 
     .header h3{
@@ -86,7 +96,7 @@ export default {
     }
 }
 
-@media screen and (min-width: 953px){ /**Pantalla mediana --> Pantalla Grande*/
+@media screen and (min-width: 1206px){ 
     .header h3{
         font-size: 28px;
     }
@@ -97,7 +107,8 @@ export default {
         font-size: 20px;
     }
     .header .nav-links li a:hover{
-        font-size: 20px;
+        font-size: 24px;
+        transition: 0.5s ease;
     }
     .header .nav-links li{
         padding: 12px 40px 0 40px;    

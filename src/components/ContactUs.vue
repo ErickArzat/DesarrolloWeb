@@ -1,6 +1,6 @@
 
 <template>
-    <div class="container">
+    <div class="container" id="contactus">
       <h3 class="text-center mb-5">{{ $t('contact.title') }}</h3>
         <div class="row">
             <div class="col-md-5">
@@ -45,7 +45,7 @@
         </div>
     </div>
 </template>
-
+<script></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 

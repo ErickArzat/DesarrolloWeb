@@ -10,11 +10,13 @@
       ];
 </script>
 <template>
+  <NavBar/>
   <div class="landing">
     <div class="landing_text">
       <h1 id="Tittle">{{ $t('landing.title') }}</h1>
       <p id="desc">{{ $t('landing.desc') }}</p>
-      <button id="btn_start" onclick="planner()">{{ $t('landing.button') }}</button>
+      <a href="#planner"><button id="btn_start" onclick="planner()">{{ $t('landing.button') }}</button></a>
+      
     </div>
     <img src="../assets/imagenes/HomeImg1.png" alt="">
   </div>
@@ -59,18 +61,20 @@
           </template>
       </Carousel>
   </div>
-  <div class="about">
+  <div id="aboutus" class="about">
     <h4>{{ $t('about.title') }}</h4>
     <p><span>{{ $t('about.desc_title') }}</span><br>{{ $t('about.desc1') }} <br> {{ $t('about.desc2') }}
        
     </p>
     <img src="src/assets/imagenes/Rectangle 21.png" alt="">
   </div>
-  
+<ContactUs/>
 
 
 </template>
 <script> 
+import ContactUs  from '../components/ContactUs.vue';
+import NavBar from '../components/NavBar.vue'
 import { defineComponent } from 'vue'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
@@ -86,7 +90,8 @@ export default {
     components: {
       Carousel,
       Slide,
-      Navigation,
+      ContactUs,
+      NavBar
     },
   }),
   data() {
@@ -113,13 +118,7 @@ export default {
     goBack() {
       this.contadorClicks--;
     },
-    planner(){
-      sectionPlanner = document.getElementById("planner");
-      if (sectionPlanner) {
-        sectionPlanner.scrollIntoView({ behavior: "smooth" });
-      }
-      
-    }
+  
   },
 };
 </script>

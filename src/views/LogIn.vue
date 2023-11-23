@@ -12,7 +12,8 @@
     <form>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
+      
     </form>
 
     <!-- Remind Passowrd -->
@@ -102,7 +103,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=btn], input[type=reset]  {
   background-color: #5B83FF;
   border: none;
   color: white;
@@ -126,7 +127,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 
 
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=button]:active, input[type=btn]:active, input[type=reset]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
