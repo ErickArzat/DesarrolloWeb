@@ -5,35 +5,35 @@
         <div class="row">
             <div class="col-md-5">
               <div class="content">
-                <h4 class="title-contactUs mb-4">{{ $t('contact.contact') }}</h4>
+                <h4 class="title-contactUs mb-4">{{ $t('contact.contact_title') }}</h4>
               </div>
               <div class="mt-4">
                   <div class="content">
                     <i class="bi bi-telephone-fill"></i>
-                    <p class="mb-5">999-00-0099</p>
+                    <p class="mb-5">{{ $t('contact.phone') }}</p>
                   </div>
                   <div class="content">
                     <a href=""><i class="bi bi-envelope-fill"></i></a>
-                    <p class="my-custom-font-size mb-5">example@contact.com</p>
+                    <p class="my-custom-font-size mb-5">{{ $t('contact.email') }}</p>
                   </div>
                   <div class="content">
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <p class="my-custom-font-size mb-2">Instagram</p>
+                    <p class="my-custom-font-size mb-2">{{ $t('websites.instagram') }}</p>
                   </div>
                   <div class="content">
                     <a href=""><i class="bi bi-facebook"></i></a>
-                    <p class="my-custom-font-size">Facebook</p>
+                    <p class="my-custom-font-size">{{ $t('websites.facebook') }}</p>
                   </div>
               </div>
             </div>
             <div class="col-md-7 grow-on-hover">
-              <h4 class="title-message">{{ $t('contact.sendmessage') }}</h4>
+              <h4 class="title-message">{{ $t('contact.form_title') }}</h4>
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">{{ $t('contact.name') }}</label>
+                    <label for="formGroupExampleInput" class="form-label">{{ $t('contact.name_label') }}</label>
                     <input type="text" class="form-control" id="formGroupExampleInput">
                   </div>
                   <div class="mb-3">
-                    <label for="formGroupExampleInput2" class="form-label">Email</label>
+                    <label for="formGroupExampleInput2" class="form-label">{{ $t('contact.email_label') }}</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2">
                   </div>
                   <div class="mb-3">

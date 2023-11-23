@@ -1,9 +1,7 @@
 <template>    
     <header class="header">
         <input type="checkbox" name="" id="check">
-        <label for="check" class="checkbtn">
-            <i class="bi bi-list"></i>
-        </label>
+        
         
         <div class="name-holder">
             <h3>NAME HOLDER</h3>
@@ -12,13 +10,37 @@
             <ul class="nav-links">
                 <li><a href="#">{{ $t('nav.meetus') }}</a></li>
                 <li><a href="#">{{ $t('nav.plan') }}</a></li>
+                <li><a href="#">Contactanos</a></li>
                 <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
-        <a class="btn" href=""><button>{{ $t('btn.login') }}</button></a>
+        <div class="lang-div">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" >Default switch checkbox input</label>
+            </div>
+            <a class="btn" href=""><button>{{ $t('btn.login') }}</button></a>
+            <label for="check" class="checkbtn">
+                <i class="bi bi-list"></i>
+            </label>
+        </div>
+        
     </header>     
 </template>
 
+<script>
+import i18n from '../i18n/index'; // Ajusta la ruta a tu archivo i18n
+
+export default {
+  methods: {
+    changeLanguage(event) {
+      const selectedLanguage = event.target.value;
+      i18n.global.locale = selectedLanguage;
+      console.log(i18n.global.locale);
+    },
+  },
+};
+</script>
 <style>
 
 @media screen and (min-width: 744px) { /**Pantalla mas chica --> Pantalla Mediana*/ 

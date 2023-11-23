@@ -85,13 +85,6 @@ export default{
         }
     
        },
-       contact:{
-        title:"¿Tienes alguna duda?", 
-        sendmessage: "Envíanos un mensaje",
-        contact: "Contáctanos", 
-        name: "Nombre", 
-        message: "Mensaje"
-       },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
             desc: 'Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc.',
@@ -118,6 +111,8 @@ export default{
             desc2:'Donec at lorem sagittis, pharetra erat at, sodales quam. Nunc euismod pretium eros, tincidunt blandit sem consectetur sit amet. Phasellus iaculis malesuada elit, quis volutpat lorem condimentum sit amet. Suspendisse gravida ullamcorper felis, sed vehicula ex vehicula id. Maecenas sed felis sem.'
         },
         contact:{
+            phone:'999-00-0099',
+            email: "example@contact.com",
             title: '¿Tienes alguna duda?',
             contact_title: 'Contáctanos',
             form_title:'Envíanos un mensaje',
@@ -125,6 +120,10 @@ export default{
             email_label: 'E-mail',
             message: 'Mensaje',
             button: 'Enviar'
+        },
+        websites:{
+            facebook: 'Facebook',
+            instagram: 'Instagram'
         }
     }, 
    
@@ -156,6 +155,8 @@ export default{
             desc2:'Donec at lorem sagittis, pharetra erat at, sodales quam. Nunc euismod pretium eros, tincidunt blandit sem consectetur sit amet. Phasellus iaculis malesuada elit, quis volutpat lorem condimentum sit amet. Suspendisse gravida ullamcorper felis, sed vehicula ex vehicula id. Maecenas sed felis sem.'
         },
         contact:{
+            phone:'999-00-0099',
+            email: "example@contact.com",
             title: 'Any doubts?',
             contact_title: 'Contact Us',
             form_title:'Send us a message',
@@ -164,10 +165,14 @@ export default{
             message: 'Message',
             button: 'Send'
         },
+        websites:{
+            facebook: 'Facebook',
+            instagram: 'Instagram'
+        },
         nav:{
-            meetus:"Conócenos", 
-            plan:"Planea tu Fiesta", 
-            parties:"Fiestas", 
+            meetus:"know us", 
+            plan:"Plan your Party", 
+            parties:"Parties", 
            },
         btn:{
             begin:"Comienza", 
@@ -247,13 +252,5 @@ export default{
                 show: "Show"
             }
         },
-        contact:{
-            title:"¿Tienes alguna duda?", 
-            sendmessage: "Envíanos un mensaje",
-            contact: "Contáctanos", 
-            name: "Nombre", 
-            message: "Mensaje"
-        }
-
     }
 }

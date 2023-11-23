@@ -176,6 +176,13 @@ body{
     font-weight: 800;
     color: #5B83FF;
 }
+.lang-div{
+  display: flex;
+}
+#lang-img{
+  width: 20px;
+  height: 20px;
+}
 .header .nav { /*Links */
     position: fixed;
     width: 100%;
