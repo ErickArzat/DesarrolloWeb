@@ -40,6 +40,21 @@
         computed: {
 
         },
+        mounted() {
+            this.handleNavigation();
+            window.addEventListener('resize', this.handleNavigation);
+        },
+        destroyed() {
+            window.removeEventListener('resize', this.handleNavigation);
+            // Asegúrate de restablecer el comportamiento de scroll cuando el componente se destruye
+            document.body.style.overflow = 'auto';
+        },
+        watch: {
+            showMenu(newVal) {
+            // Controlar el comportamiento del scroll dependiendo del estado de showMenu
+            document.body.style.overflow = newVal ? 'hidden' : 'auto';
+            },
+        },
         methods: {
             toggleLocale() {
                 this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en';
@@ -53,7 +68,7 @@
 </script>
 <style>
 
-@media screen and (min-width: 934px) { 
+@media screen and (min-width: 997px) { 
     .header .nav-links #btnLogIn {
         display: none; 
     }
@@ -98,23 +113,23 @@
 
 @media screen and (min-width: 1206px){ 
     .header h3{
-        font-size: 28px;
+        font-size: 25px;
     }
     .header .nav{
         height: 100px;
     }
     .header .nav-links a{
-        font-size: 20px;
+        font-size: 18px;
     }
     .header .nav-links li a:hover{
-        font-size: 24px;
+        font-size: 20px;
         transition: 0.5s ease;
     }
     .header .nav-links li{
-        padding: 12px 40px 0 40px;    
+        padding: 12px 40px 0 10px;    
     }
     .header .btn button{
-        font-size: 18px;
+        font-size: 17px;
     }
 }
 </style>

@@ -174,6 +174,7 @@ export default{
             meetus:"know us", 
             plan:"Plan your Party", 
             parties:"Parties", 
+            contactus:"Contact us", 
            },
         btn:{
             begin:"Comienza", 
