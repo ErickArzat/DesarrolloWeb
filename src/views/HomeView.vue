@@ -46,8 +46,8 @@
   <div class="container-c" id="planner">
     <component :is="componenteActual"></component>
     <div class="navigation">
-        <button type="button" class="btn btn-outline-dark"  @click="goBack" >Atrás</button>
-        <button type="button" class="btn btn-outline-dark" @click="goForward">Siguiente</button>
+        <button type="button" class="btn btn-outline-dark"  @click="goBack" >{{ $t('homeview.back') }}</button>
+        <button type="button" class="btn btn-outline-dark" @click="goForward">{{ $t('homeview.next') }}</button>
     </div>
   </div>
   <div class="carousel">

@@ -68,7 +68,7 @@
 </script>
 <style>
 
-@media screen and (min-width: 997px) { 
+@media screen and (min-width: 817px) { 
     .header .nav-links #btnLogIn {
         display: none; 
     }
@@ -84,6 +84,7 @@
     }
     .header .nav-links a {
         transition: none;
+        font-size: 13px;
         color: #797474; 
     }
     .header .nav-links li a:hover{
@@ -104,14 +105,14 @@
     .header .nav-links li{
         display: inline-block;
         margin-top: 15px;
-        padding: 0 20px; 
+        padding: 0 10px; 
     }
     .header .btn button{
         font-size: 15px;
     }
 }
 
-@media screen and (min-width: 1206px){ 
+@media screen and (min-width: 1028px){ 
     .header h3{
         font-size: 25px;
     }

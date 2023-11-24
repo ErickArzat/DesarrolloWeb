@@ -17,6 +17,10 @@ export default{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
         pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
        },
+       homeview:{
+        next: 'Atras',
+        back: 'Siguiente',
+        },
        services:{
         title:"Sevicios", 
         ubication:"Ubicación", 
@@ -166,6 +170,10 @@ export default{
             message: 'Message',
             button: 'Send'
         },
+        homeview:{
+            next: 'Next',
+            back: 'Back',
+        },
         websites:{
             facebook: 'Facebook',
             instagram: 'Instagram'
@@ -183,46 +191,46 @@ export default{
             submit: "Submit"
         },
         home:{
-            pgraf1: "¡Hacemos de tus sueños una fiesta!", 
-            pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
+            pgraf1: "We make your dreams a party!", 
+            pgraf2: "We help you create the event of your dreams: Weddings, Birthdays, XV years, etc."
         },
         refferals:{
-            title:"¿Quiénes somos?"
+            title:"About us?"
         },
         aboutus:{
-            title:"¿Quiénes somos?", 
+            title:"About us?", 
            },
            planeacion:{
             tipe:{
-                title: "Elige tu tipo de fiesta", 
-                young:"Juvenil", 
-                birthday:"Cumpleaños",
-                graduation:"Graduación", 
-                wedding: "Boda", 
+                title: "Choose your type of party", 
+                young:"Youth", 
+                birthday:"Birthday",
+                graduation:"Graduation", 
+                wedding: "Wedding", 
                 babyShower: "Baby Shower",
-                christening: "Bautizo",
-                visitation: "Velorio"
+                christening: "Christening",
+                visitation: "Wake"
             },
             color:{
-                title: "Elige de que color quieres pintar tu fiesta."
+                title: "Choose what color you want to paint your party."
             }, 
             decoration:{
-                title: "¿Qué decoraciones quieres para tu fiesta?", 
-                balloons: "Globos", 
+                title: "What decorations do you want for your party?", 
+                balloons: "Balloons", 
                 confetti: "Confetti",
                 curtain: "Curtain",
-                castle: "Castillo Inflable", 
-                ball:"Bola Disco", 
+                castle: "Inflatable castle", 
+                ball:"Disco ball", 
                 balloonarch: "Arco", 
-                letters: "Letras", 
-                lights: "Luces", 
-                smoke: "Humo", 
+                letters: "Letters", 
+                lights: "Lights", 
+                smoke: "Smoke", 
                 piniata: "Piñata",
-                flowers: "Flores", 
-                hats: "Sombreros", 
-                recuerdos: "Recuerdos", 
-                cross: "Cruz de Flores", 
-                crown: "Corona de Flores", 
+                flowers: "Flowers", 
+                hats: "Hats", 
+                recuerdos: "Memories", 
+                cross: "Flower Cross", 
+                crown: "Crown of flowers", 
             },
             cake:{
                 title: "Choose your cake",
