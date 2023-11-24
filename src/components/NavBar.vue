@@ -68,7 +68,7 @@
 </script>
 <style>
 
-@media screen and (min-width: 817px) { 
+@media screen and (min-width: 939px) { 
     .header .nav-links #btnLogIn {
         display: none; 
     }
@@ -84,11 +84,11 @@
     }
     .header .nav-links a {
         transition: none;
-        font-size: 13px;
+        font-size: 15px;
         color: #797474; 
     }
     .header .nav-links li a:hover{
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .header h3{
@@ -112,7 +112,7 @@
     }
 }
 
-@media screen and (min-width: 1028px){ 
+@media screen and (min-width: 1072px){ 
     .header h3{
         font-size: 25px;
     }
@@ -120,17 +120,17 @@
         height: 100px;
     }
     .header .nav-links a{
-        font-size: 18px;
+        font-size: 16px;
     }
     .header .nav-links li a:hover{
-        font-size: 20px;
+        font-size: 18px;
         transition: 0.5s ease;
     }
     .header .nav-links li{
         padding: 12px 40px 0 10px;    
     }
     .header .btn button{
-        font-size: 17px;
+        font-size: 16px;
     }
 }
 </style>
