@@ -1,6 +1,5 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
-import AppFooter from './components/AppFooter.vue'
 import ContactUs  from './components/ContactUs.vue';
 
 </script>
@@ -25,7 +24,6 @@ import ContactUs  from './components/ContactUs.vue';
 export default {
   components:{
     NavBar,
-    AppFooter,
     ContactUs
   },
   data() {

@@ -1,47 +1,93 @@
 <template>    
     <header class="header">
-        <input type="checkbox" name="" id="check">
-        <label for="check" class="checkbtn">
-            <i class="bi bi-list"></i>
-        </label>
+        <input type="checkbox" name="" id="check" v-model="showMenu">
+        
         
         <div class="name-holder">
-            <h3>NAME HOLDER</h3>
+            <a href=""><h3>PARTYTION</h3></a>
         </div>
-        <nav class="nav">
+        <nav class="nav" >
             <ul class="nav-links">
-                <li><a href="#">Conócenos</a></li>
-                <li><a href="#">Planea tu fiesta</a></li>
-                <li id="btnLogIn"><a href="#">Iniciar Sesión</a></li>
+                <li @click="handleNavigation('aboutus')"><a href="#aboutus">{{ $t('nav.meetus') }}</a></li>
+                <li @click="handleNavigation('planner')"><a href="#planner">{{ $t('nav.plan') }}</a></li>
+                <li @click="handleNavigation('contactus')"><a href="#contactus">{{ $t('nav.contactus') }}</a></li>
             </ul>
         </nav>
-        <a class="btn" href=""><button>Iniciar sesión</button></a>
+        <div class="lan-div">
+            <div class="form-check form-switch">
+                <img id="lang-img" src="../assets/imagenes/idioma.png" alt="">
+                <input class="form-check-input custom-switch custom-control-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" @click="toggleLocale">
+                <a id="btnLogIn" href="/login">{{ $t('btn.login') }}</a>
+                <label for="check" class="checkbtn">
+                    <i class="bi bi-list"></i>
+                </label>
+            </div>
+            
+        </div>
     </header>     
 </template>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;800&display=swap');
+<script>
+    export default {
+        name: "MenuNav",
+        data() {
+            return {
+                locale: this.$i18n.locale,
+                showMenu: false,
+            };
+        },
+        computed: {
 
-@media screen and (min-width: 744px) { /**Pantalla mas chica --> Pantalla Mediana*/ 
+        },
+        mounted() {
+            this.handleNavigation();
+            window.addEventListener('resize', this.handleNavigation);
+        },
+        destroyed() {
+            window.removeEventListener('resize', this.handleNavigation);
+            // Asegúrate de restablecer el comportamiento de scroll cuando el componente se destruye
+            document.body.style.overflow = 'auto';
+        },
+        watch: {
+            showMenu(newVal) {
+            // Controlar el comportamiento del scroll dependiendo del estado de showMenu
+            document.body.style.overflow = newVal ? 'hidden' : 'auto';
+            },
+        },
+        methods: {
+            toggleLocale() {
+                this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en';
+                localStorage.setItem('selectedLocale', this.$18n.locale);
+            },
+            handleNavigation(sectionId) {
+                this.showMenu = false;
+            },
+        },
+     }
+</script>
+<style>
+
+@media screen and (min-width: 939px) { 
     .header .nav-links #btnLogIn {
-        display: none; /**Block -> None */ 
+        display: none; 
     }
     .header .nav{
         transition: none;
     }
-    .header .btn button {
-        display: block;  /**None -> Block*/ 
+    .header .btn{
+        display: block; 
     }
 
     .checkbtn {
-        display: none; /**Block -> None */ 
+        display: none; 
     }
     .header .nav-links a {
         transition: none;
-        color: #797474; /**Cambio de color*/ 
+        font-size: 15px;
+        color: #797474; 
     }
     .header .nav-links li a:hover{
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .header h3{
@@ -58,32 +104,33 @@
     .header .nav-links li{
         display: inline-block;
         margin-top: 15px;
-        padding: 0 20px; 
+        padding: 0 10px; 
     }
     .header .btn button{
         font-size: 15px;
     }
 }
 
-@media screen and (min-width: 953px){ /**Pantalla mediana --> Pantalla Grande*/
+@media screen and (min-width: 1072px){ 
     .header h3{
-        font-size: 28px;
+        font-size: 25px;
     }
     .header .nav{
         height: 100px;
     }
     .header .nav-links a{
-        font-size: 20px;
+        font-size: 16px;
     }
     .header .nav-links li a:hover{
-        font-size: 20px;
+        font-size: 18px;
+        transition: 0.5s ease;
+        text-decoration: none;
     }
     .header .nav-links li{
-        padding: 12px 40px 0 40px;    
+        padding: 12px 40px 0 10px;    
     }
     .header .btn button{
-        font-size: 18px;
+        font-size: 16px;
     }
-
 }
 </style>
