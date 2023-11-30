@@ -10,7 +10,8 @@ export default{
         begin:"Comienza", 
         back:"Atrás",
         login: "Inicia sesión",
-        submit: "Enviar"
+        submit: "Enviar",
+        add: "Añadir"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -125,7 +126,37 @@ export default{
             email_label: 'E-mail',
             message: 'Mensaje',
             button: 'Enviar'
-        }
+        },
+        addCake:{
+            title:"Añadir Pastel",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addDecoration:{
+            title:"Añadir Decoración",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addColor:{
+            title:"Añadir Color",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addType:{
+            title:"Añadir Tipo",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addExtras:{
+            title:"Añadir Extras",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
     }, 
    
      
@@ -173,7 +204,8 @@ export default{
             begin:"Comienza", 
             back: "Back", 
             login: "Log In",
-            submit: "Submit"
+            submit: "Submit",
+            add: "Add"
         },
         home:{
             pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -253,7 +285,37 @@ export default{
             contact: "Contáctanos", 
             name: "Nombre", 
             message: "Mensaje"
-        }
+        },
+        addCake:{
+            title:"Add Cake",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addDecoration:{
+            title:"Add Decoration",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addColor:{
+            title:"Add Color",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addType:{
+            title:"Add Type",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addExtras:{
+            title:"Add Extras",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
 
     }
 }

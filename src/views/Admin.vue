@@ -1,3 +1,5 @@
+
+
 <style>
     #wrapper{
         padding:90px 15px;
@@ -12,6 +14,11 @@
 
     .card-title{ 
         font-size: 28px;}
+
+    .addColor-title{
+        font-size: 28px;
+        margin-left: calc(1vw + 10px);
+    }
 
     @media(min-width:992px) {
         #wrapper{
@@ -109,6 +116,121 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form class="addForm">
+                <div>
+                  <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
+                  <input type="text" class="" id="ColorNameInput">
+                </div>
+                <div>
+                  <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
+                  <input type="text" class="" id="ColorPriceInput">
+                </div>
+                <div>
+                  <label for="ColorNameInput" class="">{{ $t('addColor.imgLabel') }}:</label>
+                  <input type="file" class="" id="ColorImgInput">
+                </div>
+                <button class="btn btn-primary">{{ $t('btn.add') }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form class="addForm">
+                <div>
+                  <label for="TypeNameInput" class="">{{ $t('addType.nameLabel') }}:</label>
+                  <input type="text" class="" id="TypeNameInput">
+                </div>
+                <div>
+                  <label for="TypePriceInput" class="">{{ $t('addType.priceLabel') }}:</label>
+                  <input type="text" class="" id="TypePriceInput">
+                </div>
+                <div>
+                  <label for="TypeImgInput" class="">{{ $t('addType.imgLabel') }}:</label>
+                  <input type="file" class="" id="TypeImgInput">
+                </div>
+                <button class="btn btn-primary">{{ $t('btn.add') }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form class="addForm">
+                <div>
+                  <label for="DecorationNameInput" class="">{{ $t('addDecoration.nameLabel') }}:</label>
+                  <input type="text" class="" id="DecorationNameInput">
+                </div>
+                <div>
+                  <label for="DecorationPriceInput" class="">{{ $t('addDecoration.priceLabel') }}:</label>
+                  <input type="text" class="" id="DecorationPriceInput">
+                </div>
+                <div>
+                  <label for="DecorationImgInput" class="">{{ $t('addDecoration.imgLabel') }}:</label>
+                  <input type="file" class="" id="DecorationImgInput">
+                </div>
+                <button class="btn btn-primary">{{ $t('btn.add') }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form class="addForm">
+                <div>
+                  <label for="CakeNameInput" class="">{{ $t('addCake.nameLabel') }}:</label>
+                  <input type="text" class="" id="DecorationNameInput">
+                </div>
+                <div>
+                  <label for="CakePriceInput" class="">{{ $t('addCake.priceLabel') }}:</label>
+                  <input type="text" class="" id="CakePriceInput">
+                </div>
+                <div>
+                  <label for="CakeImgInput" class="">{{ $t('addCake.imgLabel') }}:</label>
+                  <input type="file" class="" id="CakeImgInput">
+                </div>
+                <button class="btn btn-primary">{{ $t('btn.add') }}</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <form class="addForm">
+                <div>
+                  <label for="ExtraNameInput" class="">{{ $t('addExtras.nameLabel') }}:</label>
+                  <input type="text" class="" id="ExtraNameInput">
+                </div>
+                <div>
+                  <label for="ExtraPriceInput" class="">{{ $t('addExtras.priceLabel') }}:</label>
+                  <input type="text" class="" id="ExtraPriceInput">
+                </div>
+                <div>
+                  <label for="ExtraImgInput" class="">{{ $t('addExtras.imgLabel') }}:</label>
+                  <input type="file" class="" id="ExtraImgInput">
+                </div>
+                <button class="btn btn-primary">{{ $t('btn.add') }}</button>
+              </form>
             </div>
           </div>
         </div>
