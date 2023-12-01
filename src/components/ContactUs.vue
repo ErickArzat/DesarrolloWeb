@@ -44,6 +44,7 @@
             </div>
         </div>
     </div>
+    <!--<img src="/src/assets/imagenes/boda.jpeg" alt="">-->
 </template>
 <script></script>
 <style>

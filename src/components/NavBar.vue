@@ -11,7 +11,7 @@
                 <li @click="handleNavigation('aboutus')"><a href="#aboutus">{{ $t('nav.meetus') }}</a></li>
                 <li @click="handleNavigation('planner')"><a href="#planner">{{ $t('nav.plan') }}</a></li>
                 <li @click="handleNavigation('contactus')"><a href="#contactus">{{ $t('nav.contactus') }}</a></li>
-                <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
+                <li id="btnLogIn"><a href="/login">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
         <div class="lan-div">
@@ -46,12 +46,10 @@
         },
         destroyed() {
             window.removeEventListener('resize', this.handleNavigation);
-            // Asegúrate de restablecer el comportamiento de scroll cuando el componente se destruye
             document.body.style.overflow = 'auto';
         },
         watch: {
             showMenu(newVal) {
-            // Controlar el comportamiento del scroll dependiendo del estado de showMenu
             document.body.style.overflow = newVal ? 'hidden' : 'auto';
             },
         },
@@ -85,10 +83,12 @@
     .header .nav-links a {
         transition: none;
         font-size: 15px;
+        transition: 0.7s;
         color: #797474; 
     }
     .header .nav-links li a:hover{
         font-size: 16px;
+        color: rgb(174, 174, 174);
     }
 
     .header h3{
@@ -121,10 +121,10 @@
     }
     .header .nav-links a{
         font-size: 16px;
+        
     }
     .header .nav-links li a:hover{
         font-size: 18px;
-        transition: 0.5s ease;
     }
     .header .nav-links li{
         padding: 12px 40px 0 10px;    

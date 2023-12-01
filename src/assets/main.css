@@ -164,8 +164,8 @@ body.no-scroll {
 }
 
 .header .nav-links li a:hover{
-    font-size: 20px; 
-    color: #5B83FF;
+    font-size: 17px; 
+    color: black;
     transition: all 0.5s;
 }
 .header .btn{
