@@ -18,8 +18,8 @@ export default{
         pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
        },
        homeview:{
-        next: 'Atras',
-        back: 'Siguiente',
+        next: 'Siguiente',
+        back: 'Atras',
         },
        services:{
         title:"Sevicios", 
@@ -45,7 +45,7 @@ export default{
             birthday:"Cumpleaños",
             graduation:"Graduación", 
             wedding: "Boda", 
-            babyShower: "Baby Shower",
+            babyShower: "B Shower",
             christening: "Bautizo",
             visitation: "Velorio"
         },
@@ -88,7 +88,6 @@ export default{
             invitations: "Invitaciones", 
             show: "Show"
         }
-    
        },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
@@ -141,6 +140,9 @@ export default{
             all_fields: 'Todos los campos son obligatorios', 
             email_form: 'Email no valida', 
             password_match: "Las contraseñas no coinciden"
+        },
+        resume:{
+            title:"¡Así es como está quedando tu fiesta!"
         }
 
     }, 
@@ -220,7 +222,7 @@ export default{
                 birthday:"Birthday",
                 graduation:"Graduation", 
                 wedding: "Wedding", 
-                babyShower: "Baby Shower",
+                babyShower: "B Shower",
                 christening: "Christening",
                 visitation: "Wake"
             },
@@ -275,6 +277,9 @@ export default{
             all_fields: 'All the fields are required', 
             email_form: 'Email not valid', 
             password_match: "The passwords don't match"
+        },
+        resume:{
+            title:"This is how your party is turning out!"
         }
 
     }
