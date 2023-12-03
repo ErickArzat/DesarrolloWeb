@@ -1,5 +1,9 @@
 <template>
     <div class="wrapper fadeInDown">
+      <div>
+        <p v-if="message">{{ message }}</p>
+        <!-- Otros elementos del componente de inicio de sesión -->
+      </div>
   <div id="formContent">
     <!-- Tabs Titles -->
 
@@ -24,7 +28,22 @@
   </div>
 </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      message: '' // Mensaje que se mostrará al usuario
+    };
+  },
+  created() {
+    // Obtener el mensaje del almacenamiento local
+    this.message = localStorage.getItem('message');
 
+    // Limpiar el mensaje del almacenamiento local después de obtenerlo
+    localStorage.removeItem('message');
+  }
+}
+</script>
 <style scoped>
 
 body {

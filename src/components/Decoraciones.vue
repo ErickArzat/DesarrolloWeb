@@ -99,7 +99,7 @@ export default {
           
       ],
     };
-  },
+},
   watch: {
     selectedDecos(newVal) {
       localStorage.setItem('selectedDecos', JSON.stringify(newVal));
@@ -112,7 +112,7 @@ export default {
     }
   },
 };
-</script>
+</script>-
 
 <style scoped>
 

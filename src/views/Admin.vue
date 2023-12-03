@@ -116,13 +116,72 @@
       </div>
     </div>
   </div>
+
+  <form @submit.prevent="consultarPasteles" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="cakeName">Nombre del Pastel:</label>
+      <input type="text" v-model="cakeName" required>
+    </div>
+    <div>
+      <label for="cakePrice">Precio del Pastel:</label>
+      <input type="number" v-model="cakePrice" required>
+    </div>
+    <div>
+      <label for="cakeImage">Imagen del Pastel:</label>
+      <input type="file" @change="onFileChange" required>
+    </div>
+    <div>
+      <button type="submit">Guardar Pastel</button>
+    </div>
+  </form>
 </template>
 <script>
 
 import NavBar from '../components/NavBar.vue'
 export default {
+  data() {
+    return {
+      cakeName: '',
+      cakePrice: '',
+      cakeImage: null
+    };
+  },
   components:{ 
     NavBar
   },
+  created() {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      // Establecer un mensaje en el almacenamiento local
+      localStorage.setItem('message', 'Debes iniciar sesión para acceder a esta página.');
+
+      // Redirigir al usuario a la vista de inicio de sesión
+      this.$router.push({ name: 'login'});
+    }
+  }
+    // methods:{
+    //   onFileChange(event) {
+    //     this.cakeImage = event.target.files[0];
+    //   },
+    //   consultarPasteles(){
+    //     const formData = new FormData();
+    //     formData.append('cakeName', this.cakeName);
+    //     formData.append('cakePrice', this.cakePrice);
+    //     formData.append('cakeImage', this.cakeImage);
+
+    //     fetch('http://localhost/empleados-main/empleados-main/?insertar=1',{
+    //       method: "POST",
+    //       formData 
+    //     })
+    //     .then(response => response.json())
+    //     .then((datos)=>{
+    //       console.log(datos);
+    //     })
+    //     .catch(error => {
+    //       console.error('Error:', error);
+    //     });
+    //   }
+    // }
 }
 </script>

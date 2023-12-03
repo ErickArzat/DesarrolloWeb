@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import listar from '../components/Listar.vue'
+import Editar from '../components/Editar.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,7 +35,19 @@ const router = createRouter({
       path: '/Pago',
       name: 'pago',
       component: () => import('../views/Pago.vue')
-    }
+    },
+    {
+      path: '/listar',
+      name: 'listar',
+      component: listar
+    }, 
+    {
+      path: '/editar/:id_cake',
+      name: 'Editar',
+      component: Editar,
+      props: true
+    }, 
+
   ]
 })
 
