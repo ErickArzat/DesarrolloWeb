@@ -45,7 +45,7 @@ export default{
             birthday:"Cumpleaños",
             graduation:"Graduación", 
             wedding: "Boda", 
-            babyShower: "Baby Shower",
+            babyShower: "BabyShower",
             christening: "Bautizo",
             visitation: "Velorio"
         },
@@ -233,7 +233,7 @@ export default{
                 birthday:"Birthday",
                 graduation:"Graduation", 
                 wedding: "Wedding", 
-                babyShower: "Baby Shower",
+                babyShower: "BabyShower",
                 christening: "Christening",
                 visitation: "Wake"
             },

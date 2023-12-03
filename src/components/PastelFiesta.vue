@@ -4,13 +4,13 @@
     <p>{{$t("planeacion.cake.title")}}</p>
   </div>
     <div class="card__container">
-        <div class="card" v-for="card in cards" :key="card.id">
-            <input type="radio" :id="'card-' + card.id" v-model="selectedCake" :value="card.id">
-            <label :for="'card-' + card.id">
+        <div class="card" v-for="card in cards" :key="card.id_cake">
+            <input type="radio" :id="'card-' + card.id_cake" v-model="selectedCake" :value="card.id_cake">
+            <label :for="'card-' + card.id_cake">
                 <div class="card-inner">
-                    <img :src="card.image" class="card-img-top" :alt="card.alt" />
+                    <img :src="urlimage+card.img_cake" class="card-img-top" :alt="card.alt" />
                     <div class="card-body">
-                        <p class="card-text">{{ card.text }}</p>
+                        <p class="card-text">{{ card.name_cake }}</p>
                     </div>
                 </div>
             </label>
@@ -21,56 +21,15 @@
   </template>
   
   <script>
-  import img1 from "../assets/imagenes/none1.gif"
-  import img2 from "../assets/imagenes/Aesthetic.jpg";
-  import img4 from "../assets/imagenes/Cheesecake.jpg";
   import img3 from "../assets/imagenes/Chocolate.jpg";
   import img5 from "../assets/imagenes/ConfettiTradicional.jpg";
-  import img6 from "../assets/imagenes/Cupcake.jpg";
 
   export default {
     data() {
       return {
         selectedCake: null, 
-        cards: [
-          {
-            id: 1,
-            image: img1,
-            alt: this.$t('planeacion.cake.none'),
-            text: this.$t('planeacion.cake.none'),
-          },
-          {
-            id: 2,
-            image: img2,
-            alt: this.$t('planeacion.cake.aesthetic'),
-            text: this.$t('planeacion.cake.aesthetic'),
-          },
-          {
-            id: 3,
-            image: img3,
-            alt: this.$t('planeacion.cake.chocolate'),
-            text: this.$t('planeacion.cake.chocolate'),
-          },
-          {
-            id: 4,
-            image: img4,
-            alt: this.$t('planeacion.cake.cheesecake'),
-            text: this.$t('planeacion.cake.cheesecake'),
-          },
-          {
-            id: 5,
-            image: img5,
-            alt: this.$t('planeacion.cake.confetti'),
-            text: this.$t('planeacion.cake.confetti'),
-          },
-          {
-            id: 6,
-            image: img6,
-            alt: this.$t('planeacion.cake.cupcakes'),
-            text: this.$t('planeacion.cake.cupcakes'),
-          },
-          
-        ],
+        urlimage: "../src/assets/imagenes/",
+        cards: []
       };
     },
     watch: {
@@ -79,12 +38,27 @@
     },
   },
   created() {
+    this.consultar();
     const storedTipe = localStorage.getItem('selectedCake');
     if (storedTipe) {
       this.selectedCake = parseInt(storedTipe);
     }
   },
-  };
+  methods:{
+    consultar(){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/cakes.php')
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        this.cards=[]
+        if(typeof datosRespuesta[0].success==='undefined')
+        {
+          this.cards=datosRespuesta;
+        }
+      })
+      .catch(console.log)
+    }
+  },
+};
   
   </script>
 <style scoped>

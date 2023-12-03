@@ -3,16 +3,16 @@
 function connection(){
 	$server = "localhost";
 	$user = "root";
-	$pass = "06diciembre2023";
+	$pass = "";
 	$database = "partytion";
 
-	$con = new mysqli($server, $user, $pass, $database);
+	$con = mysqli_connect($server, $user, $pass, $database);
 
 	if($con->connect_error){
 		die("Error de conexión a la base de datos: " . $conexion->connect_error);
 	}
 	if (!$con) {
-    	die("Fallo: " . mysqli_connect_error());
+    	die("Connection failed: " . mysqli_connect_error());
 	}
 
 	return $con;

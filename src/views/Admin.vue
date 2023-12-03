@@ -60,6 +60,24 @@
                   </tr>
                 </tbody>
               </table>
+              <form v-on:submit.prevent="addCakes" method="post" enctype="multipart/form-data">
+                <div>
+                  <label for="cakeName">Nombre del Pastel:</label>
+                  <input type="text" v-model="cake.name" required>
+                </div>
+                <div>
+                  <label for="cakePrice">Precio del Pastel:</label>
+                  <input type="number" v-model="cake.price" required>
+                </div>
+                <div>
+                  <label for="cakeImage">Imagen del Pastel:</label>
+                  <input type="file" v-on:change="onFileChange" required>
+                </div>
+                <div>
+                  <button type="submit">Guardar Pastel</button>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>
@@ -68,9 +86,13 @@
   </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     data() {
     return { 
+      cake:{},
+      cakename: '',
       parties: [
       {
           id: 1,
@@ -108,6 +130,32 @@ export default {
   methods: {
     guardarSeleccion(party) {
       localStorage.setItem('opcionSeleccionada_' + party.id, party.status);
+    },
+    onFileChange(event) {
+      this.cake.img = event.target.files[0];
+      this.cakename= this.cake.img.name;
+    },
+    addCakes(){
+      //this.addFile();
+      var datosEnviar={name:this.cake.name,img:this.cakename,price:this.cake.price};
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/cakes.php?insertar=1',{
+        method:"POST",
+        body:JSON.stringify(datosEnviar)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta)
+      })
+      .catch(console.log)
+    },
+    addFile(){
+      const formData = new FormData();
+      formData.append('image', this.cake.img);
+      axios.post('http://localhost/daw/DesarrolloWeb/src/sql/upload.php', formData)
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta.data)
+      })
+      .catch(console.log)
     },
   },
   mounted() {
