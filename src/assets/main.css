@@ -349,3 +349,9 @@ body.no-scroll {
   .grow-on-hover {
     transition: transform 0.3s; 
   }
+/* Register - LogIn */
+
+.account_manager{
+  color:#636363;
+  padding: 3%;
+}

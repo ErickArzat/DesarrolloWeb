@@ -129,7 +129,20 @@ export default{
         websites:{
             facebook: 'Facebook',
             instagram: 'Instagram'
+        }, 
+        register:{
+            new_account: '¿Todavía no tienes una cuenta con nosotros?', 
+            go_register: 'Regístrate',
+            existing_account: '¿Ya tienes una cuenta?',
+            title: '¡Regístrate y empieza a planear las mejores fiestas!'
+            
+        }, 
+        error_message:{
+            all_fields: 'Todos los campos son obligatorios', 
+            email_form: 'Email no valida', 
+            password_match: "Las contraseñas no coinciden"
         }
+
     }, 
    
      
@@ -251,5 +264,18 @@ export default{
                 show: "Show"
             }
         },
+        register:{
+            new_account: "Don't have an account with us yet?", 
+            go_register: 'Register',
+            existing_account: 'Already have an account?',
+            title: 'Register and star planning the best parties!'
+            
+        },
+        error_message:{
+            all_fields: 'All the fields are required', 
+            email_form: 'Email not valid', 
+            password_match: "The passwords don't match"
+        }
+
     }
 }

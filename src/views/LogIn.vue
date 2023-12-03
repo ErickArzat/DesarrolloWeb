@@ -1,30 +1,33 @@
 <template>
-    <div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-    <!--  <img src="@/assets/logo.svg" id="icon" alt="User Icon" /> Aqui va a ir el logo de la app-->
+      <!-- Icon -->
+      <div class="fadeIn first">
+      <!--  <img src="@/assets/logo.svg" id="icon" alt="User Icon" /> Aqui va a ir el logo de la app-->
+      </div>
+
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
+        <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
+          
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+
+      <div class="account_manager">
+        <p>{{$t('register.new_account')}}</p><a class="underlineHover" href="/register">{{$t('register.go_register')}}</a>
+      </div>
     </div>
-
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
-      <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
-      
-    </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
   </div>
-</div>
 </template>
-
+<script setup></script>
 <style scoped>
 
 body {
@@ -75,6 +78,7 @@ h2 {
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+  
 }
 
 #formFooter {
