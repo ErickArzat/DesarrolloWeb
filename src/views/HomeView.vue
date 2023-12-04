@@ -137,6 +137,7 @@ export default {
         this.storeComponentIndex();
       }
     },
+  
   },
 };
 </script>

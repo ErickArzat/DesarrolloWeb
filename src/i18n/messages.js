@@ -143,8 +143,34 @@ export default{
         },
         resume:{
             title:"¡Así es como está quedando tu fiesta!"
-        }
-
+        },
+        admin:{
+            table:{
+                title:"Fiestas",
+                id:"Id",
+                client:"Cliente",
+                type:"Tipo",
+                staff:"Staff",
+                date:"Fecha",
+                total:"Total",
+                status:"Estado",
+                details:"Detalles",
+            },
+            modal:{
+                title:"Detalle de la Fiesta",
+                client:"Cliente: ",
+                type:"Tipo: ",
+                staff:"Staff: ",
+                date:"Fecha: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completado",
+                waiting:"Pendiente",
+                inprogress:"En Curso"
+            }
+           }
+           
     }, 
    
      
@@ -194,7 +220,7 @@ export default{
             instagram: 'Instagram'
         },
         nav:{
-            meetus:"know us", 
+            meetus:"Know us", 
             plan:"Plan your Party", 
             parties:"Parties", 
             contactus:"Contact us", 
@@ -280,7 +306,33 @@ export default{
         },
         resume:{
             title:"This is how your party is turning out!"
-        }
+        },
 
+        admin:{
+            table:{
+                title:"Parties",
+                id:"Id",
+                client:"Client",
+                type:"Type",
+                staff:"Staff",
+                date:"Date",
+                total:"Total",
+                status:"Status",
+                details:"Details",
+            },
+            modal:{
+                title:"Party's Details",
+                client:"Client: ",
+                type:"Type: ",
+                staff:"Staff: ",
+                date:"Date: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completed",
+                waiting:"Waiting",
+                inprogress:"In Progress"
+            }
+        },
     }
 }
