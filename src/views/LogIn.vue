@@ -13,11 +13,11 @@
       </div>
 
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
-        <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
-          
+      <form @submit.prevent="enviarFormulario">
+        <input v-model="userData.username" type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
+        <input v-model="userData.password" type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
+        <a @click="enviarFormulario" class="btn"><input type="btn" class="fadeIn fourth" value="Log In"></a>
+        
       </form>
 
       <!-- Remind Passowrd -->
@@ -35,8 +35,38 @@
 export default {
   data() {
     return {
-      message: '' // Mensaje que se mostrará al usuario
+      userData: {
+        username: '',
+        password: ''
+      },
+      message: '' 
     };
+  },methods: {
+    enviarFormulario() {
+      
+      fetch('http://localhost/empleados-main/empleados-main/sesiones/verificarCredenciales.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_clnt: this.userData.username,
+          pass_clnt: this.userData.password
+
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.result){
+          console.log("paso");          
+          localStorage.setItem('token', data.token);
+          this.$router.push({ name: 'admin' });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
   },
   created() {
     // Obtener el mensaje del almacenamiento local

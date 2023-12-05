@@ -152,14 +152,36 @@ export default {
   created() {
     const token = localStorage.getItem('token');
 
-    if (!token) {
-      // Establecer un mensaje en el almacenamiento local
+    if (token) {
+      this.enviarTokenAlServidor(token);
+    } else {
       localStorage.setItem('message', 'Debes iniciar sesión para acceder a esta página.');
-
-      // Redirigir al usuario a la vista de inicio de sesión
-      this.$router.push({ name: 'login'});
+      this.$router.push({ name: 'login' });
     }
-  }
+  },
+  methods: {
+    enviarTokenAlServidor(token) {
+      fetch('http://localhost/empleados-main/empleados-main/sesiones/verificarCredenciales.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: token
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if(!data.access){
+          localStorage.setItem('message', 'Debes ser admin para acceder a esta página.');
+          this.$router.push({ name: 'login' });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
     // methods:{
     //   onFileChange(event) {
     //     this.cakeImage = event.target.files[0];
@@ -182,6 +204,6 @@ export default {
     //       console.error('Error:', error);
     //     });
     //   }
-    // }
-}
+    }
+  }
 </script>
