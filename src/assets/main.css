@@ -36,9 +36,8 @@ body.no-scroll {
     }
     .card-text {
         font-size: var(--h2-font-size);
-        font-weight: 500;
+        font-weight: 550;
         margin-bottom: .75rem;
-       color: #fff;
     }
     .card-body {
         border-radius: 10px;
@@ -50,7 +49,7 @@ body.no-scroll {
     .card input[type="radio"]:checked + label {
       border-radius: 10px;
       background-color: #5B83FF; 
-      color: #000;
+      color: #fff;
       transform: scale(1.1);
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       
@@ -59,8 +58,13 @@ body.no-scroll {
       border-radius: 10px;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       margin-bottom: 1rem;
+<<<<<<< HEAD
       background-color: rgb(75, 96, 255);
      
+=======
+      background-color: #fff;
+      color: #5B83FF;
+>>>>>>> monica
     }
     .card input[type="radio"] {
         display: none; 
@@ -71,7 +75,7 @@ body.no-scroll {
     .card input[type="checkbox"]:checked+label {
       border-radius: 10px;
       background-color: #5B83FF; 
-      color: #000;
+      color: #fff;
       transform: scale(1.1);
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }

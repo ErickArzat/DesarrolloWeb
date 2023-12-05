@@ -34,9 +34,9 @@ export default {
   },
   created() {
     this.consultar();
-    const storedDecos = localStorage.getItem('selectedExtras');
-    if (storedDecos) {
-      this.selectedExtras = JSON.parse(storedDecos);
+    const storedExtras = localStorage.getItem('selectedExtras');
+    if (storedExtras) {
+      this.selectedExtras = JSON.parse(storedExtras);
     }
   },
   methods:{

@@ -62,15 +62,15 @@ export default {
   .card-inner {
     border-radius: 10px;
     position: relative;
-    width: 130px;
+    width: 140px;
     overflow: hidden;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
   }
 
   .card img {
-    width: 130px;
-    height: 140px;
+    width: 140px;
+    height: 160px;
     object-fit: cover;
   }
  

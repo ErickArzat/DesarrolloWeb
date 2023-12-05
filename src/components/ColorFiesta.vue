@@ -43,7 +43,7 @@ export default {
   },
   methods:{
     consultar(){
-      fetch('http://localhost/daw/partytion/palettes.php')
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/palettes.php')
       .then(response=>response.json())
       .then((datosRespuesta)=>{
         this.cards=[]

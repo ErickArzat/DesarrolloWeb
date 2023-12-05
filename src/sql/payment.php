@@ -24,22 +24,18 @@ $conexionBD = connection();
 
 if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
-    $type = $data->type;
-    $client = $data->cliente;
-    $palette = $data->palette; 
-    $cake = $data-> cake;
-    $payment = $data-> payment; 
-    $staff = $data ->staff;
-    $date = $data -> date; 
-    if(($cliente!= '')&&($payment!='')&&($date!='')){
-        $sql = mysqli_query($conexionBD,"INSERT INTO parties(id_type, id_clnt, id_pal, id_cake, id_pay,date_party) VALUES('$type','$client','$palette','$cake','$payment','$date') ");
+    $amount = $data->amount; 
+    $status = $data->status;
+    $date_pay = $data-> date_pay;
+    if(($amount!= '')&&($status!='')&&($date_pay!='')){
+        $sql = mysqli_query($conexionBD,"INSERT INTO payments(amount, status, date_pay) VALUES('$amount','$status','$date_pay') ");
         echo json_encode(["success"=>1]);
     }
     exit();
 }
 
 //consulta todos los registros de la tabla parties
-$sql = mysqli_query($conexionBD,"SELECT * FROM parties");
+$sql = mysqli_query($conexionBD,"SELECT * FROM payment");
 if(mysqli_num_rows($sql) > 0){
     $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
     echo json_encode($result);

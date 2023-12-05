@@ -4,8 +4,8 @@
       <p>{{$t("planeacion.decoration.title")}}</p>
     </div>
     <div class="card__container">
-      <div class="card" v-for="card in cards" v-bind:key="card.id_deco">
-        <input type="radio" :id="'card-' + card.id_deco" v-model="selectedTipe" :value="card.id_deco">
+      <div class="card" v-for="card in cards" :key="card.id_deco">
+        <input type="radio" :id="'card-' + card.id_deco" v-model="selectedDecos" :value="card.id_deco">
         <label :for="'card-' + card.id_deco">
           <div class="card-inner">
             <img :src="urlimage+card.img_deco" class="card-img-top" :alt="card.alt" />
