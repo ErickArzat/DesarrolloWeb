@@ -64,6 +64,7 @@
   <div id="aboutus" class="about">
     <h4>{{ $t('about.title') }}</h4>
     <p><span>{{ $t('about.desc_title') }}</span><br>{{ $t('about.desc1') }} <br> {{ $t('about.desc2') }}
+       
     </p>
     <img src="src/assets/imagenes/Rectangle 21.png" alt="">
   </div>
@@ -73,10 +74,8 @@
 </template>
 <script> 
 import ContactUs  from '../components/ContactUs.vue';
-import NavBar from '../components/NavBar.vue'
-import { defineComponent } from 'vue'
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import NavBar from '../components/NavBar.vue';
+import { defineComponent } from 'vue';
 import TipoFiesta from '../components/TipoFiesta.vue';
 import ExtrasFiesta from '../components/ExtrasFiesta.vue'
 import ColorFiesta from '../components/ColorFiesta.vue';
@@ -87,8 +86,6 @@ export default {
   ...defineComponent({
     name: 'Autoplay',
     components: {
-      Carousel,
-      Slide,
       ContactUs,
       NavBar
     },
@@ -399,120 +396,4 @@ export default {
   margin-left: 5%;
   margin-bottom: 5%;
 }
-
-@media screen and (min-width: 340px) and (max-width: 767px) {
-  .landing{
-    display: grid;
-    grid-template-columns: 1fr;
-    height: 100vh;
-    border: solid 1px red;
-  }
-
-  .landing_text{
-    margin: auto;
-  }
-
-  .landing_text #desc{
-    margin-top: 1em;
-    margin-bottom: 1em;
-  }
-  .landing #btn_start{
-    font-size: 130%;
-    width: calc(50% - 20%);
-    
-  }
-
-    .landing img{
-      width: calc(50vh - 20px);
-      margin: auto;
-    }
-
-    .landing_text{
-      margin-top: 10%;
-      margin-left: 5%;
-      
-    }
-
-    .landing_text #Tittle{
-      font-size: calc(100% + 20px);
-    }
-
-    .landing_text #desc{
-      font-size: calc(100% + 10px);
-    }
-
-    .services{
-      grid-template-columns: 1fr;
-      height: 250vh;
-    } 
-
-    .services p:first-child{
-      font-size: calc(120% + 20px);
-      grid-column: span 1;
-    }
-
-    .services img{
-      width: calc(50% - 20px);
-    }
-
-    .ubication, .decoration, .music, .food{
-      font-size: calc(80% + 10px);
-    }
-
-    .ubication h4, .decoration h4, .music h4, .food h4{
-      font-size: calc(80% + 10px);
-    }
-
-    .carousel__slide img{
-      width: 100%;
-      height: 100%;
-    }
-
-    .about{
-      grid-template-columns: 1fr;
-      height: 150vh;
-      border: solid 1px red;
-    }
-
-    .about h4:first-child{
-      grid-column: span 1;
-    }
-    .about p{
-      font-size: calc(35% + 10px);
-      margin-right: 20%;
-    }
-
-    .about img{
-      width: calc(50% - 20px);
-    }
-  }
-
-  @media screen and (min-width: 768px) and (max-width: 1349px) {
-    .landing #btn_start{
-      font-size: 130%;
-      width: 50%;
-    }
-
-    .landing img{
-      width: 80%;
-    }
-
-    .carousel__slide img{
-      width: 100%;
-      height: 100%;
-    }
-
-
-    .about{
-      font-size: calc(18% + 10px);
-    }
-    .about img{
-      width: calc(60% + 20px);
-    }
-  }
-
-  @media screen and (min-width: 1350px) {
-    
-  }
-  
 </style>

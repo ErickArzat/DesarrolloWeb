@@ -51,38 +51,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
 
 @media only screen and (min-width:744px){
-  
-  .row{
-    flex-direction:row;
+
+.row{
+  flex-direction:row;
+}
+.col-md-7{
+  border-radius: 0 60px 60px 0;
   }
-  .col-md-7{
-    border-radius: 0 60px 60px 0;
-    }
-  .col-md-5{
-    border-radius: 60px 0 0 60px;
-    padding-right: 45px;
-  }
-  .content{
-    justify-content: end;
-  }
-  .d-flex p{
-    font-size: 17px;
-  }
-  .grow-on-hover:hover {
-    transform: scale(1.1);
-  }
+.col-md-5{
+  border-radius: 60px 0 0 60px;
+  padding-right: 45px;
+}
+.content{
+  justify-content: end;
+}
+.d-flex p{
+  font-size: 17px;
+}
+.grow-on-hover:hover {
+  transform: scale(1.1);
+}
 
 }
 
 @media only screen and (min-width:855px){
-  .content p{
-    font-size: 20px;
-  }
-  .title-contactUs{
-    font-size: 30px;
-  }
-  .form-control{
-    font-size: 14px;
-  }
+.content p{
+  font-size: 20px;
+}
+.title-contactUs{
+  font-size: 30px;
+}
+.form-control{
+  font-size: 14px;
+}
 }
 </style>

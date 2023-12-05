@@ -45,7 +45,7 @@ export default{
             birthday:"Cumpleaños",
             graduation:"Graduación", 
             wedding: "Boda", 
-            babyShower: "Baby Shower",
+            babyShower: "BabyShower",
             christening: "Bautizo",
             visitation: "Velorio"
         },
@@ -129,20 +129,33 @@ export default{
         websites:{
             facebook: 'Facebook',
             instagram: 'Instagram'
-        }, 
-        register:{
-            new_account: '¿Todavía no tienes una cuenta con nosotros?', 
-            go_register: 'Regístrate',
-            existing_account: '¿Ya tienes una cuenta?',
-            title: '¡Regístrate y empieza a planear las mejores fiestas!'
-            
-        }, 
-        error_message:{
-            all_fields: 'Todos los campos son obligatorios', 
-            email_form: 'Email no valida', 
-            password_match: "Las contraseñas no coinciden"
-        }
-
+        },
+        admin:{
+            table:{
+                title:"Fiestas",
+                id:"Id",
+                client:"Cliente",
+                type:"Tipo",
+                staff:"Staff",
+                date:"Fecha",
+                total:"Total",
+                status:"Estado",
+                details:"Detalles",
+            },
+            modal:{
+                title:"Detalle de la Fiesta",
+                client:"Cliente: ",
+                type:"Tipo: ",
+                staff:"Staff: ",
+                date:"Fecha: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completado",
+                waiting:"Pendiente",
+                inprogress:"En Curso"
+            }
+           }
     }, 
    
      
@@ -226,7 +239,7 @@ export default{
                 birthday:"Birthday",
                 graduation:"Graduation", 
                 wedding: "Wedding", 
-                babyShower: "Baby Shower",
+                babyShower: "BabyShower",
                 christening: "Christening",
                 visitation: "Wake"
             },
@@ -268,6 +281,32 @@ export default{
                 candy: "Candy Table", 
                 invitations: "Invitations", 
                 show: "Show"
+            }
+        },
+        admin:{
+            table:{
+                title:"Parties",
+                id:"Id",
+                client:"Client",
+                type:"Type",
+                staff:"Staff",
+                date:"Date",
+                total:"Total",
+                status:"Status",
+                details:"Details",
+            },
+            modal:{
+                title:"Party's Details",
+                client:"Client: ",
+                type:"Type: ",
+                staff:"Staff: ",
+                date:"Date: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completed",
+                waiting:"Waiting",
+                inprogress:"In Progress"
             }
         },
         register:{

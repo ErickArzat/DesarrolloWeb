@@ -59,7 +59,7 @@ body.no-scroll {
       border-radius: 10px;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       margin-bottom: 1rem;
-      background-color: #8EAAEA;
+      background-color: rgb(75, 96, 255);
      
     }
     .card input[type="radio"] {
