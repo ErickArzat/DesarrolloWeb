@@ -4,13 +4,13 @@
       <p>{{$t("planeacion.tipe.title")}}</p>
     </div>
     <div class="card__container">
-      <div class="card" v-for="card in cards" :key="card.id">
-        <input type="radio" :id="'card-' + card.id" v-model="selectedTipe" :value="card.id">
-        <label :for="'card-' + card.id">
+      <div class="card" v-for="card in cards" v-bind:key="card.id_type">
+        <input type="radio" :id="'card-' + card.id_type" v-model="selectedTipe" :value="card.id_type">
+        <label :for="'card-' + card.id_type">
           <div class="card-inner">
-            <img :src="card.image" class="card-img-top" :alt="card.alt" />
+            <img :src="urlimage+card.img_type" class="card-img-top" :alt="card.alt" />
             <div class="card-body">
-              <p class="card-text">{{ card.text }}</p>
+              <p class="card-text">{{ card.name_type }}</p>
             </div>
           </div>
         </label>
@@ -20,62 +20,13 @@
 </template>
 
 <script>
-
-import img1 from "../assets/imagenes/juvenil.webp";
-import img2 from "../assets/imagenes/cumpleaños.webp";
-import img3 from "../assets/imagenes/graduaciónjpg.jpg";
-import img4 from "../assets/imagenes/boda.jpeg";
-import img5 from "../assets/imagenes/BabyShower.jpg";
-import img6 from  "../assets/imagenes/bautizo.jpg";
 import img7 from "../assets/imagenes/funeral.jpg";
 export default {
   data() {
     return {
-      selectedTipe: null, 
-      cards: [
-        {
-          id: 1,
-          image: img1,
-          alt: this.$t('planeacion.tipe.young'),
-          text: this.$t('planeacion.tipe.young'),
-        },
-        {
-          id: 2,
-          image: img2,
-          alt: this.$t('planeacion.tipe.birthday'),
-          text: this.$t('planeacion.tipe.birthday'),
-        },
-        {
-          id: 3,
-          image: img3,
-          alt: this.$t('planeacion.tipe.graduation'),
-          text: this.$t('planeacion.tipe.graduation'),
-        },
-        {
-          id: 4,
-          image: img4,
-          alt: this.$t('planeacion.tipe.wedding'),
-          text: this.$t('planeacion.tipe.wedding'),
-        },
-        {
-          id: 5,
-          image: img5,
-          alt: this.$t('planeacion.tipe.babyShower'),
-          text: this.$t('planeacion.tipe.babyShower'),
-        },
-        {
-          id: 6,
-          image: img6,
-          alt: this.$t('planeacion.tipe.christening'),
-          text: this.$t('planeacion.tipe.christening'),
-        },
-        {
-          id: 7,
-          image: img7,
-          alt: this.$t('planeacion.tipe.visitation'),
-          text: this.$t('planeacion.tipe.visitation'),
-        },
-      ],
+      urlimage: "../src/assets/imagenes/",
+      cards: [],
+      selectedTipe: null,
     };
   },
   watch: {
@@ -84,9 +35,24 @@ export default {
     },
   },
   created() {
+    this.consultar();
     const storedTipe = localStorage.getItem('selectedTipe');
     if (storedTipe) {
       this.selectedTipe = parseInt(storedTipe);
+    }
+  },
+  methods:{
+    consultar(){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/typesparties.php')
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        this.cards=[]
+        if(typeof datosRespuesta[0].success==='undefined')
+        {
+          this.cards=datosRespuesta;
+        }
+      })
+      .catch(console.log)
     }
   },
 };
@@ -96,15 +62,15 @@ export default {
   .card-inner {
     border-radius: 10px;
     position: relative;
-    width: 130px;
+    width: 140px;
     overflow: hidden;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
   }
 
   .card img {
-    width: 130px;
-    height: 140px;
+    width: 140px;
+    height: 160px;
     object-fit: cover;
   }
  

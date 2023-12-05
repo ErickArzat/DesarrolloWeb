@@ -4,7 +4,7 @@
         
         
         <div class="name-holder">
-            <a href=""><h3>NAME HOLDER</h3></a>
+            <a href=""><h3>PARTYTION</h3></a>
         </div>
         <nav class="nav" >
             <ul class="nav-links">
@@ -125,6 +125,7 @@
     .header .nav-links li a:hover{
         font-size: 18px;
         transition: 0.5s ease;
+        text-decoration: none;
     }
     .header .nav-links li{
         padding: 12px 40px 0 10px;    

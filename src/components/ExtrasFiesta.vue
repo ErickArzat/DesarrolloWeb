@@ -4,12 +4,12 @@
             <p>{{ $t("planeacion.extras.title") }}</p>
         </div>
         <div class="card__container">
-            <div class="card" v-for="card in cards" :key="card.id">
-                <input type="checkbox" :id="'card-' + card.id" v-model="selectedExtras" :value="card.id">
-                <label :for="'card-' + card.id">
-                    <div class="card-inner" :class="{ 'selected': selectedExtras.includes(card.id) }">
+            <div class="card" v-for="card in cards" :key="card.id_extra">
+                <input type="checkbox" :id="'card-' + card.id_extra" v-model="selectedExtras" :value="card.id_extra">
+                <label :for="'card-' + card.id_extra">
+                    <div class="card-inner" :class="{ 'selected': selectedExtras.includes(card.id_extra) }">
                         <div class="card-body">
-                            <p class="card-text">{{ card.text }}</p>
+                            <p class="card-text">{{ card.name_extra }}</p>
                         </div>
                     </div>
                 </label>
@@ -24,33 +24,7 @@ export default {
     data() {
         return {
             selectedExtras: [],
-            cards: [
-                {
-                    id: 1,
-                    text: this.$t('planeacion.extras.theme'),
-                },
-                {
-                    id: 2,
-                    text: this.$t('planeacion.extras.food'),
-                },
-                {
-                    id: 3,
-                    text: this.$t('planeacion.extras.animators'),
-                },
-                {
-                    id: 4,
-                    text: this.$t('planeacion.extras.candy'),
-                },
-                {
-                    id: 5,
-                    text: this.$t('planeacion.extras.invitations'),
-                },
-                {
-                    id: 6,
-                    text: this.$t('planeacion.extras.show'),
-                },
-
-            ],
+            cards: []
         };
     },
     watch: {
@@ -59,9 +33,24 @@ export default {
     },
   },
   created() {
-    const storedDecos = localStorage.getItem('selectedExtras');
-    if (storedDecos) {
-      this.selectedExtras = JSON.parse(storedDecos);
+    this.consultar();
+    const storedExtras = localStorage.getItem('selectedExtras');
+    if (storedExtras) {
+      this.selectedExtras = JSON.parse(storedExtras);
+    }
+  },
+  methods:{
+    consultar(){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/extras.php')
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        this.cards=[]
+        if(typeof datosRespuesta[0].success==='undefined')
+        {
+          this.cards=datosRespuesta;
+        }
+      })
+      .catch(console.log)
     }
   },
 };
