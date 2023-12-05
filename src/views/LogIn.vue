@@ -1,27 +1,31 @@
 <template>
-    <div class="wrapper fadeInDown">
-  <div id="formContent">
-    <!-- Tabs Titles -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
 
-    <!-- Icon -->
-    <div class="fadeIn first">
-    <!--  <img src="@/assets/logo.svg" id="icon" alt="User Icon" /> Aqui va a ir el logo de la app-->
+      <!-- Icon -->
+      <div class="fadeIn first">
+      <!--  <img src="@/assets/logo.svg" id="icon" alt="User Icon" /> Aqui va a ir el logo de la app-->
+      </div>
+
+      <!-- Login Form -->
+      <form @submit.prevent="sumbitForm">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off" v-model="username">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off" v-model="password">
+        <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
+          
+      </form>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+
+      <div class="account_manager">
+        <p>{{$t('register.new_account')}}</p><a class="underlineHover" href="/register">{{$t('register.go_register')}}</a>
+      </div>
     </div>
-
-    <!-- Login Form -->
-    <form @submit.prevent="sumbitForm">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off" v-model="username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off" v-model="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
-    </form>
-
-    <!-- Remind Passowrd -->
-    <div id="formFooter">
-      <a class="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
   </div>
-</div>
 </template>
 
 <script>
@@ -132,6 +136,7 @@ h2 {
   -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
   text-align: center;
+  
 }
 
 #formFooter {
@@ -160,7 +165,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=button], input[type=btn], input[type=reset]  {
   background-color: #5B83FF;
   border: none;
   color: white;
@@ -184,7 +189,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 
 
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+input[type=button]:active, input[type=btn]:active, input[type=reset]:active  {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);

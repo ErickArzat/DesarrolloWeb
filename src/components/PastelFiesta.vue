@@ -1,4 +1,5 @@
 <template>
+
 <div id="component-4">
   <div class="title">
     <p>{{$t("planeacion.cake.title")}}</p>
@@ -27,7 +28,7 @@
   import img3 from "../assets/imagenes/Chocolate.jpg";
   import img5 from "../assets/imagenes/ConfettiTradicional.jpg";
   import img6 from "../assets/imagenes/Cupcake.jpg";
-
+ 
   export default {
     data() {
       return {

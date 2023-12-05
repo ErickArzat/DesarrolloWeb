@@ -4,7 +4,8 @@ export default{
        nav:{
         meetus:"Conócenos", 
         plan:"Planea tu Fiesta", 
-        parties:"Fiestas", 
+        parties:"Fiestas",
+        contactus:"Contáctanos", 
        },
        btn:{
         begin:"Comienza", 
@@ -17,6 +18,10 @@ export default{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
         pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
        },
+       homeview:{
+        next: 'Atras',
+        back: 'Siguiente',
+        },
        services:{
         title:"Sevicios", 
         ubication:"Ubicación", 
@@ -86,13 +91,6 @@ export default{
         }
     
        },
-       contact:{
-        title:"¿Tienes alguna duda?", 
-        sendmessage: "Envíanos un mensaje",
-        contact: "Contáctanos", 
-        name: "Nombre", 
-        message: "Mensaje"
-       },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
             desc: 'Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc.',
@@ -119,6 +117,8 @@ export default{
             desc2:'Donec at lorem sagittis, pharetra erat at, sodales quam. Nunc euismod pretium eros, tincidunt blandit sem consectetur sit amet. Phasellus iaculis malesuada elit, quis volutpat lorem condimentum sit amet. Suspendisse gravida ullamcorper felis, sed vehicula ex vehicula id. Maecenas sed felis sem.'
         },
         contact:{
+            phone:'999-00-0099',
+            email: "example@contact.com",
             title: '¿Tienes alguna duda?',
             contact_title: 'Contáctanos',
             form_title:'Envíanos un mensaje',
@@ -157,6 +157,23 @@ export default{
             priceLabel:"Precio",
             imgLabel:"Imagen",
         },
+        websites:{
+            facebook: 'Facebook',
+            instagram: 'Instagram'
+        }, 
+        register:{
+            new_account: '¿Todavía no tienes una cuenta con nosotros?', 
+            go_register: 'Regístrate',
+            existing_account: '¿Ya tienes una cuenta?',
+            title: '¡Regístrate y empieza a planear las mejores fiestas!'
+            
+        }, 
+        error_message:{
+            all_fields: 'Todos los campos son obligatorios', 
+            email_form: 'Email no valida', 
+            password_match: "Las contraseñas no coinciden"
+        }
+
     }, 
    
      
@@ -187,6 +204,8 @@ export default{
             desc2:'Donec at lorem sagittis, pharetra erat at, sodales quam. Nunc euismod pretium eros, tincidunt blandit sem consectetur sit amet. Phasellus iaculis malesuada elit, quis volutpat lorem condimentum sit amet. Suspendisse gravida ullamcorper felis, sed vehicula ex vehicula id. Maecenas sed felis sem.'
         },
         contact:{
+            phone:'999-00-0099',
+            email: "example@contact.com",
             title: 'Any doubts?',
             contact_title: 'Contact Us',
             form_title:'Send us a message',
@@ -195,10 +214,19 @@ export default{
             message: 'Message',
             button: 'Send'
         },
+        homeview:{
+            next: 'Next',
+            back: 'Back',
+        },
+        websites:{
+            facebook: 'Facebook',
+            instagram: 'Instagram'
+        },
         nav:{
-            meetus:"Conócenos", 
-            plan:"Planea tu Fiesta", 
-            parties:"Fiestas", 
+            meetus:"know us", 
+            plan:"Plan your Party", 
+            parties:"Parties", 
+            contactus:"Contact us", 
            },
         btn:{
             begin:"Comienza", 
@@ -208,57 +236,46 @@ export default{
             add: "Add"
         },
         home:{
-            pgraf1: "¡Hacemos de tus sueños una fiesta!", 
-            pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
-        },
-        services:{
-            title:"Sevicios", 
-            ubication:"Ubicación", 
-            ubidesc: "Nosotros nos encargamos de proporcionar una ubicación ideal para tu evento", 
-            decoration:"Decoración", 
-            decdesc: "Trabajamos en conjunto para poder encontrar la decoración adecuada para ti",
-            music: "Música", 
-            muscdesc:"Con nuestro basto repertorio de artistas buscamos el que se adapte perfectamente al tono de tu evento",
-            food: "Alimentos",
-            fdesc: "Variedad de alimentos para cumplir con el paladar y necesidades de nuestros clientes",
+            pgraf1: "We make your dreams a party!", 
+            pgraf2: "We help you create the event of your dreams: Weddings, Birthdays, XV years, etc."
         },
         refferals:{
-            title:"¿Quiénes somos?"
+            title:"About us?"
         },
         aboutus:{
-            title:"¿Quiénes somos?", 
+            title:"About us?", 
            },
            planeacion:{
             tipe:{
-                title: "Elige tu tipo de fiesta", 
-                young:"Juvenil", 
-                birthday:"Cumpleaños",
-                graduation:"Graduación", 
-                wedding: "Boda", 
+                title: "Choose your type of party", 
+                young:"Youth", 
+                birthday:"Birthday",
+                graduation:"Graduation", 
+                wedding: "Wedding", 
                 babyShower: "Baby Shower",
-                christening: "Bautizo",
-                visitation: "Velorio"
+                christening: "Christening",
+                visitation: "Wake"
             },
             color:{
-                title: "Elige de que color quieres pintar tu fiesta."
+                title: "Choose what color you want to paint your party."
             }, 
             decoration:{
-                title: "¿Qué decoraciones quieres para tu fiesta?", 
-                balloons: "Globos", 
+                title: "What decorations do you want for your party?", 
+                balloons: "Balloons", 
                 confetti: "Confetti",
                 curtain: "Curtain",
-                castle: "Castillo Inflable", 
-                ball:"Bola Disco", 
+                castle: "Inflatable castle", 
+                ball:"Disco ball", 
                 balloonarch: "Arco", 
-                letters: "Letras", 
-                lights: "Luces", 
-                smoke: "Humo", 
+                letters: "Letters", 
+                lights: "Lights", 
+                smoke: "Smoke", 
                 piniata: "Piñata",
-                flowers: "Flores", 
-                hats: "Sombreros", 
-                recuerdos: "Recuerdos", 
-                cross: "Cruz de Flores", 
-                crown: "Corona de Flores", 
+                flowers: "Flowers", 
+                hats: "Hats", 
+                recuerdos: "Memories", 
+                cross: "Flower Cross", 
+                crown: "Crown of flowers", 
             },
             cake:{
                 title: "Choose your cake",
@@ -279,12 +296,17 @@ export default{
                 show: "Show"
             }
         },
-        contact:{
-            title:"¿Tienes alguna duda?", 
-            sendmessage: "Envíanos un mensaje",
-            contact: "Contáctanos", 
-            name: "Nombre", 
-            message: "Mensaje"
+        register:{
+            new_account: "Don't have an account with us yet?", 
+            go_register: 'Register',
+            existing_account: 'Already have an account?',
+            title: 'Register and star planning the best parties!'
+            
+        },
+        error_message:{
+            all_fields: 'All the fields are required', 
+            email_form: 'Email not valid', 
+            password_match: "The passwords don't match"
         },
         addCake:{
             title:"Add Cake",
