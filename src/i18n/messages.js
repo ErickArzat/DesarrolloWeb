@@ -87,7 +87,8 @@ export default{
             candy: "Mesa Dulces", 
             invitations: "Invitaciones", 
             show: "Show"
-        }
+        }, 
+        again: 'Otra vez',
        },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
@@ -169,6 +170,9 @@ export default{
                 waiting:"Pendiente",
                 inprogress:"En Curso"
             }
+           },
+           payment:{
+               payment: "Hora de pagar"
            }
            
     }, 
@@ -290,7 +294,8 @@ export default{
                 candy: "Candy Table", 
                 invitations: "Invitations", 
                 show: "Show"
-            }
+            },
+            again: 'Again',
         },
         register:{
             new_account: "Don't have an account with us yet?", 
@@ -334,5 +339,8 @@ export default{
                 inprogress:"In Progress"
             }
         },
+        payment:{
+            payment: "Time to Pay"
+        }
     }
 }
