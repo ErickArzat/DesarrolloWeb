@@ -599,6 +599,24 @@
     };
   },
   created() {
+    const userToken = localStorage.getItem('userToken');
+    if (userToken) {
+      console.log('Token encontrado:', userToken);
+      const data = {
+          token: userToken
+        };
+        const config = {
+          method: 'POST', 
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+        this.validarAdmin(config)
+    } else {
+      console.log('No se encontró ningún token o el valor es nulo.');
+      this.$router.push('/');
+    }
     this.consultarColores();
     this.consultarTipos();
     this.consultarDecoraciones();
@@ -886,6 +904,19 @@
        })
        .catch(console.log);
      },
+    validarAdmin(config){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/validarAdmin.php', config)
+      .then(response => response.json())
+          .then(data => {
+            console.log('Datos recibidos:', data);
+            if(!data.access){
+              this.$router.push('/');
+            }
+          })
+          .catch(error => {
+            console.error('Error en la solicitud a la API:', error);
+          });
+    },
     consultarColores(){
       fetch('http://localhost/daw/DesarrolloWeb/src/sql/palettes.php')
       .then(response=>response.json())

@@ -295,14 +295,11 @@ export default{
             begin:"Start", 
             back: "Back", 
             login: "Log In",
-            submit: "Submit"
-        },
-        btn:{
-            begin:"Comienza", 
-            back: "Back", 
-            login: "Log In",
             submit: "Submit",
-            add: "Add"
+            add: "Add",
+            edit: "Edit",
+            delete: "Delete",
+            save: "Save Changes"
         },
         home:{
             pgraf1: "We make your dreams a party!", 
@@ -434,6 +431,16 @@ export default{
                 deco:"Decorations",
                 cake:"Pastel",
                 extra:"Extras",
+                details: "Details",
+                name: "Name",
+                price: "Precio"
+            },
+            titles:{
+                color: "Colors",
+                decoration: "Decorations",
+                cake: "Cakes",
+                type: "Types",
+                extras: "Extras",
             },
             modal:{
                 title:"Edit Party",

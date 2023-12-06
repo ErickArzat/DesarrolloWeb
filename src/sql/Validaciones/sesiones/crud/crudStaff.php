@@ -24,8 +24,7 @@ function guardaStaff($conexionBD, $data) {
         $apellido = prevenirInyeccionSQL($conexionBD, $data['last_name_staff']);
         $usuario = prevenirInyeccionSQL($conexionBD, $data['user_staff']);
         $contrasenia = prevenirInyeccionSQL($conexionBD, $data['pass_staff']); 
-        $isAdmin = prevenirInyeccionSQL($conexionBD, $data['is_admin']);
-        $sqlInsert = "INSERT INTO staff (name_staff, last_name_staff, user_staff, pass_staff, email_staff, is_admin) VALUES ('$nombre', '$apellido', '$usuario', '$contrasenia', '$correo', '$isAdmin')";
+        $sqlInsert = "INSERT INTO staff (name_staff, last_name_staff, user_staff, pass_staff, email_staff) VALUES ('$nombre', '$apellido', '$usuario', '$contrasenia', '$correo')";
 
         $resultado = mysqli_query($conexionBD, $sqlInsert);
         if ($resultado) {

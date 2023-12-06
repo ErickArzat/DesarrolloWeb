@@ -1,11 +1,7 @@
 <template>
-    <div class="wrapper fadeInDown">
-      <div>
-        <p v-if="message">{{ message }}</p>
-        <!-- Otros elementos del componente de inicio de sesión -->
-      </div>
-  <div id="formContent">
-    <!-- Tabs Titles -->
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
 
       <!-- Icon -->
       <div class="fadeIn first">
@@ -48,7 +44,7 @@ import VueAxios from 'vue-axios';
         this.login(userData);
       },
       login: function(userData){
-        fetch("http://localhost/web/validar.php?login",{
+        fetch("http://localhost/daw/DesarrolloWeb/src/sql/verificarLogin.php?login",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -59,16 +55,19 @@ import VueAxios from 'vue-axios';
         .then(data => {
           console.log(data);
           if(data.success){
+            console.log(data.token);
+            localStorage.removeItem('userToken');
+            localStorage.setItem('userToken', data.token);
+            console.log("Token guardado: " + data.token);
             console.log("Inicio de sesion exitoso", data.userData);
             switch(data.userType){
               case "admin":
                 console.log("Accediste como admin");
-                break;
-              case "staff":
-                console.log("Accediste como staff");
+                this.$router.push('/Admin');
                 break;
               case "client":
                 console.log("Accediste como cliente");
+                this.$router.push('/');
                 break;
               default:
                 console.log("No se encontro el tipo de usuario");
