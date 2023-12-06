@@ -132,17 +132,22 @@
           console.error('Error al consultar el Cake:', error);
         });
       }, 
-      consultarExtras(){
-        fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extras.php?consultar=${this.selectedExtras}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.length > 0) {
-            this.Extras = data[0]; 
-          }
-        })
-        .catch(error => {
-          console.error('Error al consultar los Extras:', error);
-        });
+      consultarExtras() {
+          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extras.php?consultar=${this.selectedExtras}`)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              if (data && data.length > 0) {
+                  this.Extras = data[0]; 
+              }
+          })
+          .catch(error => {
+              console.error('Error al consultar los Extras:', error);
+          });
       }, 
       consultarDecos(){
         fetch(`http://localhost/daw/DesarrolloWeb/src/sql/decorations.php?consultar=${this.selectedDecos}`)
