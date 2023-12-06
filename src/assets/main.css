@@ -47,18 +47,21 @@ body.no-scroll {
     }
 
     .addForm{
-      display: flex;
+      display: grid;
       align-items: center;
+
     }
 
     .addForm>div{
-      display: flex;
+      display: grid;
       margin-right: 2rem;
       align-items: center;
+      margin-top: 1rem;
     }
 
     .addForm>div label{
       margin-right: 1rem;
+      color: #5B83FF;
     }
  
     .addForm input[type="text"] {
@@ -69,6 +72,7 @@ body.no-scroll {
       border-radius: 8px;
       border: 1px solid #b3b3b3;
       outline: none;
+      width: 30vw;
     }
 
     .addForm input[type="text"]:focus {
@@ -313,10 +317,7 @@ body.no-scroll {
     padding: 30px;
     position: relative; 
   }
-  .row{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-     
-  }
+  
   .col-md-7{
     background: #fff;
     padding: 20px;

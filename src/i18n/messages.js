@@ -12,7 +12,10 @@ export default{
         back:"Atrás",
         login: "Inicia sesión",
         submit: "Enviar",
-        add: "Añadir"
+        add: "Añadir",
+        edit: "Editar",
+        delete: "Eliminar",
+        save: "Guardar Cambios"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -187,6 +190,15 @@ export default{
                 total:"Total",
                 status:"Estado",
                 details:"Detalles",
+                name:"Nombre",
+                price:"Precio",
+            },
+            titles:{
+                color: "Colores",
+                decoration: "Decoraciones",
+                cake: "Pasteles",
+                type: "Tipos",
+                extras: "Extras",
             },
             modal:{
                 title:"Detalle de la Fiesta",
