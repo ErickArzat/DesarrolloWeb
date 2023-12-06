@@ -1,5 +1,5 @@
 <?php
-require '../vendor/autoload.php';
+require 'C:\xampp\htdocs\daw\DesarrolloWeb\src\sql\Validaciones\vendor\autoload.php';
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -9,8 +9,8 @@ header("Access-Control-Allow-Methods: GET,POST");
 header("Content-Type: application/json");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require_once("../variables.php");
-require_once("../funciones.php");
+require_once("C:/xampp/htdocs/daw/DesarrolloWeb/src/sql\Validaciones/funciones.php");
+require_once("C:/xampp/htdocs/daw/DesarrolloWeb/src/sql/Validaciones/variables.php");
 
 function guardaCliente($conexionBD, $data) {
     $correo = prevenirInyeccionSQL($conexionBD, $data['email_clnt']);
