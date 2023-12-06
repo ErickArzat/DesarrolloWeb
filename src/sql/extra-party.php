@@ -8,14 +8,25 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include("functions.php");
 $conexionBD = connection();
 
-if (isset($_GET["consultar"])){
-    $sql = mysqli_query($conexionBD,"SELECT * FROM extra_party WHERE id_party=".$_GET["consultar"]);
+if (isset($_GET["name"])){
+    $sql = mysqli_query($conexionBD,"SELECT extras.name_extra FROM extra_party JOIN extras ON extras.id_extra=".$_GET["name"]);
     if(mysqli_num_rows($sql) > 0){
-        $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
-        echo json_encode($result);
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
         exit();
     }
     else{  echo json_encode(["success"=>0]); }
+}
+
+if (isset($_GET["delete"])){
+    $sql = mysqli_query($conexionBD,"DELETE FROM extra_party WHERE id_extra=".$_GET["delete"]);
+    if($sql){
+        echo json_encode(["success"=>1]);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); exit();}
+    
 }
 
 

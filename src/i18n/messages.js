@@ -147,7 +147,9 @@ export default{
         },
         admin:{
             table:{
-                title:"Fiestas",
+                titleP:"Fiestas",
+                titleD:"Decoraciones",
+                titleE:"Extras",
                 id:"Id",
                 client:"Cliente",
                 type:"Tipo",
@@ -155,15 +157,22 @@ export default{
                 date:"Fecha",
                 total:"Total",
                 status:"Estado",
-                details:"Detalles",
+                edit:"Editar",
+                delete:"Borrar",
+                deco:"Decoraciones",
+                cake:"Pastel",
+                extra:"Extras"
             },
             modal:{
-                title:"Detalle de la Fiesta",
+                title:"Editar Fiesta",
                 client:"Cliente: ",
                 type:"Tipo: ",
                 staff:"Staff: ",
                 date:"Fecha: ",
-                total:"Total: "
+                total:"Total: ",
+                decos:"Decorations: ",
+                extra:"Extras: ",
+                cake:"Pastel: "
             },
             status:{
                 completed:"Completado",
@@ -315,7 +324,9 @@ export default{
 
         admin:{
             table:{
-                title:"Parties",
+                titleP:"Parties",
+                titleD:"Decorations",
+                titleE:"Extras",
                 id:"Id",
                 client:"Client",
                 type:"Type",
@@ -323,15 +334,22 @@ export default{
                 date:"Date",
                 total:"Total",
                 status:"Status",
-                details:"Details",
+                edit:"Edit",
+                delete: "Delete",
+                deco:"Decorations",
+                cake:"Pastel",
+                extra:"Extras"
             },
             modal:{
-                title:"Party's Details",
+                title:"Edit Party",
                 client:"Client: ",
                 type:"Type: ",
                 staff:"Staff: ",
                 date:"Date: ",
-                total:"Total: "
+                total:"Total: ",
+                decos:"Decoraciones: ",
+                extra:"Extras: ",
+                cake:"Cake: "
             },
             status:{
                 completed:"Completed",

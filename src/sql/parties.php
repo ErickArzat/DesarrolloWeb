@@ -8,21 +8,68 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include("functions.php");
 $conexionBD = connection();
 
-// $conn=connection();
-// $sql = "SELECT * FROM types_parties ORDER BY id_type ASC";
-// $result = mysqli_query($conn, $sql);
-// if (mysqli_num_rows($result) > 0) {
-//     $data = array();
-// 	while($row = mysqli_fetch_assoc($result)) {
-//         $data[] = $row;
-//     }
-//     echo json_encode($data);
-// } else {
-//     echo "0 resultados";
-// }
-// $conn->close();
+if (isset($_GET["nameTP"])){
+    $sql = mysqli_query($conexionBD,
+        "SELECT types_parties.name_type FROM parties JOIN types_parties ON types_parties.id_type=".$_GET["nameTP"]);
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
 
-if(isset($_GET["insertar"])){
+if (isset($_GET["nameCP"])){
+    $sql = mysqli_query($conexionBD, 
+        "SELECT clients.name_clnt, clients.last_name_clnt FROM parties JOIN clients ON clients.id_clnt=".$_GET["nameCP"]);
+    
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0] . " " . $row[1];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
+if (isset($_GET["nameSP"])){
+    $sql = mysqli_query($conexionBD,
+        "SELECT staff.name_staff FROM parties JOIN staff ON staff.id_staff=".$_GET["nameSP"]);
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
+if (isset($_GET["nameCake"])){
+    $sql = mysqli_query($conexionBD,
+        "SELECT cakes.name_cake FROM parties JOIN cakes  ON cakes.id_cake=".$_GET["nameCake"]);
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
+if (isset($_GET["total"])){
+    $sql = mysqli_query($conexionBD,
+        "SELECT payments.amount FROM parties JOIN payments ON payments.id_pay=".$_GET["total"]);
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
+if(isset($_GET["insert"])){
     $data = json_decode(file_get_contents("php://input"));
     $type = $data->type;
     $client = $data->cliente;
@@ -36,6 +83,33 @@ if(isset($_GET["insertar"])){
         echo json_encode(["success"=>1]);
     }
     exit();
+}
+
+if(isset($_GET["update"])){
+    
+    $data = json_decode(file_get_contents("php://input"));
+
+    $id=(isset($data->id))?$data->id:$_GET["update"];
+    $type=$data->type;
+    $clnt=$data->clnt;
+    $pal=$data->pal;
+    $cake=$data->cake;
+    $pay=$data->pay;
+    $staff=$data->staff;
+    
+    $sql = mysqli_query($conexionBD,"UPDATE parties SET id_type='$type',id_clnt='$clnt',id_pal='$pal',id_cake='$cake',id_pay='$pay',id_staff='$staff' WHERE id='$id'");
+    echo json_encode(["success"=>1]);
+    exit();
+}
+
+if (isset($_GET["delete"])){
+    $sql = mysqli_query($conexionBD,"DELETE FROM parties WHERE id_party=".$_GET["delete"]);
+    if($sql){
+        echo json_encode(["success"=>1]);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); exit();}
+    
 }
 
 //consulta todos los registros de la tabla parties
