@@ -1121,7 +1121,7 @@
 };
 </script>
  
-<style>
+<style scoped>
 #wrapper{
   padding: 100px 100px 100px 100px;
   background: white;

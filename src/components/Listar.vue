@@ -16,7 +16,7 @@
   </div>
   </template>
   
-  <script>
+  <script >
   export default {
     data() {
       return {
@@ -68,7 +68,7 @@
   };
   </script>
 
-  <style>
+  <style scoped>
     p{
       color: black;
     }
