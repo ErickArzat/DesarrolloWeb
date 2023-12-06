@@ -17,6 +17,18 @@ if (isset($_GET["consultar"])){
     }
     else{  echo json_encode(["success"=>0]); }
 }
+
+if (isset($_GET["name"])){
+    $sql = mysqli_query($conexionBD,"SELECT extras.name_extra FROM extras ON extras.id_extra=".$_GET["name"]);
+    if(mysqli_num_rows($sql) > 0){
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+
 if (isset($_GET["consultar_multiples"]) && isset($_GET["arreglo_ids"])) {
     $ids = $_GET["arreglo_ids"];
 

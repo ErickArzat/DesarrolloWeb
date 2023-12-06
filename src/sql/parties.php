@@ -78,16 +78,33 @@ if(isset($_GET["insert"])){
     $payment = $data-> payment; 
     $staff = $data ->staff;
     $date = $data -> date; 
-    if(($client!= '')&&($payment!='')&&($date!='')){
-        $sql = mysqli_query($conexionBD,"INSERT INTO parties(id_type, id_clnt, id_pal, id_cake, id_pay,id_staff,date_party) VALUES('$type','$client','$palette','$cake','$payment','$staff','$date') ");
-        if($sql){
-            $lastInsertedId = mysqli_insert_id($conexionBD);
-            echo json_encode(["success" => 1, "id_party" => $lastInsertedId]);
-        } else {
-            echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
-        }
+    $decos=$data->$extras;
+    $extras=$data->$extras;
+    $sql = mysqli_query($conexionBD,"INSERT INTO parties(id_type, id_clnt, id_pal, id_cake, id_pay,id_staff,date_party) VALUES('$type','$client','$palette','$cake','$payment','$staff','$date') ");
+    if($sql){
+        $lastInsertedId = mysqli_insert_id($conexionBD);
+        echo json_encode(["success" => 1, "id_party" => $lastInsertedId]);
     } else {
-        echo json_encode(["success" => 0, "error" => "Faltan datos"]);
+        echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
+    }
+    exit();
+}
+
+if(isset($_GET["insertar"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $type = $data->type;
+    $client = $data->client;
+    $palette = $data->palette; 
+    $cake = $data-> cake;
+    $payment = $data-> payment; 
+    $staff = $data ->staff;
+    $date = $data -> date; 
+    $sql = mysqli_query($conexionBD,"INSERT INTO parties(id_type, id_clnt, id_pal, id_cake, id_pay,id_staff,date_party) VALUES('$type','$client','$palette','$cake','$payment','$staff','$date') ");
+    if($sql){
+        $lastInsertedId = mysqli_insert_id($conexionBD);
+        echo json_encode(["success" => 1, "id_party" => $lastInsertedId]);
+    } else {
+        echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
     }
     exit();
 }

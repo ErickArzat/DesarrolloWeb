@@ -41,7 +41,6 @@ export default {
       this.selectedDecos = JSON.parse(localStorage.getItem('selectedDecos')) || [];
       this.selectedCake = localStorage.getItem('selectedCake');
       this.selectedExtras = JSON.parse(localStorage.getItem('selectedExtras')) || [];
-      
     }, 
   methods: {
     calcPayment() {
@@ -114,9 +113,9 @@ export default {
                 cake: this.selectedCake,
                 payment: id_pay,
                 staff: 1,
-                date: new Date().toISOString()
+                date: new Date().toISOString(),
               };
-              fetch(`http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertar=1`, {
+              fetch(`http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertar`, {
                 method: "POST",
                 body: JSON.stringify(datosFiestas)
               })
@@ -126,8 +125,8 @@ export default {
                 var decoraciones = {
                   party: id_party,
                   decos: this.selectedDecos
-                }; 
-                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?insertar_multiples=1`, {
+                };
+                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?insertar_multiples`, {
                 method: "POST",
                 body: JSON.stringify(decoraciones)
                 })
@@ -135,7 +134,7 @@ export default {
                   party: id_party,
                   extras: this.selectedExtras
                 }; 
-                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php?insertar_multiples=1`, {
+                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php?insertar_multiples`, {
                 method: "POST",
                 body: JSON.stringify(extras)
                 })
