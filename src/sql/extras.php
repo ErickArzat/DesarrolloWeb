@@ -30,13 +30,27 @@ if (isset($_GET["borrar"])){
 
 if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
+    
     $name=$data->name;
-    $img=$data->img;
     $price=$data->price;
-    if(($name!="")&&($img!="")&&($price!="")){ 
-        $sql = mysqli_query($conexionBD,"INSERT INTO extras(name_extra, img_extra, price_extra) VALUES('$name','$img','$price') ");
+
+    if(($name!=" ")&&($price!=" ")){ 
+        $sql = mysqli_query($conexionBD,"INSERT INTO extras(name_extra, price_extra) VALUES('$name','$price')");
         echo json_encode(["success"=>1]);
+        exit();
     }
+    echo json_encode(["success"=>0]);
+    exit();
+}
+
+if(isset($_GET["actualizar"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $id = $data->id;
+    $name=$data->name;
+    $price=$data->price;
+    $sqlUpdate = "UPDATE extras SET name_extra='$name', price_extra='$price' WHERE id_extra='$id'";
+    $sql = mysqli_query($conexionBD,$sqlUpdate);
+    echo json_encode(["success"=>1]);
     exit();
 }
 

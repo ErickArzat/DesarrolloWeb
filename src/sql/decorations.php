@@ -42,22 +42,12 @@ if(isset($_GET["insertar"])){
 
 if(isset($_GET["actualizar"])){
     $data = json_decode(file_get_contents("php://input"));
-
-    foreach ($data as $deco) {
-        $id = $deco->id_deco;
-        $nombre = $deco->name_deco;
-        $precio = $deco->price_deco;
-
-        $sql = "UPDATE decorations SET name_deco='$nombre', price_deco='$precio' WHERE id_deco='$id'";
-        $result = mysqli_query($conexionBD, $sql);
-
-        if (!$result) {
-            echo json_encode(["success" => 0, "message" => "Error al actualizar las decoraciones"]);
-            exit();
-        }
-    }
-
-    echo json_encode(["success" => 1, "message" => "Decoraciones actualizados correctamente"]);
+    $id = $data->id;
+    $name=$data->name;
+    $price=$data->price;
+    $sqlUpdate = "UPDATE decorations SET name_deco='$name', price_deco='$price' WHERE id_deco='$id'";
+    $sql = mysqli_query($conexionBD,$sqlUpdate);
+    echo json_encode(["success"=>1]);
     exit();
 }
 

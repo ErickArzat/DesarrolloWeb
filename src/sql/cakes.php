@@ -33,7 +33,7 @@ if(isset($_GET["insertar"])){
     $name=$data->name;
     $img=$data->img;
     $price=$data->price;
-    if(($name!="")&&($img!="")&&($price!="")){ 
+    if(($name!=" ")&&($img!=" ")&&($price!=" ")){ 
         $sql = mysqli_query($conexionBD,"INSERT INTO cakes(name_cake, img_cake, price_cake) VALUES('$name','$img','$price') ");
         echo json_encode(["success"=>1]);
     }
@@ -42,25 +42,20 @@ if(isset($_GET["insertar"])){
 
 if(isset($_GET["actualizar"])){
     $data = json_decode(file_get_contents("php://input"));
-
-    foreach ($data as $cake) {
-        $id = $cake->id_cake;
-        $nombre = $cake->name_cake;
-        $precio = $cake->price_cake;
-
-        $sql = "UPDATE cakes SET name_cake='$nombre', price_cake='$precio' WHERE id_cake='$id'";
-        $result = mysqli_query($conexionBD, $sql);
-
-        if (!$result) {
-            echo json_encode(["success" => 0, "message" => "Error al actualizar"]);
-            exit();
-        }
+    
+    $id = $data->id;
+    $name=$data->name;
+    $price=$data->price;
+    $sqlUpdate = "UPDATE cakes SET name_cake='$name', price_cake='$price' WHERE id_cake='$id'";
+    $result = mysqli_query($conexionBD, $sqlUpdate);
+    if (!$result) {
+        echo json_encode(["success" => 0, "message" => "Error al actualizar"]);
+        exit();
     }
     echo json_encode(["success" => 1, "message" => "Datos actualizados correctamente"]);
     exit();
 }
 
-// Consulta todos los registros de la tabla empleados
 $sql = mysqli_query($conexionBD,"SELECT * FROM cakes");
 if(mysqli_num_rows($sql) > 0){
     $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
