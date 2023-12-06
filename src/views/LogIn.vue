@@ -9,10 +9,10 @@
       </div>
 
       <!-- Login Form -->
-      <form @submit.prevent="sumbitForm">
+      <form @submit.prevent="submitForm">
         <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off" v-model="username">
         <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off" v-model="password">
-        <a class="btn" href="/admin"><input type="btn" class="fadeIn fourth" value="Log In"></a>
+        <input type="submit" class="btn fadeIn fourth" value="Log In">
           
       </form>
 
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import VueAxios from 'vue-axios';
+
   export default {
     name: 'LogIn',
     data () {
@@ -39,7 +41,7 @@
       }
     },
     methods: {
-      sumbitForm: function(){
+      submitForm: function(){
         const userData = {
           username: this.username,
           password: this.password
@@ -165,7 +167,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=btn], input[type=reset]  {
+input[type=button], input[type=btn], input[type=reset], input[type=submit]  {
   background-color: #5B83FF;
   border: none;
   color: white;

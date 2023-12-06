@@ -400,12 +400,13 @@ export default {
   margin-bottom: 5%;
 }
 
+
 @media screen and (min-width: 340px) and (max-width: 767px) {
   .landing{
     display: grid;
     grid-template-columns: 1fr;
-    height: 100vh;
-    border: solid 1px red;
+    height: 85vh;
+    margin-bottom: calc(100vh - 88vh);
   }
 
   .landing_text{
@@ -417,14 +418,14 @@ export default {
     margin-bottom: 1em;
   }
   .landing #btn_start{
-    font-size: 130%;
+    font-size: calc(50% + 9px);
     width: calc(50% - 20%);
-    
+
   }
 
     .landing img{
-      width: calc(50vh - 20px);
-      margin: auto;
+      width: calc(70vw - 20px);
+      margin: 5vh auto;
     }
 
     .landing_text{
@@ -471,7 +472,6 @@ export default {
     .about{
       grid-template-columns: 1fr;
       height: 150vh;
-      border: solid 1px red;
     }
 
     .about h4:first-child{
