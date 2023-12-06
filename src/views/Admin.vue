@@ -381,6 +381,8 @@
                 </div>
                 <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
               </form>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_fiestas.php" target="_blank">Descargar Fiestas</a>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_payment.php" target="_blank">Descargar Pagos</a>
             </div>
           </div>
         </div>
@@ -1119,7 +1121,7 @@
 };
 </script>
  
-<style>
+<style scoped>
 #wrapper{
   padding: 100px 100px 100px 100px;
   background: white;

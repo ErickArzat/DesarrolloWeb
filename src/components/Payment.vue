@@ -15,6 +15,7 @@
     </div>
 </template>
 <script>
+import Cookies from 'js-cookie';
 export default {
   name: "Payment",
 
@@ -22,8 +23,8 @@ export default {
     return {
       loaded: false,
       paidFor: false,
-      amountOrder: 100,
-      
+      amountOrder: 0,
+      paidFor: Cookies.get('paidFor') === 'true',
     };
   },
   mounted: function() {
@@ -33,7 +34,7 @@ export default {
       "https://www.paypal.com/sdk/js?client-id=Aa7qCdr0JqwHcahakv1W0tn-FeFO4YvaU_CCdFJDTUYNU8oDfGyuLuCBsY4qP43mdh8KmRubblW9DltB";
     script.addEventListener("load", this.setLoaded);
     document.body.appendChild(script);
-    
+    this.calcPayment();
   },
   created(){
       this.selectedTipe = localStorage.getItem('selectedTipe');
@@ -63,13 +64,20 @@ export default {
         monto += precioTipe;
         monto += precioColors
         monto += precioCake;
-        this.amountOrder = amount;
+        this.amountOrder = monto;
         return monto;
       })
       .catch(error => {
         console.error('Error al calcular el monto:', error);
         return 0; 
       });
+    },
+    setPaidForCookie() {
+      Cookies.set('paidFor', this.paidFor, { expires: 7 }); 
+    },
+    destroyPaidForCookie() {
+      Cookies.remove('paidFor'); 
+      this.paidFor = false; 
     },
     setLoaded: function() {
       this.loaded = true;
@@ -88,7 +96,7 @@ export default {
               ]
             });
           },
-          onApprove: async () => {
+          onApprove: async (data, actions) => {
             const order = await actions.order.capture();
             const amount = await this.calcPayment(); 
             this.paidFor = true;
@@ -160,7 +168,12 @@ export default {
         localStorage.removeItem('selectedCake');
         localStorage.removeItem('selectedExtras');
     }
-  }
+  }, 
+  watch: {
+    paidFor() {
+      this.setPaidForCookie(); // Call the method to update the cookie whenever 'paidFor' changes
+    },
+  },
 };
 </script>
 
