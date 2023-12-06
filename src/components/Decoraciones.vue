@@ -28,7 +28,7 @@ export default {
       cards: [],
       selectedDecos: [], 
     };
-  },
+},
   watch: {
     selectedDecos(newVal) {
       localStorage.setItem('selectedDecos', JSON.stringify(newVal));
@@ -56,7 +56,7 @@ export default {
     }
   },
 };
-</script>
+</script>-
 
 <style scoped>
 

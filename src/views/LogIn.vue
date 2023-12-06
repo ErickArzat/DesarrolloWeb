@@ -1,7 +1,11 @@
 <template>
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
+    <div class="wrapper fadeInDown">
+      <div>
+        <p v-if="message">{{ message }}</p>
+        <!-- Otros elementos del componente de inicio de sesión -->
+      </div>
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
       <!-- Icon -->
       <div class="fadeIn first">

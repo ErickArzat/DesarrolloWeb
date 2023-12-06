@@ -274,6 +274,12 @@ export default{
             contactus:"Contact us", 
            },
         btn:{
+            begin:"Start", 
+            back: "Back", 
+            login: "Log In",
+            submit: "Submit"
+        },
+        btn:{
             begin:"Comienza", 
             back: "Back", 
             login: "Log In",
