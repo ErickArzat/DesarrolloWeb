@@ -4,14 +4,14 @@
         
         
         <div class="name-holder">
-            <a href=""><h3>PARTYTION</h3></a>
+            <a href=""><h3>PARTYNATION</h3></a>
         </div>
         <nav class="nav" >
             <ul class="nav-links">
                 <li @click="handleNavigation('aboutus')"><a href="#aboutus">{{ $t('nav.meetus') }}</a></li>
                 <li @click="handleNavigation('planner')"><a href="#planner">{{ $t('nav.plan') }}</a></li>
                 <li @click="handleNavigation('contactus')"><a href="#contactus">{{ $t('nav.contactus') }}</a></li>
-                <li id="btnLogIn"><a href="#">{{ $t('btn.login') }}</a></li>
+                <li id="btnLogIn"><a href="/login">{{ $t('btn.login') }}</a></li>
             </ul>
         </nav>
         <div class="lan-div">
@@ -20,7 +20,9 @@
                 <input class="form-check-input custom-switch custom-control-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" @click="toggleLocale">
                 <a class="btn" href="/login"><button>{{ $t('btn.login') }}</button></a>
                 <label for="check" class="checkbtn">
-                    <i class="bi bi-list"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                    </svg>
                 </label>
             </div>
             
@@ -46,12 +48,10 @@
         },
         destroyed() {
             window.removeEventListener('resize', this.handleNavigation);
-            // Asegúrate de restablecer el comportamiento de scroll cuando el componente se destruye
             document.body.style.overflow = 'auto';
         },
         watch: {
             showMenu(newVal) {
-            // Controlar el comportamiento del scroll dependiendo del estado de showMenu
             document.body.style.overflow = newVal ? 'hidden' : 'auto';
             },
         },
@@ -85,10 +85,12 @@
     .header .nav-links a {
         transition: none;
         font-size: 15px;
+        transition: 0.7s;
         color: #797474; 
     }
     .header .nav-links li a:hover{
         font-size: 16px;
+        color: rgb(174, 174, 174);
     }
 
     .header h3{
@@ -121,6 +123,7 @@
     }
     .header .nav-links a{
         font-size: 16px;
+        
     }
     .header .nav-links li a:hover{
         font-size: 18px;

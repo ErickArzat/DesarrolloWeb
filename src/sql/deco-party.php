@@ -8,15 +8,28 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include("functions.php");
 $conexionBD = connection();
 
-if (isset($_GET["consultar"])){
-    $sql = mysqli_query($conexionBD,"SELECT * FROM deco_party WHERE id_party=".$_GET["consultar"]);
+if (isset($_GET["name"])){
+    $sql = mysqli_query($conexionBD,"SELECT decorations.name_deco FROM deco_party JOIN decorations ON decorations.id_deco=".$_GET["name"]);
     if(mysqli_num_rows($sql) > 0){
-        $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
-        echo json_encode($result);
+        $row = mysqli_fetch_row($sql);
+        $result = $row[0];
+        echo $result;
         exit();
     }
     else{  echo json_encode(["success"=>0]); }
 }
+
+if (isset($_GET["delete"])){
+    $sql = mysqli_query($conexionBD,"DELETE FROM deco_party WHERE id_deco=".$_GET["delete"]);
+    if($sql){
+        echo json_encode(["success"=>1]);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); exit();}
+    
+}
+
+
 if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
     $party=$data->party;

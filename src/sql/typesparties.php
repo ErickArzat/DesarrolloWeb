@@ -36,6 +36,7 @@ if(isset($_GET["insertar"])){
     if(($name!="")&&($img!="")&&($price!="")){ 
         $sql = mysqli_query($conexionBD,"INSERT INTO types_parties(name_type, img_type, price_type) VALUES('$name','$img','$price') ");
         echo json_encode(["success"=>1]);
+        exit();
     }
     exit();
 }
@@ -43,12 +44,12 @@ if(isset($_GET["insertar"])){
 if(isset($_GET["actualizar"])){
     
     $data = json_decode(file_get_contents("php://input"));
-
-    $id=(isset($data->id))?$data->id:$_GET["actualizar"];
-    $nombre=$data->nombre;
-    $correo=$data->correo;
+    $id = $data->id;
+    $name=$data->name;
+    $price=$data->price;
+    $sqlUpdate = "UPDATE types_parties SET name_type='$name', price_type='$price' WHERE id_type='$id'";
     
-    $sql = mysqli_query($conexionBD,"UPDATE types_parties SET nombre='$nombre',correo='$correo' WHERE id='$id'");
+    $sql = mysqli_query($conexionBD,$sqlUpdate);
     echo json_encode(["success"=>1]);
     exit();
 }

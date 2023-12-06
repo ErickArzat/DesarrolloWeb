@@ -24,6 +24,8 @@
   <script>
   import img3 from "../assets/imagenes/Chocolate.jpg";
   import img5 from "../assets/imagenes/ConfettiTradicional.jpg";
+  import img6 from "../assets/imagenes/Cupcake.jpg";
+ 
   export default {
     data() {
       return {
