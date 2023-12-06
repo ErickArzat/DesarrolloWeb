@@ -415,24 +415,6 @@
       </div>
     </div>
   </div>
-
-  <form @submit.prevent="consultarPasteles" method="post" enctype="multipart/form-data">
-    <div>
-      <label for="cakeName">Nombre del Pastel:</label>
-      <input type="text" v-model="cakeName" required>
-    </div>
-    <div>
-      <label for="cakePrice">Precio del Pastel:</label>
-      <input type="number" v-model="cakePrice" required>
-    </div>
-    <div>
-      <label for="cakeImage">Imagen del Pastel:</label>
-      <input type="file" @change="onFileChange" required>
-    </div>
-    <div>
-      <button type="submit">Guardar Pastel</button>
-    </div>
-  </form>
 </template>
 <script>
 
@@ -464,6 +446,12 @@ export default {
     };
   },
   created() {
+    const userToken = localStorage.getItem('userToken');
+    if (userToken) {
+      console.log('Token encontrado:', userToken);
+    } else {
+      console.log('No se encontró ningún token o el valor es nulo.');
+    }
     this.consultarColores();
     this.consultarTipos();
     this.consultarDecoraciones();

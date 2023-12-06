@@ -12,7 +12,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 require_once("../variables.php");
 require_once("../funciones.php");
-
+$conexionBD = connection();
 function validarStaff($conexionBD, $data, $key) {
     $usuario = prevenirInyeccionSQL($conexionBD, $data['user_staff']);
     $contrasenia = prevenirInyeccionSQL($conexionBD, $data['pass_staff']); 
@@ -20,7 +20,7 @@ function validarStaff($conexionBD, $data, $key) {
     $sqlEmpleado = "SELECT * FROM staff WHERE user_staff = '$usuario' AND pass_staff = '$contrasenia'";
     $resultado = mysqli_query($conexionBD, $sqlEmpleado);
     if ($resultado && mysqli_num_rows($resultado) > 0) {
-        $token = generarToken($usuario, $contrasenia, $key);
+        $token = generarToken($usuario, $key);
         return array
             ('result' => true,
             'message'=> 'Bienvenido', 
