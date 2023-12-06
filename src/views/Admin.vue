@@ -1,113 +1,205 @@
-
-
-<style>
-    #wrapper{
-        padding:90px 15px;
-        background: white;
-        }
-
-    .card{
-        margin-bottom: 25px; 
-        border-radius: 25px; 
-        box-shadow: 0 3px 5px rgba(0,0,0,.1); 
-        border-color: black}
-
-    .card-title{ 
-        font-size: 28px;}
-
-    .addColor-title{
-        font-size: 28px;
-        margin-left: calc(1vw + 10px);
-    }
-
-    @media(min-width:992px) {
-        #wrapper{
-            padding: 90px 15px 15px 75px; }
-    }
-    a{
-        text-decoration: none;
-        color: white;
-        transition: 1s;
-      }
-
-    a:hover{
-      color: black;
-    }
-    
-    .estado{
-      border-radius: 25px;
-      border-color: rgb(75, 96, 255);
-    }
-</style>
-
 <template>
-  <NavBar/>
- <div id="wrapper">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.table.title') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.client') }}</th>
-                    <th scope="col">{{ $t('admin.table.type') }}</th>
-                    <th scope="col">{{ $t('admin.table.staff') }}</th>
-                    <th scope="col">{{ $t('admin.table.date') }}</th>
-                    <th scope="col">{{ $t('admin.table.total') }}</th>
-                    <th scope="col">{{ $t('admin.table.status') }}</th>
-                    <th scope="col">{{ $t('admin.table.details') }}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="party in parties" :key="party.id">
-                    <td scope="row">{{party.id}}</td>
-                    <td scope="row">{{party.client}}</td>
-                    <td scope="row">{{party.type}}</td>
-                    <td scope="row">{{party.staff}}</td>
-                    <td scope="row">{{party.date}}</td>
-                    <td scope="row">{{party.total}}</td>
-                    <td>
-                      <select class="status" v-model="party.status" @change="guardarSeleccion(party)">
-                        <option value="opcion1">{{ $t('admin.status.waiting') }}</option>
-                        <option value="opcion2">{{ $t('admin.status.inprogress') }}</option>
-                        <option value="opcion3">{{ $t('admin.status.completed') }}</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button id="myBtn" onclick="document.getElementById('myModal').style.display = 'block';">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
-                        </svg>
-                        <i class="bi bi-plus-circle-fill"></i>
-                      </button>
-                      <div id="myModal" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
+  <div id="wrapper">
+     <div class="container-fluid">
+       <div class="row">
+         <div class="col">
+           <div class="info-card">
+             <div class="data-card">
+               <h5 class="name-card">{{ $t('admin.table.titleP') }}</h5>
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th scope="col">{{ $t('admin.table.id') }}</th>
+                     <th scope="col">{{ $t('admin.table.client') }}</th>
+                     <th scope="col">{{ $t('admin.table.type') }}</th>
+                     <th scope="col">{{ $t('admin.table.staff') }}</th>
+                     <th scope="col">{{ $t('admin.table.date') }}</th>
+                     <th scope="col">{{ $t('admin.table.total') }}</th>
+                     <th scope="col">{{ $t('admin.table.status') }}</th>
+                     <th scope="col">{{ $t('admin.table.edit') }}</th>
+                     <th scope="col">{{ $t('admin.table.delete') }}</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr v-for="party in parties" :key="party.id_party">
+                     <td scope="row">{{party.id_party}}</td>
+                     <td scope="row">{{party.id_clnt}}{{ this.clientParty[party.id_party] }}</td>
+                     <td scope="row">{{party.id_type}}{{ this.typeParty[party.id_party] }}</td>
+                     <td scope="row">{{party.id_staff}}{{ this.staffParty[party.id_party] }}</td>
+                     <td scope="row">{{party.date_party}}</td>
+                     <td scope="row">{{totalParty[party.id_party]}}</td>
+                     <td>
+                       <select class="status" v-model="status[party.id_party]" @change="saveSelection(party)">
+                         <option value="opcion1">{{ $t('admin.status.waiting') }}</option>
+                         <option value="opcion2">{{ $t('admin.status.inprogress') }}</option>
+                         <option value="opcion3">{{ $t('admin.status.completed') }}</option>
+                       </select>
+                     </td>
+                     <td>
+                       <button class="myBtn" @click="selectionParty(party)" onclick="document.getElementById('myModal').style.display = 'block';"  >
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                         </svg>
+                       </button>
+                       <div id="myModal" class="modal" aria-hidden="true">
+                         <div class="modal-content">
+                           <div class="modal-header">
                             <span class="close" onclick="document.getElementById('myModal').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('admin.modal.title') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <p>{{ $t('admin.modal.client') }}</p>
-                            <p>{{ $t('admin.modal.type') }}</p>
-                            <p>{{ $t('admin.modal.staff') }}</p>
-                            <p>{{ $t('admin.modal.date') }}</p>
-                            <p>{{ $t('admin.modal.total') }}</p>
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
+                             <h2>{{ $t('admin.modal.title') }}</h2>
+                           </div>
+                           <div class="modal-body">
+                            <form >
+                               <table>
+                                 <tr>
+                                   <td>{{ $t('admin.modal.type') }}</td>
+                                   <select class="status" id="typeModal" v-model="selectedParty.id_type">
+                                      <option v-for="typeparty in typesparties" :key="typeparty.id_type" :value="typeparty.id_type">
+                                        {{ typeparty.name_type }}
+                                      </option>
+                                    </select>
+                                 </tr>
+                                 <tr>
+                                   <td>{{ $t('admin.modal.staff') }}</td>
+                                   <td>
+                                    <select class="status" id="staffModal" v-model="selectedParty.id_staff">
+                                      <option v-for="staff in staffs" :key="staff.id_staff" :value="staff.id_staff">
+                                        {{ staff.user_staff }}
+                                      </option>
+                                    </select>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                  <td>{{ $t('admin.modal.cake') }}</td>
+                                   <td>
+                                      <select class="status" id="cakeModal" v-model="selectedParty.id_cake">
+                                        <option v-for="cake in cakes" :key="cake.id_cake" :value="cake.id_cake">
+                                          {{ cake.name_cake }}
+                                        </option>
+                                      </select>
+                                   </td>
+                                 </tr> 
+                                 <tr>
+                                  <td>{{ $t('admin.modal.palette') }}</td>
+                                   <td>
+                                      <select class="status" id="palModal" v-model="selectedParty.id_pal">
+                                        <option v-for="pal in palettes" :key="pal.id_pal" :value="pal.id_pal">
+                                          {{ pal.name_pal }}
+                                        </option>
+                                      </select>
+                                   </td>
+                                 </tr>
+                                 <tr>
+                                   <td>{{ $t('admin.modal.decos') }}</td>
+                                   <td>
+                                      <select class="status" id="decoModal" v-model="selectedParty.id_deco">
+                                        <option v-for="deco in decos" :key="deco.id_deco" :value="deco.id_deco">
+                                          {{ deco.name_deco }}
+                                        </option>
+                                      </select>
+                                   </td>
+                                 </tr>   
+                                 <tr>
+                                   <td>{{ $t('admin.modal.extra') }}</td>
+                                   <td>
+                                      <select class="status" id="extraModal" v-model="selectedParty.id_extra">
+                                        <option v-for="extra in extras" :key="extra.id_extra" :value="extra.id_extra">
+                                          {{ extra.name_extra }}
+                                        </option>
+                                      </select>
+                                   </td>
+                                 </tr>  
+                                 <tr>
+                                   <td>{{ $t('admin.modal.date') }}</td>
+                                   <td>      
+                                       <input type="date" id="dateModal" autocomplete="off" v-model="selectedParty.date_party">
+                                   </td>
+                                 </tr> 
+                                 <tr align="center">
+                                   <td colspan="2" >      
+                                       <br><input type="submit" id="btnSave" value="Guardar" @click="saveAllEdit(selectedParty)">
+                                   </td>
+                                 </tr>
+                               </table>
+                              </form>
+                           </div>
+                         </div>
+                       </div>
+                     </td>
+                     <td>
+                       <button class="myBtn" @click="deleteParty(party)">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>
+                       </button>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
+         <div class="col">
+           <div class="info-card">
+             <div class="data-card">
+               <h5 class="name-card">{{ $t('admin.table.titleD') }}</h5>
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th scope="col">{{ $t('admin.table.id') }}</th>
+                     <th scope="col">{{ $t('admin.table.deco') }}</th>
+                     <th scope="col">{{ $t('admin.table.delete') }}</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <tr v-for="deco in decosParty" :key="deco.id_deco">
+                     <td scope="row">{{deco.id_party}}</td>
+                     <td scope="row">{{deco.id_deco}}{{this.nameDeco[deco.id_deco]}}</td>
+                     <td>
+                       <button class="myBtn" @click="deleteDeco(deco)">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>
+                       </button>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+         <div class="col">
+           <div class="info-card">
+             <div class="data-card">
+               <h5 class="name-card">{{ $t('admin.table.titleE') }}</h5>
+               <table class="table">
+                 <thead>
+                   <tr>
+                     <th scope="col">{{ $t('admin.table.id') }}</th>
+                     <th scope="col">{{ $t('admin.table.extra') }}</th>
+                     <th scope="col">{{ $t('admin.table.delete') }}</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                  <tr v-for="extra in extrasParty" :key="extra.id_extra">
+                     <td scope="row">{{extra.id_party}}</td>
+                     <td scope="row">{{extra.id_extra}}{{this.nameExtra[extra.id_extra]}}</td>
+                     <td>
+                       <button class="myBtn" @click="deleteExtra(extra)">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>
+                       </button>
+                     </td>
+                   </tr>
+                 </tbody>
+               </table>
+             </div>
+           </div>
+         </div>
+       </div>
+       <div class="row">
         <div class="col">
           <div class="info-card">
             <div class="data-card">
@@ -289,6 +381,8 @@
                 </div>
                 <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
               </form>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_fiestas.php" target="_blank">Descargar Fiestas</a>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_payment.php" target="_blank">Descargar Pagos</a>
             </div>
           </div>
         </div>
@@ -413,25 +507,42 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</template>
-<script>
-
-import NavBar from '../components/NavBar.vue'
-import axios from 'axios';
-export default {
-  components:{ 
-    NavBar
-  },
-  data() {
+     </div>
+   </div>
+ </template>
+ <script>
+ import axios from 'axios';
+  import NavBar from '../components/NavBar.vue';
+ 
+ export default {
+    components: {
+      NavBar
+    },
+    data() {
     return { 
+      status:[],
+      selectedParty: [],
+      cakes:[],
+      cakename: '',
+      typesparties:[],
+      palettes:[],
+      staffs:[],
+      decos:[],
+      extras:[],
+      parties: [],
+      typeParty:[],
+      clientParty:[],
+      staffParty:[],
+      totalParty:[],
+      decosParty:[],
+      nameDeco:[],
+      extrasParty:[],
+      nameExtra:[],
       color: {
             name_pal: '',
             price_pal: '',
         },
       cake:{},
-      selectedParty: null,
       selectedPartyAdd: {
             name: '',
             price: '',
@@ -470,7 +581,287 @@ export default {
     this.consultarPasteles();
     this.consultarExtras();
   },
-  methods: {
+   mounted() {
+    this.allData();
+   },
+   methods: {
+    selectionParty(party) {
+      this.selectedParty=party;
+    },
+    loadFromLocalStorage(party) {
+      this.status[party.id_party] = this.loadSelection('optionSelect_', party.id_party);
+    },
+    loadSelection(keyPrefix, id) {
+      const storedValue = localStorage.getItem(keyPrefix + id);
+      return storedValue ? storedValue : "";
+    },
+     saveSelection(party) {
+       localStorage.setItem('optionSelect_' + party.id_party, this.status[party.id_party]);
+     },
+     onFileChange(event) {
+       this.cake.img = event.target.files[0];
+       this.cakename= this.cake.img.name;
+     },
+     deleteParty(party){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?delete='+party.id_party)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         console.log(datosRespuesta)
+       })
+       .catch(console.log)
+     },
+     deleteDeco(deco){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?delete='+deco.id_deco)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         console.log(datosRespuesta)
+       })
+       .catch(console.log)
+     },
+     deleteExtra(extra){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php?delete='+extra.id_extra)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         console.log(datosRespuesta)
+       })
+       .catch(console.log)
+     },
+    saveAllEdit(party){
+      var datosEnviar={type:party.id_type, clnt:party.id_clnt, pal:party.id_pal, cake:party.id_cake, pay:party.id_pay, staff:party.id_staff};
+      console.log(datosEnviar);
+      /*fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?update='+party.id_party,{
+        method:"POST",
+        body:JSON.stringify(datosEnviar)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta)
+      })
+      .catch(console.log);*/
+      if(party.id_deco===undefined){console.log("Undefined Value: party.id_deco="+party.id_deco);}
+      else{
+      var datosDecos={id:party.id_party,deco:party.id_deco};
+      console.log(datosDecos);
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertDeco',{
+        method:"POST",
+        body:JSON.stringify(datosDecos)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta);
+      })
+      .catch(console.log);
+      }
+      if(party.id_extra===undefined){console.log("Undefined Value: party.id_extra="+party.id_extra);}
+      else{
+      var datosExtra={id:party.id_party,extra:party.id_extra};
+      console.log(datosDecos);
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertExtra',{
+        method:"POST",
+        body:JSON.stringify(datosExtra)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta);
+      })
+      .catch(console.log);
+      }
+    },
+     addCakes(){
+       //this.addFile();
+       var datosEnviar={name:this.cake.name,img:this.cakename,price:this.cake.price};
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/cakes.php?insertar=1',{
+         method:"POST",
+         body:JSON.stringify(datosEnviar)
+       })
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         console.log(datosRespuesta)
+       })
+       .catch(console.log)
+     },
+     addFile(){
+       const formData = new FormData();
+       formData.append('image', this.cake.img);
+       axios.post('http://localhost/daw/DesarrolloWeb/src/sql/upload.php', formData)
+       .then((datosRespuesta)=>{
+         console.log(datosRespuesta.data)
+       })
+       .catch(console.log)
+     },
+     dataParties(party){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?nameTP='+party.id_type)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.typeParty[party.id_party]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?nameCP='+party.id_clnt)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+          this.clientParty[party.id_party]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?nameSP='+party.id_staff)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+          this.staffParty[party.id_party]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?total='+party.id_pay)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+          this.totalParty[party.id_party]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+     },
+     dataDecorations(deco){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?name='+deco.id_deco)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.nameDeco[deco.id_deco]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+     },
+     dataExtras(extra){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php?name='+extra.id_extra)
+       .then(response=>response.text())
+       .then((datosRespuesta)=>{
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.nameExtra[extra.id_extra]=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+     },
+     allData(){
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.parties=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.parties=datosRespuesta;
+           this.parties.forEach((party) => {
+            this.dataParties(party);
+            this.loadFromLocalStorage(party);
+          });
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/typesparties.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.typesparties=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+          this.typesparties=datosRespuesta; 
+         }
+       })
+       .catch(console.log);
+ 
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/staff.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.staffs=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.staffs=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/decorations.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.decos=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.decos=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/extras.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.extras=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.extras=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/cakes.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.cakes=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.cakes=datosRespuesta;
+         }
+       })
+       .catch(console.log); 
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/palettes.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.palettes=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.palettes=datosRespuesta;
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.decosParty=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.decosParty=datosRespuesta;
+           this.decosParty.forEach((deco) => {
+            this.dataDecorations(deco);
+          });
+         }
+       })
+       .catch(console.log);
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.extrasParty=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.extrasParty=datosRespuesta;
+           this.extrasParty.forEach((extra) => {
+            this.dataExtras(extra);
+          });
+         }
+       })
+       .catch(console.log);
+     },
     validarAdmin(config){
       fetch('http://localhost/daw/DesarrolloWeb/src/sql/validarAdmin.php', config)
       .then(response => response.json())
@@ -494,7 +885,7 @@ export default {
           this.colors=datosRespuesta;
         }
       })
-      .catch(console.log)
+      .catch(console.log);
     },
     agregarColor() {
       this.addFile();
@@ -757,223 +1148,183 @@ export default {
         console.error('Error al agregar color:', error);
         });
     },
-
-
-    guardarSeleccion(party) {
-      localStorage.setItem('opcionSeleccionada_' + party.id, party.status);
-    },
-    
-    onFileChange(event) {
-      const file = event.target.files[0];
-      
-      if (file) {
-        this.file = file;
-      } else {
-        console.log('Ningún archivo seleccionado.');
-      }
-    },
-    addFile(){
-      const formData = new FormData();
-      formData.append('image', this.file);
-      axios.post('http://localhost/daw/DesarrolloWeb/src/sql/upload.php', formData)
-      .then((datosRespuesta)=>{
-        console.log(datosRespuesta.data)
-      })
-      .catch(console.log)
-    },
-    selectionParty(party) {
-      this.selectedParty=party;
-      console.log(this.selectedParty);
-    },
-  },
-  mounted() {
-    this.parties.forEach((party) => {
-      const opcionAlmacenada = localStorage.getItem('opcionSeleccionada_' + party.id);
-      party.status = opcionAlmacenada ? opcionAlmacenada : "Selecciona";
-    });
   },
 };
 </script>
+ 
+<style scoped>
+#wrapper{
+  padding: 100px 100px 100px 100px;
+  background: white;
+}
 
-<style>
-    #wrapper{
-      padding: 100px 100px 100px 100px;
-      background: white;
-    }
+@media screen and (max-width: 340px) {
+  #wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+  }
+}
 
-    @media screen and (max-width: 340px) {
-      #wrapper {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 10px 10px 10px 10px;
-      }
-    }
+@media screen and (max-width: 768px) {
+  #wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+  }
+}
 
-    @media screen and (max-width: 768px) {
-      #wrapper {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 10px 10px 10px 10px;
-      }
-    }
+@media screen and (min-width: 1350px) {
+  #wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0px 100px 100px 100px;
+  }
+}
 
-    @media screen and (min-width: 1350px) {
-      #wrapper {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding: 0px 100px 100px 100px;
-      }
-    }
+tbody{
+  font-family:sans-serif;
+}
 
-    tbody{
-      font-family:sans-serif;
-    }
+.info-card{
+    margin-bottom: 25px; 
+    border-radius: 25px; 
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); 
+    border: 2px solid #5B83FF;
+    background-color: white;    
+}
 
-    .info-card{
-        margin-bottom: 25px; 
-        border-radius: 25px; 
-        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2); 
-        border: 2px solid #5B83FF;
-        background-color: white;    
-    }
+.data-card {
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 15px 15px 15px;
+    overflow-x:auto;
+}
 
-    .data-card {
-        border-radius: 10px;
-        justify-content: center;
-        align-items: center;
-        padding: 15px 15px 15px 15px;
-        overflow-x:auto;
-    }
+.name-card{ 
+    font-size: 28px;
+    color: black;
+}
 
-    .name-card{ 
-        font-size: 28px;
-        color: black;
-    }
+a{
+    text-decoration: none;
+    transition: 1s;
+    color: black;
+  }
 
-    a{
-        text-decoration: none;
-        transition: 1s;
-        color: black;
-      }
+a:hover{
+  color: #5B83FF;
+}
 
-    a:hover{
-      color: #5B83FF;
-    }
-    
-    .status{
-      border-radius: 25px;
-      border: 2px solid rgb(75, 96, 255);
-      min-width: 120px;
-      appearance: none;
-      padding-left: 10px;
-    }
+.status{
+  border-radius: 25px;
+  border: 2px solid rgb(75, 96, 255);
+  min-width: 120px;
+  appearance: none;
+  padding-left: 10px;
+}
 
-    #myBtn{
-      border: 0px solid white;
-      background-color: white;
-    }
-    
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 1; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%; /* Full width */
-      height: 100%; /* Full height */
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+.myBtn{
+  border: 0px solid white;
+  background-color: white;
+}
 
-    .modal-content {
-      position: relative;
-      background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%; /* Could be more or less, depending on screen size */
-      -webkit-animation-name: animatetop;
-      -webkit-animation-duration: 0.4s;
-      animation-name: animatetop;
-      animation-duration: 0.4s
-    }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
 
-    .modal-header{
-      padding: 2px 16px;
-      background-color: #5B83FF;
-      color: white;
-    }
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
+}
 
-    #myModalAdd, #myModalAddTipo, #myModalAddDeco, #myModalAddCake, #myModalAddExtra{
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+.modal-header{
+  padding: 2px 16px;
+  background-color: #5B83FF;
+  color: white;
+}
 
-    .modal-body{
-      display: flex;
-      flex-direction: column;
-    }
+.modal-body {
+  padding: 16px 16px;
+  align-self: center;
+}
 
-    .modal-body input{
-      height: 2rem;
-      background: #D9D9D9;
-      color: #000;
-      font-size: 15px;
-      border-radius: 8px;
-      border: 1px solid #b3b3b3;
-      outline: none;
-      width: 30vw;
-      margin-bottom: 1rem;
-    }
-    
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
 
-    .modal-body input:focus{
-      background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
-      box-shadow: 0 0 0 2px #5B83FF; /* Cambia el color del borde al azul cuando se enfoca */
-    }
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 1s;
+}
 
-    .modal-body button{
-      width: 15vw;
-    }
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
 
-    .modal-body {padding: 16px 16px;}
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+  
+input[type=submit]:focus{
+  background-color: #fff;
+  color: #5B83FF;
+}
 
-    .close {
-      color: white;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
+input[type=submit]{
+  background-color: #5B83FF;
+  color: #fff;
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 50%;
+}
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-      transition: 1s;
-    }
+#btnEditar, #btnBorrar{
+  margin-right: 1rem;
+  width: 8vw;
+}
 
-    #btnEditar, #btnBorrar{
-      margin-right: 1rem;
-      width: 8vw;
-    }
+#btnAdd{
+  margin-top: 1rem;
+  width: 10vw;
+}
 
-    #btnAdd{
-      margin-top: 1rem;
-      width: 10vw;
-    }
-    
-    @-webkit-keyframes animatetop {
-      from {top:-300px; opacity:0} 
-      to {top:0; opacity:1}
-    }
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
 
-    @keyframes animatetop {
-      from {top:-300px; opacity:0}
-      to {top:0; opacity:1}
-    }
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
 </style>

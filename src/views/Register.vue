@@ -22,10 +22,6 @@
         <div class="alert red-text">
           {{ errorMessage }}
         </div>
-        <!-- Remind Passowrd -->
-        <div id="formFooter">
-          <a class="underlineHover" href="#">Forgot Password?</a>
-        </div>
         <div class="account_manager">
           <p>{{$t('register.existing_account')}}</p><a class="underlineHover" href="/login">LogIn</a>
         </div>

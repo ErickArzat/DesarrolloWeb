@@ -13,7 +13,7 @@ body.no-scroll {
     padding-bottom: 2rem;
   }
    .title{
-      color: #636363;
+      color: #636363!important;
       font-size: clamp(2rem, 5vw, 4rem);
       display:flex;
       justify-content: center;
@@ -76,14 +76,14 @@ body.no-scroll {
     }
 
     .addForm input[type="text"]:focus {
-      background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
-      box-shadow: 0 0 0 2px #5B83FF; /* Cambia el color del borde al azul cuando se enfoca */
+      background: #fff; 
+      box-shadow: 0 0 0 2px #5B83FF; 
     }
 
     .card input[type="radio"]:checked + label {
       border-radius: 10px;
-      background-color: #5B83FF; 
-      color: #fff;
+      background-color: #5B83FF!important; 
+      color: #fff!important;
       transform: scale(1.1);
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       
@@ -92,8 +92,8 @@ body.no-scroll {
       border-radius: 10px;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       margin-bottom: 1rem;
-      background-color: #fff;
-      color: #5B83FF;
+      background-color: #fff!important;
+      color: #5B83FF!important;
     }
     .card input[type="radio"] {
         display: none; 
@@ -103,8 +103,8 @@ body.no-scroll {
     }
     .card input[type="checkbox"]:checked+label {
       border-radius: 10px;
-      background-color: #5B83FF; 
-      color: #fff;
+      background-color: #5B83FF!important;
+      color: #fff!important;
       transform: scale(1.1);
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   }
@@ -317,7 +317,6 @@ body.no-scroll {
     padding: 30px;
     position: relative; 
   }
-  
   .col-md-7{
     background: #fff;
     padding: 20px;

@@ -66,7 +66,7 @@
         },
      }
 </script>
-<style>
+<style scoped>
 
 @media screen and (min-width: 939px) { 
     .header .nav-links #btnLogIn {

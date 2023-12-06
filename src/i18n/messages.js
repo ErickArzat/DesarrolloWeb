@@ -186,7 +186,9 @@ export default{
         },
         admin:{
             table:{
-                title:"Fiestas",
+                titleP:"Fiestas",
+                titleD:"Decoraciones",
+                titleE:"Extras",
                 id:"Id",
                 client:"Cliente",
                 type:"Tipo",
@@ -194,6 +196,11 @@ export default{
                 date:"Fecha",
                 total:"Total",
                 status:"Estado",
+                edit:"Editar",
+                delete:"Borrar",
+                deco:"Decoraciones",
+                cake:"Pastel",
+                extra:"Extras",
                 details:"Detalles",
                 name:"Nombre",
                 price:"Precio",
@@ -206,12 +213,16 @@ export default{
                 extras: "Extras",
             },
             modal:{
-                title:"Detalle de la Fiesta",
+                title:"Editar Fiesta",
                 client:"Cliente: ",
                 type:"Tipo: ",
                 staff:"Staff: ",
                 date:"Fecha: ",
-                total:"Total: "
+                total:"Total: ",
+                decos:"Decorations: ",
+                extra:"Extras: ",
+                cake:"Pastel: ",
+                palette:"Paleta de Colores: "
             },
             status:{
                 completed:"Completado",
@@ -223,9 +234,9 @@ export default{
             payment: "Hora de pagar", 
             endMessage: "¡Tu fiesta esta lista!, nos contactaremos contigo en breve para hacer tu fiesta realidad"
         }, 
-        
-        
-           
+        map:{
+            message: "Nos puedes visitar en nuestro local para planear aún más fiestas increibles",
+        }
     }, 
    
      
@@ -408,7 +419,9 @@ export default{
 
         admin:{
             table:{
-                title:"Parties",
+                titleP:"Parties",
+                titleD:"Decorations",
+                titleE:"Extras",
                 id:"Id",
                 client:"Client",
                 type:"Type",
@@ -416,15 +429,23 @@ export default{
                 date:"Date",
                 total:"Total",
                 status:"Status",
-                details:"Details",
+                edit:"Edit",
+                delete: "Delete",
+                deco:"Decorations",
+                cake:"Pastel",
+                extra:"Extras",
             },
             modal:{
-                title:"Party's Details",
+                title:"Edit Party",
                 client:"Client: ",
                 type:"Type: ",
                 staff:"Staff: ",
                 date:"Date: ",
-                total:"Total: "
+                total:"Total: ",
+                decos:"Decoraciones: ",
+                extra:"Extras: ",
+                cake:"Cake: ",
+                palette:"Color Palette: "
             },
             status:{
                 completed:"Completed",
@@ -436,6 +457,8 @@ export default{
             payment: "Time to Pay", 
             endMessage: "Your party is ready, we'll contact u shortly to make your dream party come true!",
         }, 
-        
+        map:{
+            message: "You can visit us at our location to plan even more incredible parties",
+        }
     }
 }

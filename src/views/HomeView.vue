@@ -68,12 +68,15 @@
     </p>
     <img src="src/assets/imagenes/Rectangle 21.png" alt="">
   </div>
+
+<Map/>
+
 <ContactUs/>
 
 
 </template>
 <script> 
-// import { useCookies } from 'vue-cookies';
+
 import ContactUs  from '../components/ContactUs.vue';
 import NavBar from '../components/NavBar.vue'
 import { defineComponent } from 'vue'
@@ -86,7 +89,9 @@ import PastelFiesta from '../components/PastelFiesta.vue';
 import Decoraciones from '../components/Decoraciones.vue';
 import ResultadoFiesta from '../components/ResultadoFiesta.vue';
 import Payment from '../components/Payment.vue'
+import Map from '../components/Map.vue'
 
+import Cookies from 'js-cookie';
 export default {
   
   ...defineComponent({
@@ -120,7 +125,20 @@ export default {
       
     },
   },
-  
+  mounted() {
+    const componenteCookie = Cookies.get('componenteActual');
+    if (componenteCookie !== undefined) {
+      this.contadorClicks = parseInt(componenteCookie);
+    }
+  },
+  watch: {
+    contadorClicks: {
+      handler(val) {
+        Cookies.set('componenteActual', val);
+      },
+      deep: true,
+    },
+  },
   methods: {
     goForward() {
       if (this.contadorClicks > 0) {
@@ -161,6 +179,7 @@ export default {
             localStorage.removeItem('selectedDecos');
             localStorage.removeItem('selectedCake');
             localStorage.removeItem('selectedExtras');
+            document.cookie = 'paidFor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
           } else {
             return;
           }

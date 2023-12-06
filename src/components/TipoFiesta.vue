@@ -21,6 +21,7 @@
 
 <script>
 import img7 from "../assets/imagenes/funeral.jpg";
+
 export default {
   data() {
     return {
@@ -59,6 +60,7 @@ export default {
 
 </script>
 <style scoped>
+@import '../assets/main.css';
   .card-inner {
     border-radius: 10px;
     position: relative;
