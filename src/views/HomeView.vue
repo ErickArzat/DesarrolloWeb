@@ -45,9 +45,10 @@
   </div>
   <div class="container-c" id="planner">
     <component :is="componenteActual"></component>
+    <div class="error-message" v-if="showErrorMessage">{{ errorMessage }}</div>
     <div class="navigation">
-        <button type="button"  v-if="contadorClicks > 0"  class="boton-izquierda" @click="goForward">{{ $t('homeview.back') }}</button>
-        <button type="button" class="boton-derecha"  @click="goBack" >{{ buttonText }}</button>
+        <button type="button"  v-if="contadorClicks > 0 && contadorClicks < 6"  class="boton-izquierda" @click="goForward">{{ $t('homeview.back') }}</button>
+        <button type="button" class="boton-derecha"  @click="goBack" >{{ $t('homeview.next') }}</button>
     </div>
   </div>
   <div class="carousel">
@@ -99,7 +100,6 @@ export default {
   }),
   data() {
     return {
-      buttonText: this.$t('homeview.next'),
       contadorClicks: 0,
       componentes: [
         TipoFiesta, 
@@ -109,8 +109,9 @@ export default {
         ExtrasFiesta,
         ResultadoFiesta, 
         Payment,
-        
       ],
+      showErrorMessage: false,
+      errorMessage: '',
     };
   },
   computed: {
@@ -127,23 +128,48 @@ export default {
       }
     },
     goBack() {
-      if (this.contadorClicks < this.componentes.length - 1) {
-        this.contadorClicks++;
-        this.buttonText = this.$t('homeview.next');
-      }
-      else{
-        this.contadorClicks = 0;
-        localStorage.removeItem('selectedTipe');
-        localStorage.removeItem('selectedColors');
-        localStorage.removeItem('selectedDecos');
-        localStorage.removeItem('selectedCake');
-        localStorage.removeItem('selectedExtras');
+        if (this.contadorClicks === 0 && localStorage.getItem('selectedTipe') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.tipe_missing');
+          return;
+        }
+        if (this.contadorClicks === 1 && localStorage.getItem('selectedColors') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.palette_missing');
+          return;
+        }
+        if (this.contadorClicks === 2 && localStorage.getItem('selectedDecos') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.deco_missing');
+          return;
+        }
+        if (this.contadorClicks === 3 && localStorage.getItem('selectedCake') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.cake_missing');
+          return;
+        }
+        if (this.contadorClicks === 4 && localStorage.getItem('selectedExtras') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.extra_missing');
+          return;
+        }
+        if (this.contadorClicks === 6) {
+          if (confirm('¿Estás seguro de que quieres volver a empezar?')) {
+            this.contadorClicks = -1;
+            localStorage.removeItem('selectedTipe');
+            localStorage.removeItem('selectedColors');
+            localStorage.removeItem('selectedDecos');
+            localStorage.removeItem('selectedCake');
+            localStorage.removeItem('selectedExtras');
+          } else {
+            return;
+          }
 
-        
+        }
+        this.showErrorMessage = false;
+        this.contadorClicks++;
       }
     },
-  
-  },
 };
 </script>
 
@@ -165,7 +191,11 @@ export default {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
+.error-message{
+  color: red;
+  display: flex;
+  justify-content: center;
+}
 .boton-izquierda::before {
   content: '\2190'; 
   margin-right: 5px;
@@ -453,12 +483,13 @@ export default {
   margin-bottom: 5%;
 }
 
+
 @media screen and (min-width: 340px) and (max-width: 767px) {
   .landing{
     display: grid;
     grid-template-columns: 1fr;
-    height: 100vh;
-    border: solid 1px red;
+    height: 85vh;
+    margin-bottom: calc(100vh - 88vh);
   }
 
   .landing_text{
@@ -470,14 +501,14 @@ export default {
     margin-bottom: 1em;
   }
   .landing #btn_start{
-    font-size: 130%;
+    font-size: calc(50% + 9px);
     width: calc(50% - 20%);
-    
+
   }
 
     .landing img{
-      width: calc(50vh - 20px);
-      margin: auto;
+      width: calc(70vw - 20px);
+      margin: 5vh auto;
     }
 
     .landing_text{
@@ -524,7 +555,6 @@ export default {
     .about{
       grid-template-columns: 1fr;
       height: 150vh;
-      border: solid 1px red;
     }
 
     .about h4:first-child{

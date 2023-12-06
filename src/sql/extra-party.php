@@ -40,7 +40,29 @@ if(isset($_GET["insertar"])){
     }
     exit();
 }
+if(isset($_GET["insertar_multiples"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $party = $data->party;
+    $extras = $data->extras; 
 
+    if (!empty($party) && !empty($extras)) {
+        foreach ($extras as $extra) {
+            
+            $sql = mysqli_prepare($conexionBD, "INSERT INTO extra_party(id_party, id_extra) VALUES (?, ?)");
+
+            mysqli_stmt_bind_param($sql, "ii", $party, $extra);
+
+            mysqli_stmt_execute($sql);
+
+            mysqli_stmt_close($sql);
+        }
+        
+        echo json_encode(["success" => 1]);
+    } else {
+        echo json_encode(["success" => 0, "message" => "Falta información"]);
+    }
+    exit();
+}
 $sql = mysqli_query($conexionBD,"SELECT * FROM extra_party");
 if(mysqli_num_rows($sql) > 0){
     $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);

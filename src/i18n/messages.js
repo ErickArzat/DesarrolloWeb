@@ -11,7 +11,11 @@ export default{
         begin:"Comienza", 
         back:"Atrás",
         login: "Inicia sesión",
-        submit: "Enviar"
+        submit: "Enviar",
+        add: "Añadir",
+        edit: "Editar",
+        delete: "Eliminar",
+        save: "Guardar Cambios"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -117,7 +121,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: '¿Tienes alguna duda?',
             contact_title: 'Contáctanos',
             form_title:'Envíanos un mensaje',
@@ -125,6 +129,36 @@ export default{
             email_label: 'E-mail',
             message: 'Mensaje',
             button: 'Enviar'
+        },
+        addCake:{
+            title:"Añadir Pastel",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addDecoration:{
+            title:"Añadir Decoración",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addColor:{
+            title:"Añadir Color",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addType:{
+            title:"Añadir Tipo",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addExtras:{
+            title:"Añadir Extras",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
         },
         websites:{
             facebook: 'Facebook',
@@ -140,7 +174,12 @@ export default{
         error_message:{
             all_fields: 'Todos los campos son obligatorios', 
             email_form: 'Email no valida', 
-            password_match: "Las contraseñas no coinciden"
+            password_match: "Las contraseñas no coinciden", 
+            tipe_missing: "Por favor, selecciona un tipo de fiesta", 
+            palette_missing: "Por favor, selecciona una paleta", 
+            deco_missing: "Por favor, selecciona una decoración", 
+            cake_missing: "Por favor, selecciona un pastel", 
+            extra_missing: "Por favor, selecciona un extra", 
         },
         resume:{
             title:"¡Así es como está quedando tu fiesta!"
@@ -162,6 +201,16 @@ export default{
                 deco:"Decoraciones",
                 cake:"Pastel",
                 extra:"Extras",
+                details:"Detalles",
+                name:"Nombre",
+                price:"Precio",
+            },
+            titles:{
+                color: "Colores",
+                decoration: "Decoraciones",
+                cake: "Pasteles",
+                type: "Tipos",
+                extras: "Extras",
             },
             modal:{
                 title:"Editar Fiesta",
@@ -180,10 +229,13 @@ export default{
                 waiting:"Pendiente",
                 inprogress:"En Curso"
             }
-           },
-           payment:{
-               payment: "Hora de pagar"
-           }
+        },
+        payment:{
+            payment: "Hora de pagar", 
+            endMessage: "¡Tu fiesta esta lista!, nos contactaremos contigo en breve para hacer tu fiesta realidad"
+        }, 
+        
+        
            
     }, 
    
@@ -216,7 +268,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: 'Any doubts?',
             contact_title: 'Contact Us',
             form_title:'Send us a message',
@@ -240,10 +292,17 @@ export default{
             contactus:"Contact us", 
            },
         btn:{
-            begin:"Comienza", 
+            begin:"Start", 
             back: "Back", 
             login: "Log In",
             submit: "Submit"
+        },
+        btn:{
+            begin:"Comienza", 
+            back: "Back", 
+            login: "Log In",
+            submit: "Submit",
+            add: "Add"
         },
         home:{
             pgraf1: "We make your dreams a party!", 
@@ -317,7 +376,42 @@ export default{
         error_message:{
             all_fields: 'All the fields are required', 
             email_form: 'Email not valid', 
-            password_match: "The passwords don't match"
+            password_match: "The passwords don't match", 
+            tipe_missing: "Please select a Tipe of party", 
+            palette_missing: "Please select a Palette", 
+            deco_missing: "Please select a Decoration", 
+            cake_missing: "Please select a Cake", 
+            extra_missing: "Please select an Extra", 
+        },
+        addCake:{
+            title:"Add Cake",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addDecoration:{
+            title:"Add Decoration",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addColor:{
+            title:"Add Color",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addType:{
+            title:"Add Type",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addExtras:{
+            title:"Add Extras",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
         },
         resume:{
             title:"This is how your party is turning out!"
@@ -360,7 +454,9 @@ export default{
             }
         },
         payment:{
-            payment: "Time to Pay"
-        }
+            payment: "Time to Pay", 
+            endMessage: "Your party is ready, we'll contact u shortly to make your dream party come true!",
+        }, 
+        
     }
 }

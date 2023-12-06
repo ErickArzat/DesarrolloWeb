@@ -17,7 +17,20 @@ if (isset($_GET["consultar"])){
     }
     else{  echo json_encode(["success"=>0]); }
 }
+if (isset($_GET["consultar_multiples"]) && isset($_GET["arreglo_ids"])) {
+    $ids = $_GET["arreglo_ids"]; 
+    $ids_str = implode(",", $ids); 
 
+    $sql = mysqli_query($conexionBD, "SELECT * FROM decorations WHERE id_deco IN ($ids_str)");
+
+    if (mysqli_num_rows($sql) > 0) {
+        $result = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+        echo json_encode($result);
+        exit();
+    } else {
+        echo json_encode(["success" => 0]);
+    }
+}
 if (isset($_GET["borrar"])){
     $sql = mysqli_query($conexionBD,"DELETE FROM decorations WHERE id_deco=".$_GET["borrar"]);
     if($sql){
@@ -42,22 +55,12 @@ if(isset($_GET["insertar"])){
 
 if(isset($_GET["actualizar"])){
     $data = json_decode(file_get_contents("php://input"));
-
-    foreach ($data as $deco) {
-        $id = $deco->id_deco;
-        $nombre = $deco->name_deco;
-        $precio = $deco->price_deco;
-
-        $sql = "UPDATE decorations SET name_deco='$nombre', price_deco='$precio' WHERE id_deco='$id'";
-        $result = mysqli_query($conexionBD, $sql);
-
-        if (!$result) {
-            echo json_encode(["success" => 0, "message" => "Error al actualizar las decoraciones"]);
-            exit();
-        }
-    }
-
-    echo json_encode(["success" => 1, "message" => "Decoraciones actualizados correctamente"]);
+    $id = $data->id;
+    $name=$data->name;
+    $price=$data->price;
+    $sqlUpdate = "UPDATE decorations SET name_deco='$name', price_deco='$price' WHERE id_deco='$id'";
+    $sql = mysqli_query($conexionBD,$sqlUpdate);
+    echo json_encode(["success"=>1]);
     exit();
 }
 

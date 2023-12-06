@@ -1,21 +1,21 @@
 <template>
-  <div id="component-3">
+  <div>
     <div class="title">
       <p>{{$t("planeacion.decoration.title")}}</p>
     </div>
     <div class="card__container">
       <div class="card" v-for="card in cards" :key="card.id_deco">
-        <input type="radio" :id="'card-' + card.id_deco" v-model="selectedDecos" :value="card.id_deco">
-        <label :for="'card-' + card.id_deco">
-          <div class="card-inner">
-            <img :src="urlimage+card.img_deco" class="card-img-top" :alt="card.alt" />
-            <div class="card-body">
-              <p class="card-text">{{ card.name_deco }}</p>
-            </div>
-          </div>
-        </label>
+          <input type="checkbox" :id="'card-' + card.id_deco" v-model="selectedDecos" :value="card.id_deco">
+          <label :for="'card-' + card.id_deco">
+              <div class="card-inner" :class="{ 'selected': selectedDecos.includes(card.id_deco) }">
+                <img :src="urlimage+card.img_deco" class="card-img-top" :alt="card.alt" />
+                  <div class="card-body">
+                      <p class="card-text">{{ card.name_deco }}</p>
+                  </div>
+              </div>
+          </label>
       </div>
-    </div>
+  </div>
   </div>
 </template>
 
@@ -24,11 +24,12 @@
 export default {
   data() {
     return {
+      selectedDecos: [], 
       urlimage: "../src/assets/imagenes/",
       cards: [],
-      selectedDecos: [], 
+      
     };
-  },
+},
   watch: {
     selectedDecos(newVal) {
       localStorage.setItem('selectedDecos', JSON.stringify(newVal));
@@ -56,7 +57,7 @@ export default {
     }
   },
 };
-</script>
+</script>-
 
 <style scoped>
 

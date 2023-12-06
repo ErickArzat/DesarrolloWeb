@@ -1,7 +1,11 @@
 <template>
-  <div class="wrapper fadeInDown">
-    <div id="formContent">
-      <!-- Tabs Titles -->
+    <div class="wrapper fadeInDown">
+      <div>
+        <p v-if="message">{{ message }}</p>
+        <!-- Otros elementos del componente de inicio de sesión -->
+      </div>
+  <div id="formContent">
+    <!-- Tabs Titles -->
 
       <!-- Icon -->
       <div class="fadeIn first">
@@ -9,10 +13,10 @@
       </div>
 
       <!-- Login Form -->
-      <form>
-        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
-        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
-        <input type="submit" class="fadeIn fourth" value="Log In" onclick="">
+      <form @submit.prevent="submitForm">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off" v-model="username">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off" v-model="password">
+        <input type="submit" class="btn fadeIn fourth" value="Log In">
           
       </form>
 
@@ -22,7 +26,67 @@
     </div>
   </div>
 </template>
-<script setup></script>
+
+<script>
+import VueAxios from 'vue-axios';
+
+  export default {
+    name: 'LogIn',
+    data () {
+      return {
+        empleados:[],
+        username: '',
+        password: ''
+      }
+    },
+    methods: {
+      submitForm: function(){
+        const userData = {
+          username: this.username,
+          password: this.password
+        };
+        this.login(userData);
+      },
+      login: function(userData){
+        fetch("http://localhost/web/validar.php?login",{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData)
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          if(data.success){
+            console.log("Inicio de sesion exitoso", data.userData);
+            switch(data.userType){
+              case "admin":
+                console.log("Accediste como admin");
+                break;
+              case "staff":
+                console.log("Accediste como staff");
+                break;
+              case "client":
+                console.log("Accediste como cliente");
+                break;
+              default:
+                console.log("No se encontro el tipo de usuario");
+                break;
+            }
+          } else {
+            console.log("Inicio de sesion fallido");
+          }
+        })
+        .catch(error => {
+        console.error('Error:', error);
+      });
+      }
+    }
+  }
+
+</script>
+
 <style scoped>
 
 body {
@@ -102,7 +166,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=btn], input[type=reset]  {
+input[type=button], input[type=btn], input[type=reset], input[type=submit]  {
   background-color: #5B83FF;
   border: none;
   color: white;
