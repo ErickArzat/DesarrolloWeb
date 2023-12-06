@@ -180,9 +180,9 @@ export default{
             payment: "Hora de pagar", 
             endMessage: "¡Tu fiesta esta lista!, nos contactaremos contigo en breve para hacer tu fiesta realidad"
         }, 
-        
-        
-           
+        map:{
+            message: "Nos puedes visitar en nuestro local para planear aún más fiestas increibles",
+        }
     }, 
    
      
@@ -356,6 +356,8 @@ export default{
             payment: "Time to Pay", 
             endMessage: "Your party is ready, we'll contact u shortly to make your dream party come true!",
         }, 
-        
+        map:{
+            message: "You can visit us at our location to plan even more incredible parties",
+        }
     }
 }

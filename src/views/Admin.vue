@@ -78,7 +78,8 @@
                   <button type="submit">Guardar Pastel</button>
                 </div>
               </form>
-
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_fiestas.php" target="_blank">Descargar Fiestas</a>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_payment.php" target="_blank">Descargar Pagos</a>
             </div>
           </div>
         </div>
