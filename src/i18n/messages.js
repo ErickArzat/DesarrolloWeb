@@ -121,7 +121,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: '¿Tienes alguna duda?',
             contact_title: 'Contáctanos',
             form_title:'Envíanos un mensaje',
@@ -250,7 +250,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: 'Any doubts?',
             contact_title: 'Contact Us',
             form_title:'Send us a message',
