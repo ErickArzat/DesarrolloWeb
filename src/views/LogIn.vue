@@ -61,6 +61,7 @@ import VueAxios from 'vue-axios';
           console.log(data);
           if(data.success){
             console.log(data.token);
+            localStorage.removeItem('userToken');
             localStorage.setItem('userToken', data.token);
             console.log("Token guardado: " + data.token);
             console.log("Inicio de sesion exitoso", data.userData);
