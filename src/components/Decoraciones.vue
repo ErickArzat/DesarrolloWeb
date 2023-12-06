@@ -1,103 +1,33 @@
 <template>
-  <div id="component-3">
+  <div>
     <div class="title">
       <p>{{$t("planeacion.decoration.title")}}</p>
     </div>
     <div class="card__container">
-      <div class="card" v-for="card in cards" :key="card.id">
-        <input type="checkbox" :id="'card-' + card.id" v-model="selectedDecos" :value="card.id">
-        <label :for="'card-' + card.id">
-          <div class="card-inner" :class="{ 'selected': selectedDecos.includes(card.id) }">
-            <img :src="card.image" class="card-img-top" :alt="card.alt" />
-            <div class="card-body">
-              <p class="card-text">{{ card.text }}</p>
-            </div>
-          </div>
-        </label>
+      <div class="card" v-for="card in cards" :key="card.id_deco">
+          <input type="checkbox" :id="'card-' + card.id_deco" v-model="selectedDecos" :value="card.id_deco">
+          <label :for="'card-' + card.id_deco">
+              <div class="card-inner" :class="{ 'selected': selectedDecos.includes(card.id_deco) }">
+                <img :src="urlimage+card.img_deco" class="card-img-top" :alt="card.alt" />
+                  <div class="card-body">
+                      <p class="card-text">{{ card.name_deco }}</p>
+                  </div>
+              </div>
+          </label>
       </div>
-    </div>
+  </div>
   </div>
 </template>
 
 <script>
-import img1 from "../assets/imagenes/Globos.jpg"
-import img2 from "../assets/imagenes/Confetti.jpg";
-import img4 from "../assets/imagenes/Cortina.jpg";
-import img3 from "../assets/imagenes/ArcoGlobos.jpg";
-import img5 from "../assets/imagenes/Luces.jpg";
-import img6 from "../assets/imagenes/Piñata.jpg";
-import img7 from "../assets/imagenes/Sombreros.jpg";
-import img8 from "../assets/imagenes/Recuerdos.jpg";
-import img9 from "../assets/imagenes/Disco.jpg";
-import img10 from "../assets/imagenes/Letras.jpg";
 
 export default {
   data() {
     return {
       selectedDecos: [], 
-      cards: [
-        {
-            id: 1,
-            image: img1,
-            alt: this.$t('planeacion.decoration.balloons'),
-            text: this.$t('planeacion.decoration.balloons'),
-          },
-          {
-            id: 2,
-            image: img2,
-            alt: this.$t('planeacion.decoration.confetti'),
-            text: this.$t('planeacion.decoration.confetti'),
-          },
-          {
-            id: 3,
-            image: img3,
-            alt: this.$t('planeacion.decoration.balloonarch'),
-            text: this.$t('planeacion.decoration.balloonarch'),
-          },
-          {
-            id: 4,
-            image: img4,
-            alt: this.$t('planeacion.decoration.curtain'),
-            text: this.$t('planeacion.decoration.curtain'),
-          },
-          {
-            id: 5,
-            image: img5,
-            alt: this.$t('planeacion.decoration.lights'),
-            text: this.$t('planeacion.decoration.lights'),
-          },
-          {
-            id: 6,
-            image: img6,
-            alt: this.$t('planeacion.decoration.piniata'),
-            text: this.$t('planeacion.decoration.piniata'),
-          },
-          {
-            id: 7,
-            image: img7,
-            alt: this.$t('planeacion.decoration.hats'),
-            text: this.$t('planeacion.decoration.hats'),
-          },
-          {
-            id: 8,
-            image: img8,
-            alt: this.$t('planeacion.decoration.recuerdos'),
-            text: this.$t('planeacion.decoration.recuerdos'),
-          },
-          {
-            id: 9,
-            image: img9,
-            alt: this.$t('planeacion.decoration.ball'),
-            text: this.$t('planeacion.decoration.ball'),
-          },
-          {
-            id: 10,
-            image: img10,
-            alt: this.$t('planeacion.decoration.letters'),
-            text: this.$t('planeacion.decoration.letters'),
-          },
-          
-      ],
+      urlimage: "../src/assets/imagenes/",
+      cards: [],
+      
     };
 },
   watch: {
@@ -106,9 +36,24 @@ export default {
     },
   },
   created() {
+    this.consultar();
     const storedDecos = localStorage.getItem('selectedDecos');
     if (storedDecos) {
       this.selectedDecos = JSON.parse(storedDecos);
+    }
+  },
+  methods:{
+    consultar(){
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/decorations.php')
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        this.cards=[]
+        if(typeof datosRespuesta[0].success==='undefined')
+        {
+          this.cards=datosRespuesta;
+        }
+      })
+      .catch(console.log)
     }
   },
 };

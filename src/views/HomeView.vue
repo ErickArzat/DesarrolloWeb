@@ -45,9 +45,10 @@
   </div>
   <div class="container-c" id="planner">
     <component :is="componenteActual"></component>
+    <div class="error-message" v-if="showErrorMessage">{{ errorMessage }}</div>
     <div class="navigation">
-        <button type="button" class="btn btn-outline-dark"  @click="goBack" >{{ $t('homeview.back') }}</button>
-        <button type="button" class="btn btn-outline-dark" @click="goForward">{{ $t('homeview.next') }}</button>
+        <button type="button"  v-if="contadorClicks > 0 && contadorClicks < 6"  class="boton-izquierda" @click="goForward">{{ $t('homeview.back') }}</button>
+        <button type="button" class="boton-derecha"  @click="goBack" >{{ $t('homeview.next') }}</button>
     </div>
   </div>
   <div class="carousel">
@@ -72,6 +73,7 @@
 
 </template>
 <script> 
+// import { useCookies } from 'vue-cookies';
 import ContactUs  from '../components/ContactUs.vue';
 import NavBar from '../components/NavBar.vue'
 import { defineComponent } from 'vue'
@@ -82,8 +84,11 @@ import ExtrasFiesta from '../components/ExtrasFiesta.vue'
 import ColorFiesta from '../components/ColorFiesta.vue';
 import PastelFiesta from '../components/PastelFiesta.vue';
 import Decoraciones from '../components/Decoraciones.vue';
+import ResultadoFiesta from '../components/ResultadoFiesta.vue';
+import Payment from '../components/Payment.vue'
 
 export default {
+  
   ...defineComponent({
     name: 'Autoplay',
     components: {
@@ -102,23 +107,69 @@ export default {
         Decoraciones,
         PastelFiesta, 
         ExtrasFiesta,
+        ResultadoFiesta, 
+        Payment,
       ],
+      showErrorMessage: false,
+      errorMessage: '',
     };
   },
   computed: {
     componenteActual() {
-      return this.componentes[this.contadorClicks % this.componentes.length];
+      return this.componentes[this.contadorClicks ];
+      
     },
   },
+  
   methods: {
     goForward() {
-      this.contadorClicks++;
+      if (this.contadorClicks > 0) {
+        this.contadorClicks--;
+      }
     },
     goBack() {
-      this.contadorClicks--;
+        if (this.contadorClicks === 0 && localStorage.getItem('selectedTipe') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.tipe_missing');
+          return;
+        }
+        if (this.contadorClicks === 1 && localStorage.getItem('selectedColors') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.palette_missing');
+          return;
+        }
+        if (this.contadorClicks === 2 && localStorage.getItem('selectedDecos') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.deco_missing');
+          return;
+        }
+        if (this.contadorClicks === 3 && localStorage.getItem('selectedCake') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.cake_missing');
+          return;
+        }
+        if (this.contadorClicks === 4 && localStorage.getItem('selectedExtras') === null) {
+          this.showErrorMessage = true;
+          this.errorMessage = this.$t('error_message.extra_missing');
+          return;
+        }
+        if (this.contadorClicks === 6) {
+          if (confirm('¿Estás seguro de que quieres volver a empezar?')) {
+            this.contadorClicks = -1;
+            localStorage.removeItem('selectedTipe');
+            localStorage.removeItem('selectedColors');
+            localStorage.removeItem('selectedDecos');
+            localStorage.removeItem('selectedCake');
+            localStorage.removeItem('selectedExtras');
+          } else {
+            return;
+          }
+
+        }
+        this.showErrorMessage = false;
+        this.contadorClicks++;
+      }
     },
-  
-  },
 };
 </script>
 
@@ -128,7 +179,39 @@ export default {
     color: #787878;
 
 }
+.boton-izquierda,
+.boton-derecha {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  background-color: #5B83FF;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
 
+.error-message{
+  color: red;
+  display: flex;
+  justify-content: center;
+}
+.boton-izquierda::before {
+  content: '\2190'; 
+  margin-right: 5px;
+}
+
+.boton-derecha::after {
+  content: '\2192'; 
+  margin-left: 5px;
+}
+
+
+.boton-izquierda:hover,
+.boton-derecha:hover {
+  background-color: #ddd;
+  color: #333;
+}
 .landing{
     display: grid;
     align-items: center;
