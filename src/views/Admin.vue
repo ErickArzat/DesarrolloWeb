@@ -1,45 +1,3 @@
-
-
-<style>
-    #wrapper{
-        padding:90px 15px;
-        background: white;
-        }
-
-    .card{
-        margin-bottom: 25px; 
-        border-radius: 25px; 
-        box-shadow: 0 3px 5px rgba(0,0,0,.1); 
-        border-color: black}
-
-    .card-title{ 
-        font-size: 28px;}
-
-    .addColor-title{
-        font-size: 28px;
-        margin-left: calc(1vw + 10px);
-    }
-
-    @media(min-width:992px) {
-        #wrapper{
-            padding: 90px 15px 15px 75px; }
-    }
-    a{
-        text-decoration: none;
-        color: white;
-        transition: 1s;
-      }
-
-    a:hover{
-      color: black;
-    }
-    
-    .estado{
-      border-radius: 25px;
-      border-color: rgb(75, 96, 255);
-    }
-</style>
-
 <template>
   <NavBar/>
  <div id="wrapper">
@@ -103,351 +61,40 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.titles.color') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.name') }}</th>
-                    <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="color in colors" :key="color.id">
-                    <td scope="row">{{color.id}}</td>
-                    <td scope="row">{{color.name}}</td>
-                    <td scope="row">{{color.price}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
-                    <div id="myModalAdd" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <span class="close" onclick="document.getElementById('myModalAdd').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('btn.edit') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput">
-                            <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                            <input type="text" class="" id="ColorPriceInput">
-                            <button class="btn btn-primary" id="btnAdd">{{ $t('btn.save') }}</button>
-                          </div>
-                        </div>
-                      </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <form class="addForm">
-                <h5 class="name-card">{{ $t('btn.add') }}</h5>
+              <form v-on:submit.prevent="addCakes" method="post" enctype="multipart/form-data">
                 <div>
-                  <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                  <input type="text" class="" id="ColorNameInput">
+                  <label for="cakeName">Nombre del Pastel:</label>
+                  <input type="text" v-model="cake.name" required>
                 </div>
                 <div>
-                  <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                  <input type="text" class="" id="ColorPriceInput">
+                  <label for="cakePrice">Precio del Pastel:</label>
+                  <input type="number" v-model="cake.price" required>
                 </div>
                 <div>
-                  <label for="ColorNameInput" class="">{{ $t('addColor.imgLabel') }}:</label>
-                  <input type="file" class="" id="ColorImgInput">
+                  <label for="cakeImage">Imagen del Pastel:</label>
+                  <input type="file" v-on:change="onFileChange" required>
                 </div>
-                <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
+                <div>
+                  <button type="submit">Guardar Pastel</button>
+                </div>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.titles.type') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.name') }}</th>
-                    <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="type in Types" :key="type.id">
-                    <td scope="row">{{type.id}}</td>
-                    <td scope="row">{{type.name}}</td>
-                    <td scope="row">{{type.price}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
-                    <div id="myModalAdd" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <span class="close" onclick="document.getElementById('myModalAdd').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('btn.edit') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput">
-                            <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                            <input type="text" class="" id="ColorPriceInput">
-                            <button class="btn btn-primary" id="btnAdd">{{ $t('btn.save') }}</button>
-                          </div>
-                        </div>
-                      </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <form class="addForm">
-                <h5 class="name-card">{{ $t('btn.add') }}</h5>
-                <div>
-                  <label for="TypeNameInput" class="">{{ $t('addType.nameLabel') }}:</label>
-                  <input type="text" class="" id="TypeNameInput">
-                </div>
-                <div>
-                  <label for="TypePriceInput" class="">{{ $t('addType.priceLabel') }}:</label>
-                  <input type="text" class="" id="TypePriceInput">
-                </div>
-                <div>
-                  <label for="TypeImgInput" class="">{{ $t('addType.imgLabel') }}:</label>
-                  <input type="file" class="" id="TypeImgInput">
-                </div>
-                <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.titles.decoration') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.name') }}</th>
-                    <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="decoration in Decorations" :key="decoration.id">
-                    <td scope="row">{{decoration.id}}</td>
-                    <td scope="row">{{decoration.name}}</td>
-                    <td scope="row">{{decoration.price}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
-                    <div id="myModalAdd" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <span class="close" onclick="document.getElementById('myModalAdd').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('btn.edit') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput">
-                            <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                            <input type="text" class="" id="ColorPriceInput">
-                            <button class="btn btn-primary" id="btnAdd">{{ $t('btn.save') }}</button>
-                          </div>
-                        </div>
-                      </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <form class="addForm">
-                <h5 class="name-card">{{ $t('btn.add') }}</h5>
-                <div>
-                  <label for="DecorationNameInput" class="">{{ $t('addDecoration.nameLabel') }}:</label>
-                  <input type="text" class="" id="DecorationNameInput">
-                </div>
-                <div>
-                  <label for="DecorationPriceInput" class="">{{ $t('addDecoration.priceLabel') }}:</label>
-                  <input type="text" class="" id="DecorationPriceInput">
-                </div>
-                <div>
-                  <label for="DecorationImgInput" class="">{{ $t('addDecoration.imgLabel') }}:</label>
-                  <input type="file" class="" id="DecorationImgInput">
-                </div>
-                <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.titles.cake') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.name') }}</th>
-                    <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="cake in Cakes" :key="cake.id">
-                    <td scope="row">{{cake.id}}</td>
-                    <td scope="row">{{cake.name}}</td>
-                    <td scope="row">{{cake.price}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
-                    <div id="myModalAdd" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <span class="close" onclick="document.getElementById('myModalAdd').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('btn.edit') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput">
-                            <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                            <input type="text" class="" id="ColorPriceInput">
-                            <button class="btn btn-primary" id="btnAdd">{{ $t('btn.save') }}</button>
-                          </div>
-                        </div>
-                      </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <form class="addForm">
-                <h5 class="name-card">{{ $t('btn.add') }}</h5>
-                <div>
-                  <label for="CakeNameInput" class="">{{ $t('addCake.nameLabel') }}:</label>
-                  <input type="text" class="" id="DecorationNameInput">
-                </div>
-                <div>
-                  <label for="CakePriceInput" class="">{{ $t('addCake.priceLabel') }}:</label>
-                  <input type="text" class="" id="CakePriceInput">
-                </div>
-                <div>
-                  <label for="CakeImgInput" class="">{{ $t('addCake.imgLabel') }}:</label>
-                  <input type="file" class="" id="CakeImgInput">
-                </div>
-                <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="info-card">
-            <div class="data-card">
-              <h5 class="name-card">{{ $t('admin.titles.extras') }}</h5>
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">{{ $t('admin.table.id') }}</th>
-                    <th scope="col">{{ $t('admin.table.name') }}</th>
-                    <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="extra in Extras" :key="extra.id">
-                    <td scope="row">{{extra.id}}</td>
-                    <td scope="row">{{extra.name}}</td>
-                    <td scope="row">{{extra.price}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
-                    <div id="myModalAdd" class="modal">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <span class="close" onclick="document.getElementById('myModalAdd').style.display = 'none';">&times;</span>
-                            <h2>{{ $t('btn.edit') }}</h2>
-                          </div>
-                          <div class="modal-body">
-                            <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput">
-                            <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
-                            <input type="text" class="" id="ColorPriceInput">
-                            <button class="btn btn-primary" id="btnAdd">{{ $t('btn.save') }}</button>
-                          </div>
-                        </div>
-                      </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
-                  </tr>
-                </tbody>
-              </table>
-              <form class="addForm">
-                <h5 class="name-card">{{ $t('btn.add') }}</h5>
-                <div>
-                  <label for="ExtraNameInput" class="">{{ $t('addExtras.nameLabel') }}:</label>
-                  <input type="text" class="" id="ExtraNameInput">
-                </div>
-                <div>
-                  <label for="ExtraPriceInput" class="">{{ $t('addExtras.priceLabel') }}:</label>
-                  <input type="text" class="" id="ExtraPriceInput">
-                </div>
-                <div>
-                  <label for="ExtraImgInput" class="">{{ $t('addExtras.imgLabel') }}:</label>
-                  <input type="file" class="" id="ExtraImgInput">
-                </div>
-                <button class="btn btn-primary" id="btnAdd">{{ $t('btn.add') }}</button>
-              </form>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </template>
 <script>
+import axios from 'axios';
 
-import NavBar from '../components/NavBar.vue'
 export default {
-  components:{ 
-    NavBar
-  },
-  data() {
+    data() {
     return { 
       cake:{},
       cakename: '',
-      colors:[
-      {
-          id: 1,
-          name: "Color 1",
-          price: "$",
-        },
-        {
-          id: 2,
-          name: "Color 2",
-          price: "$",
-        },
-        {
-          id: 3,
-          name: "Color 3",
-          price: "$",
-        },
-      ],
       parties: [
       {
           id: 1,
@@ -478,74 +125,6 @@ export default {
           total: "$",
           status:"",
           details:"",
-        },
-      ],
-      Cakes: [
-      {
-          id: 1,
-          name: "Pastel 1",
-          price: "$",
-        },
-        {
-          id: 2,
-          name: "Pastel 2",
-          price: "$",
-        },
-        {
-          id: 3,
-          name: "Pastel 3",
-          price: "$",
-        },
-      ],
-      Decorations: [
-      {
-          id: 1,
-          name: "Decoracion 1",
-          price: "$",
-        },
-        {
-          id: 2,
-          name: "Decoracion 2",
-          price: "$",
-        },
-        {
-          id: 3,
-          name: "Decoracion 3",
-          price: "$",
-        },
-      ],
-      Extras: [
-      {
-          id: 1,
-          name: "Extra 1",
-          price: "$",
-        },
-        {
-          id: 2,
-          name: "Extra 2",
-          price: "$",
-        },
-        {
-          id: 3,
-          name: "Extra 3",
-          price: "$",
-        },
-      ],
-      Types: [
-      {
-          id: 1,
-          name: "Tipo 1",
-          price: "$",
-        },
-        {
-          id: 2,
-          name: "Tipo 2",
-          price: "$",
-        },
-        {
-          id: 3,
-          name: "Tipo 3",
-          price: "$",
         },
       ],
     };
@@ -703,38 +282,6 @@ export default {
       color: white;
     }
 
-    #myModalAdd{
-      background-color: rgb(0,0,0); /* Fallback color */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-
-    #myModalAdd .modal-body{
-      display: flex;
-      flex-direction: column;
-    }
-
-    #myModalAdd .modal-body input{
-      height: 2rem;
-      background: #D9D9D9;
-      color: #000;
-      font-size: 15px;
-      border-radius: 8px;
-      border: 1px solid #b3b3b3;
-      outline: none;
-      width: 30vw;
-      margin-bottom: 1rem;
-    }
-    
-
-    #myModalAdd .modal-body input:focus{
-      background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
-      box-shadow: 0 0 0 2px #5B83FF; /* Cambia el color del borde al azul cuando se enfoca */
-    }
-
-    #myModalAdd .modal-body button{
-      width: 15vw;
-    }
-
     .modal-body {padding: 16px 16px;}
 
     .close {
@@ -751,16 +298,6 @@ export default {
       cursor: pointer;
       transition: 1s;
     }
-
-    #btnEditar, #btnBorrar{
-      margin-right: 1rem;
-      width: 8vw;
-    }
-
-    #btnAdd{
-      margin-top: 1rem;
-      width: 10vw;
-    }
     
     @-webkit-keyframes animatetop {
       from {top:-300px; opacity:0} 
@@ -772,3 +309,74 @@ export default {
       to {top:0; opacity:1}
     }
 </style>
+
+<script>
+export default {
+  data() {
+    return {
+      cakeName: '',
+      cakePrice: '',
+      cakeImage: null
+    };
+  },
+  components:{ 
+    NavBar
+  },
+  created() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.enviarTokenAlServidor(token);
+    } else {
+      localStorage.setItem('message', 'Debes iniciar sesión para acceder a esta página.');
+      this.$router.push({ name: 'login' });
+    }
+  },
+  methods: {
+    enviarTokenAlServidor(token) {
+      fetch('http://localhost/empleados-main/empleados-main/sesiones/verificarCredenciales.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          token: token
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        if(!data.access){
+          localStorage.setItem('message', 'Debes ser admin para acceder a esta página.');
+          this.$router.push({ name: 'login' });
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+    // methods:{
+    //   onFileChange(event) {
+    //     this.cakeImage = event.target.files[0];
+    //   },
+    //   consultarPasteles(){
+    //     const formData = new FormData();
+    //     formData.append('cakeName', this.cakeName);
+    //     formData.append('cakePrice', this.cakePrice);
+    //     formData.append('cakeImage', this.cakeImage);
+
+    //     fetch('http://localhost/empleados-main/empleados-main/?insertar=1',{
+    //       method: "POST",
+    //       formData 
+    //     })
+    //     .then(response => response.json())
+    //     .then((datos)=>{
+    //       console.log(datos);
+    //     })
+    //     .catch(error => {
+    //       console.error('Error:', error);
+    //     });
+    //   }
+    }
+  }
+</script>
