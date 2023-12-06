@@ -17,23 +17,36 @@ if (isset($_GET["consultar"])){
     }
     else{  echo json_encode(["success"=>0]); }
 }
-
-
 if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
     $party=$data->party;
-    $decos=$data->deco;
+    $deco=$data->deco;
     if(($party!="")&&($deco!="")){ 
+        $sql = mysqli_query($conexionBD,"INSERT INTO extra_party(id_party, id_deco) VALUES('$party','$extra') ");
+        echo json_encode(["success"=>1]);
+    }
+    exit();
+}
+
+if(isset($_GET["insertar_multiples"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $party = $data->party;
+    $decos = $data->decos; 
+
+    if (!empty($party) && !empty($decos)) {
         foreach ($decos as $deco) {
-            $sql = mysqli_query($conexionBD, "INSERT INTO deco_party(id_party, id_deco) VALUES ('$party', '$deco')");
-            if(!$sql){
-                echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
-                exit();
-            }
+            $sql = mysqli_prepare($conexionBD, "INSERT INTO deco_party(id_party, id_deco) VALUES (?, ?)");
+
+            mysqli_stmt_bind_param($sql, "ii", $party, $deco);
+
+            mysqli_stmt_execute($sql);
+
+            mysqli_stmt_close($sql);
         }
+        
         echo json_encode(["success" => 1]);
     } else {
-        echo json_encode(["success" => 0, "error" => "Faltan datos"]);
+        echo json_encode(["success" => 0, "message" => "Falta información"]);
     }
     exit();
 }

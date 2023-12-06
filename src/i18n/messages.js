@@ -140,7 +140,12 @@ export default{
         error_message:{
             all_fields: 'Todos los campos son obligatorios', 
             email_form: 'Email no valida', 
-            password_match: "Las contraseñas no coinciden"
+            password_match: "Las contraseñas no coinciden", 
+            tipe_missing: "Por favor, selecciona un tipo de fiesta", 
+            palette_missing: "Por favor, selecciona una paleta", 
+            deco_missing: "Por favor, selecciona una decoración", 
+            cake_missing: "Por favor, selecciona un pastel", 
+            extra_missing: "Por favor, selecciona un extra", 
         },
         resume:{
             title:"¡Así es como está quedando tu fiesta!"
@@ -170,11 +175,13 @@ export default{
                 waiting:"Pendiente",
                 inprogress:"En Curso"
             }
-           },
-           payment:{
-               payment: "Hora de pagar"
-           }, 
-
+        },
+        payment:{
+            payment: "Hora de pagar", 
+            endMessage: "¡Tu fiesta esta lista!, nos contactaremos contigo en breve para hacer tu fiesta realidad"
+        }, 
+        
+        
            
     }, 
    
@@ -308,7 +315,12 @@ export default{
         error_message:{
             all_fields: 'All the fields are required', 
             email_form: 'Email not valid', 
-            password_match: "The passwords don't match"
+            password_match: "The passwords don't match", 
+            tipe_missing: "Please select a Tipe of party", 
+            palette_missing: "Please select a Palette", 
+            deco_missing: "Please select a Decoration", 
+            cake_missing: "Please select a Cake", 
+            extra_missing: "Please select an Extra", 
         },
         resume:{
             title:"This is how your party is turning out!"
@@ -341,7 +353,9 @@ export default{
             }
         },
         payment:{
-            payment: "Time to Pay"
-        }
+            payment: "Time to Pay", 
+            endMessage: "Your party is ready, we'll contact u shortly to make your dream party come true!",
+        }, 
+        
     }
 }

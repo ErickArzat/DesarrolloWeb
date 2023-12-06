@@ -29,11 +29,19 @@
             </div>
           </div>
         </div>
-        <div v-if="selectedDecos.length > 0">
-          <p>Decoraciones seleccionadas:</p>
-          <ul>
-            <li v-for="(deco, index) in selectedDecos" :key="index">{{ deco }}</li>
-          </ul>
+        <div v-if="Decos && Decos.length > 0">
+          <div class="card__container">
+            <div class="card" v-for="Deco in Decos" :key="Decos.id_deco">
+              <label :for="'card-' + Deco.id_cake">
+                <div class="card-inner">
+                    <img :src="urlimage+Deco.img_deco" class="card-img-top" :alt="Deco.alt" />
+                    <div class="card-body">
+                        <p class="card-text">{{ Deco.name_deco }}</p>
+                    </div>
+                </div>
+            </label>
+            </div>
+          </div>
         </div>
         <div v-if="Cake">
           <div class="card__container">
@@ -49,7 +57,7 @@
             </div>
           </div>
         </div>
-        <div v-if="Extras.length > 0">
+        <div v-if="Extras && Extras.length > 0">
           <div class="card__container">
             <div class="card" v-for="Extra in Extras" :key="Extra.id_extra">
                 <label :for="'card-' + Extra.id_extra">
@@ -101,7 +109,7 @@
         .then(response => response.json())
         .then(data => {
           if (data && data.length > 0) {
-            this.Type = data[0]; // Considera ajustar si hay múltiples resultados
+            this.Type = data[0]; 
           }
         })
         .catch(error => {
@@ -133,34 +141,26 @@
         });
       }, 
       consultarExtras() {
-          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extras.php?consultar=${this.selectedExtras}`)
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error('Network response was not ok');
-              }
-              return response.json();
-          })
-          .then(data => {
-              if (data && data.length > 0) {
-                  this.Extras = data[0]; 
-              }
-          })
-          .catch(error => {
-              console.error('Error al consultar los Extras:', error);
-          });
+        const ids_extras = this.selectedExtras.join(',');
+          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extras.php?consultar_multiples=${ids_extras}`)
+          .then(response => response.json())
+              .then(data =>{
+                this.Extras = data; 
+              })
+              .catch(error =>{
+                console.error('Error al consultar los Extras: ')
+              });
       }, 
-      consultarDecos(){
-        fetch(`http://localhost/daw/DesarrolloWeb/src/sql/decorations.php?consultar=${this.selectedDecos}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.length > 0) {
-            this.Decos = data; 
-          }
-        })
-        .catch(error => {
-          console.error('Error al consultar los Extras:', error);
-        });
-      }
+      consultarDecos() {
+          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/decorations.php?consultar_multiples=${this.selectedDecos}`)
+          .then(response => response.json())
+              .then(data =>{
+                this.Decos = data; 
+              })
+              .catch(error =>{
+                console.error('Error al consultar los Extras: ')
+              });
+      }, 
     }
   };
   </script>
@@ -174,8 +174,12 @@
   transition: transform 0.3s, box-shadow 0.3s;
 }
 .card__container {
-  flex: 0 0 auto; 
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; 
+  align-items: flex-start; 
   margin: 10px; 
+  padding: 2%;
 }
 .card img {
   width: 100px;
