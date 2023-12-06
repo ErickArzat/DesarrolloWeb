@@ -187,8 +187,8 @@ export default{
         admin:{
             table:{
                 titleP:"Fiestas",
-                titleD:"Decoraciones",
-                titleE:"Extras",
+                titleD:"Decoraciones de las Fiestas",
+                titleE:"Extras de las Fiestas",
                 id:"Id",
                 client:"Cliente",
                 type:"Tipo",
@@ -417,8 +417,8 @@ export default{
         admin:{
             table:{
                 titleP:"Parties",
-                titleD:"Decorations",
-                titleE:"Extras",
+                titleD:"Party's Decorations",
+                titleE:"Party's Extras",
                 id:"Id",
                 client:"Client",
                 type:"Type",

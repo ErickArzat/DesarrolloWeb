@@ -38,7 +38,7 @@
                      <td>
                        <button class="myBtn" @click="selectionParty(party)" onclick="document.getElementById('myModal').style.display = 'block';"  >
                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                          </svg>
                        </button>
                        <div id="myModal" class="modal" aria-hidden="true">
@@ -116,7 +116,7 @@
                                  </tr> 
                                  <tr align="center">
                                    <td colspan="2" >      
-                                       <br><input type="submit" id="btnSave" value="Guardar" @click="saveAllEdit(selectedParty)">
+                                       <br><input type="submit" class="btnSave" value="Guardar Cambios" @click="saveAllEdit(selectedParty)">
                                    </td>
                                  </tr>
                                </table>
@@ -210,8 +210,8 @@
                     <th scope="col">{{ $t('admin.table.id') }}</th>
                     <th scope="col">{{ $t('admin.table.name') }}</th>
                     <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ $t('admin.table.edit') }}</th>
+                    <th scope="col">{{ $t('admin.table.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -219,9 +219,13 @@
                     <td scope="row">{{color.id_pal}}</td>
                     <td scope="row">{{color.name_pal}}</td>
                     <td scope="row">{{color.price_pal}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" @click="selectionParty(color)"  onclick="document.getElementById('myModalAdd').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
+                    <td>
+                      <button class="myBtn" role="button" @click="selectionParty(color)"  onclick="document.getElementById('myModalAdd').style.display = 'block';">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                      </button>
+                    </td>
                     <div id="myModalAdd" class="modal">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -230,14 +234,20 @@
                           </div>
                           <div class="modal-body">
                             <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name" required>
+                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name" required><br>
                             <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
                             <input type="text" class="" id="ColorPriceInput" v-model="selectedPartyAdd.price">
-                            <button class="btn btn-primary" id="btnAdd" @click="guardarConId(this.selectedParty)">{{ $t('btn.save') }}</button>
+                            <button class="btnSave" type="submit" @click="guardarConId(this.selectedParty)">{{ $t('btn.save') }}</button>
                           </div>
                         </div>
                       </div>
-                    <td><button class="btn btn-primary" v-on:click="borrarColor(color.id_pal)" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
+                    <td>
+                      <button class="myBtn" v-on:click="borrarColor(color.id_pal)" role="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>  
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -260,8 +270,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
         <div class="col">
           <div class="info-card">
             <div class="data-card">
@@ -272,18 +280,21 @@
                     <th scope="col">{{ $t('admin.table.id') }}</th>
                     <th scope="col">{{ $t('admin.table.name') }}</th>
                     <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ $t('admin.table.edit') }}</th>
+                    <th scope="col">{{ $t('admin.table.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="type in Types" :key="type.id">
+                  <tr v-for="type in Types" :key="type.id_type">
                     <td scope="row">{{type.id_type}}</td>
                     <td scope="row">{{type.name_type}}</td>
                     <td scope="row">{{type.price_type}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar"  @click="selectionParty(type)" onclick="document.getElementById('myModalAddTipo').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
+                    <td><button class="myBtn" role="button" @click="selectionParty(type)" onclick="document.getElementById('myModalAddTipo').style.display = 'block';">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                      </button>
+                    </td>
                     <div id="myModalAddTipo" class="modal">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -292,14 +303,20 @@
                           </div>
                           <div class="modal-body">
                             <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name">
+                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name"><br>
                             <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
                             <input type="text" class="" id="ColorPriceInput" v-model="selectedPartyAdd.price">
-                            <button class="btn btn-primary" id="btnAddT" @click="guardarTipoConId(this.selectedParty)">{{ $t('btn.save') }}</button>
+                            <button class="btnSave" type="submit" @click="guardarTipoConId(this.selectedParty)">{{ $t('btn.save') }}</button>
                           </div>
                         </div>
                       </div>
-                    <td><button class="btn btn-primary" role="button" v-on:click="borrarTipo(type.id_type)" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
+                    <td>
+                      <button class="myBtn" role="button" v-on:click="borrarTipo(type.id_type)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>  
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -334,18 +351,21 @@
                     <th scope="col">{{ $t('admin.table.id') }}</th>
                     <th scope="col">{{ $t('admin.table.name') }}</th>
                     <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ $t('admin.table.edit') }}</th>
+                    <th scope="col">{{ $t('admin.table.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="decoration in Decorations" :key="decoration.id">
+                  <tr v-for="decoration in Decorations" :key="decoration.id_deco">
                     <td scope="row">{{decoration.id_deco}}</td>
                     <td scope="row">{{decoration.name_deco}}</td>
                     <td scope="row">{{decoration.price_deco}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" @click="selectionParty(decoration)" onclick="document.getElementById('myModalAddDeco').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
+                    <td><button class="myBtn" role="button" @click="selectionParty(decoration)" onclick="document.getElementById('myModalAddDeco').style.display = 'block';">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                      </button>
+                    </td>
                     <div id="myModalAddDeco" class="modal">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -354,14 +374,20 @@
                           </div>
                           <div class="modal-body">
                             <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name">
+                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name"><br>
                             <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
                             <input type="text" class="" id="ColorPriceInput" v-model="selectedPartyAdd.price">
-                            <button class="btn btn-primary" @click="guardarDecoConId(this.selectedParty)" id="btnAddD">{{ $t('btn.save') }}</button>
+                            <button type="submit" class="btnSave" @click="guardarDecoConId(this.selectedParty)">{{ $t('btn.save') }}</button>
                           </div>
                         </div>
                       </div>
-                    <td><button class="btn btn-primary" role="button" v-on:click="borrarDeco(decoration.id_deco)" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
+                    <td>
+                      <button class="myBtn" role="button" v-on:click="borrarDeco(decoration.id_deco)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>  
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -386,8 +412,6 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
         <div class="col">
           <div class="info-card">
             <div class="data-card">
@@ -398,18 +422,21 @@
                     <th scope="col">{{ $t('admin.table.id') }}</th>
                     <th scope="col">{{ $t('admin.table.name') }}</th>
                     <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ $t('admin.table.edit') }}</th>
+                    <th scope="col">{{ $t('admin.table.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="cake in Cakes" :key="cake.id">
+                  <tr v-for="cake in Cakes" :key="cake.id_cake">
                     <td scope="row">{{cake.id_cake}}</td>
                     <td scope="row">{{cake.name_cake}}</td>
                     <td scope="row">{{cake.price_cake}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" @click="selectionParty(cake)" onclick="document.getElementById('myModalAddCake').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
+                    <td><button class="myBtn" role="button" @click="selectionParty(cake)" onclick="document.getElementById('myModalAddCake').style.display = 'block';">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                      </button>
+                    </td>
                     <div id="myModalAddCake" class="modal">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -418,14 +445,19 @@
                           </div>
                           <div class="modal-body">
                             <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
-                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name">
+                            <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name"><br>
                             <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
                             <input type="text" class="" id="ColorPriceInput" v-model="selectedPartyAdd.price" required>
-                            <button class="btn btn-primary" id="btnAdd" @click="guardarPastelConId(this.selectedParty)">{{ $t('btn.save') }}</button>
+                            <button type="submit" class="btnSave" @click="guardarPastelConId(this.selectedParty)">{{ $t('btn.save') }}</button>
                           </div>
                         </div>
                       </div>
-                    <td><button class="btn btn-primary" v-on:click="borrarPastel(cake.id_cake)" role="button" id="btnBorrar">{{ $t('btn.delete') }}</button></td>
+                    <td><button class="myBtn" v-on:click="borrarPastel(cake.id_cake)" role="button" >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>  
+                      </button>  
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -460,8 +492,8 @@
                     <th scope="col">{{ $t('admin.table.id') }}</th>
                     <th scope="col">{{ $t('admin.table.name') }}</th>
                     <th scope="col">{{ $t('admin.table.price') }}</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col">{{ $t('admin.table.edit') }}</th>
+                    <th scope="col">{{ $t('admin.table.delete') }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -469,9 +501,12 @@
                     <td scope="row">{{extra.id_extra}}</td>
                     <td scope="row">{{extra.name_extra}}</td>
                     <td scope="row">{{extra.price_extra}}</td>
-                    <td><button class="btn btn-primary" role="button" id="btnEditar" @click="selectionParty(extra)" onclick="document.getElementById('myModalAddExtra').style.display = 'block';">{{ $t('btn.edit') }}
-                        <i class="bi bi-plus-circle-fill"></i>
-                    </button></td>
+                    <td><button class="myBtn" role="button" @click="selectionParty(extra)" onclick="document.getElementById('myModalAddExtra').style.display = 'block';">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                      </button>
+                    </td>
                     <div id="myModalAddExtra" class="modal">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -481,13 +516,20 @@
                           <div class="modal-body">
                             <label for="ColorNameInput" class="">{{ $t('addColor.nameLabel') }}:</label>
                             <input type="text" class="" id="ColorNameInput" v-model="selectedPartyAdd.name">
+                            <br>
                             <label for="ColorPrice Input" class="">{{ $t('addColor.priceLabel') }}:</label>
                             <input type="text" class="" id="ColorPriceInput" v-model="selectedPartyAdd.price" required>
-                            <button class="btn btn-primary" id="btnAdd" @click="guardarExtraConId(this.selectedParty)">{{ $t('btn.save') }}</button>
+                            <button type="submit" class="btnSave" @click="guardarExtraConId(this.selectedParty)">{{ $t('btn.save') }}</button>
                           </div>
                         </div>
                       </div>
-                    <td><button class="btn btn-primary" role="button" id="btnBorrar" v-on:click="borrarExtra(extra.id_extra)">{{ $t('btn.delete') }}</button></td>
+                    <td>
+                      <button class="myBtn" role="button" v-on:click="borrarExtra(extra.id_extra)">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                           <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0"/>
+                         </svg>  
+                      </button>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -629,7 +671,7 @@
     saveAllEdit(party){
       var datosEnviar={type:party.id_type, clnt:party.id_clnt, pal:party.id_pal, cake:party.id_cake, pay:party.id_pay, staff:party.id_staff};
       console.log(datosEnviar);
-      /*fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?update='+party.id_party,{
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?update='+party.id_party,{
         method:"POST",
         body:JSON.stringify(datosEnviar)
       })
@@ -637,7 +679,7 @@
       .then((datosRespuesta)=>{
         console.log(datosRespuesta)
       })
-      .catch(console.log);*/
+      .catch(console.log);
       if(party.id_deco===undefined){console.log("Undefined Value: party.id_deco="+party.id_deco);}
       else{
       var datosDecos={id:party.id_party,deco:party.id_deco};
@@ -1300,12 +1342,12 @@ input[type=submit]:focus{
   color: #5B83FF;
 }
 
-input[type=submit]{
+.btnSave{
   background-color: #5B83FF;
   color: #fff;
   border-radius: 25px;
   border: 2px solid black;
-  width: 50%;
+  width: 60%;
 }
 
 #btnEditar, #btnBorrar{
@@ -1327,4 +1369,5 @@ input[type=submit]{
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
+
 </style>
