@@ -11,7 +11,11 @@ export default{
         begin:"Comienza", 
         back:"Atrás",
         login: "Inicia sesión",
-        submit: "Enviar"
+        submit: "Enviar",
+        add: "Añadir",
+        edit: "Editar",
+        delete: "Eliminar",
+        save: "Guardar Cambios"
        },
        home:{
         pgraf1: "¡Hacemos de tus sueños una fiesta!", 
@@ -117,7 +121,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: '¿Tienes alguna duda?',
             contact_title: 'Contáctanos',
             form_title:'Envíanos un mensaje',
@@ -125,6 +129,36 @@ export default{
             email_label: 'E-mail',
             message: 'Mensaje',
             button: 'Enviar'
+        },
+        addCake:{
+            title:"Añadir Pastel",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addDecoration:{
+            title:"Añadir Decoración",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addColor:{
+            title:"Añadir Color",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addType:{
+            title:"Añadir Tipo",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
+        },
+        addExtras:{
+            title:"Añadir Extras",
+            nameLabel:"Nombre",
+            priceLabel:"Precio",
+            imgLabel:"Imagen",
         },
         websites:{
             facebook: 'Facebook',
@@ -161,6 +195,15 @@ export default{
                 total:"Total",
                 status:"Estado",
                 details:"Detalles",
+                name:"Nombre",
+                price:"Precio",
+            },
+            titles:{
+                color: "Colores",
+                decoration: "Decoraciones",
+                cake: "Pasteles",
+                type: "Tipos",
+                extras: "Extras",
             },
             modal:{
                 title:"Detalle de la Fiesta",
@@ -214,7 +257,7 @@ export default{
         },
         contact:{
             phone:'999-00-0099',
-            email: "example@contact.com",
+            email: "party_nation@outlook.com",
             title: 'Any doubts?',
             contact_title: 'Contact Us',
             form_title:'Send us a message',
@@ -247,7 +290,8 @@ export default{
             begin:"Comienza", 
             back: "Back", 
             login: "Log In",
-            submit: "Submit"
+            submit: "Submit",
+            add: "Add"
         },
         home:{
             pgraf1: "We make your dreams a party!", 
@@ -327,6 +371,36 @@ export default{
             deco_missing: "Please select a Decoration", 
             cake_missing: "Please select a Cake", 
             extra_missing: "Please select an Extra", 
+        },
+        addCake:{
+            title:"Add Cake",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addDecoration:{
+            title:"Add Decoration",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addColor:{
+            title:"Add Color",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addType:{
+            title:"Add Type",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
+        },
+        addExtras:{
+            title:"Add Extras",
+            nameLabel:"Name",
+            priceLabel:"Price",
+            imgLabel:"Image",
         },
         resume:{
             title:"This is how your party is turning out!"

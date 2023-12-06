@@ -9,7 +9,7 @@ function connection(){
 	$con = mysqli_connect($server, $user, $pass, $database);
 
 	if($con->connect_error){
-		die("Error de conexión a la base de datos: " . $conexion->connect_error);
+		die("Error de conexión a la base de datos: " . $con->connect_error);
 	}
 	if (!$con) {
     	die("Connection failed: " . mysqli_connect_error());

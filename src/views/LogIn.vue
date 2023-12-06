@@ -13,11 +13,11 @@
       </div>
 
       <!-- Login Form -->
-      <form @submit.prevent="enviarFormulario">
-        <input v-model="userData.username" type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off">
-        <input v-model="userData.password" type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off">
-        <a @click="enviarFormulario" class="btn"><input type="btn" class="fadeIn fourth" value="Log In"></a>
-        
+      <form @submit.prevent="submitForm">
+        <input type="text" id="login" class="fadeIn second" name="login" placeholder="user" autocomplete="off" v-model="username">
+        <input type="text" id="password" class="fadeIn third" name="login" placeholder="password" autocomplete="off" v-model="password">
+        <input type="submit" class="btn fadeIn fourth" value="Log In">
+          
       </form>
 
       <!-- Remind Passowrd -->
@@ -31,52 +31,67 @@
     </div>
   </div>
 </template>
+
 <script>
-export default {
-  data() {
-    return {
-      userData: {
+import VueAxios from 'vue-axios';
+
+  export default {
+    name: 'LogIn',
+    data () {
+      return {
+        empleados:[],
         username: '',
         password: ''
+      }
+    },
+    methods: {
+      submitForm: function(){
+        const userData = {
+          username: this.username,
+          password: this.password
+        };
+        this.login(userData);
       },
-      message: '' 
-    };
-  },methods: {
-    enviarFormulario() {
-      
-      fetch('http://localhost/empleados-main/empleados-main/sesiones/verificarCredenciales.php', {
+      login: function(userData){
+        fetch("http://localhost/web/validar.php?login",{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          user_clnt: this.userData.username,
-          pass_clnt: this.userData.password
-
-        }),
+        body: JSON.stringify(userData)
       })
-      .then(response => response.json())
-      .then(data => {
-        if(data.result){
-          console.log("paso");          
-          localStorage.setItem('token', data.token);
-          this.$router.push({ name: 'admin' });
-        }
-      })
-      .catch(error => {
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          if(data.success){
+            console.log("Inicio de sesion exitoso", data.userData);
+            switch(data.userType){
+              case "admin":
+                console.log("Accediste como admin");
+                break;
+              case "staff":
+                console.log("Accediste como staff");
+                break;
+              case "client":
+                console.log("Accediste como cliente");
+                break;
+              default:
+                console.log("No se encontro el tipo de usuario");
+                break;
+            }
+          } else {
+            console.log("Inicio de sesion fallido");
+          }
+        })
+        .catch(error => {
         console.error('Error:', error);
       });
+      }
     }
-  },
-  created() {
-    // Obtener el mensaje del almacenamiento local
-    this.message = localStorage.getItem('message');
-
-    // Limpiar el mensaje del almacenamiento local después de obtenerlo
-    localStorage.removeItem('message');
   }
-}
+
 </script>
+
 <style scoped>
 
 body {
@@ -156,7 +171,7 @@ h2.active {
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=btn], input[type=reset]  {
+input[type=button], input[type=btn], input[type=reset], input[type=submit]  {
   background-color: #5B83FF;
   border: none;
   color: white;

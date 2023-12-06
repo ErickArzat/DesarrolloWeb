@@ -45,7 +45,41 @@ body.no-scroll {
         justify-content: center;
         align-items: center;
     }
-   
+
+    .addForm{
+      display: grid;
+      align-items: center;
+
+    }
+
+    .addForm>div{
+      display: grid;
+      margin-right: 2rem;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .addForm>div label{
+      margin-right: 1rem;
+      color: #5B83FF;
+    }
+ 
+    .addForm input[type="text"] {
+      height: 2rem;
+      background: #D9D9D9;
+      color: #000;
+      font-size: 15px;
+      border-radius: 8px;
+      border: 1px solid #b3b3b3;
+      outline: none;
+      width: 30vw;
+    }
+
+    .addForm input[type="text"]:focus {
+      background: #fff; /* Cambia el color de fondo al blanco cuando se enfoca */
+      box-shadow: 0 0 0 2px #5B83FF; /* Cambia el color del borde al azul cuando se enfoca */
+    }
+
     .card input[type="radio"]:checked + label {
       border-radius: 10px;
       background-color: #5B83FF; 
@@ -283,10 +317,7 @@ body.no-scroll {
     padding: 30px;
     position: relative; 
   }
-  .row{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-     
-  }
+  
   .col-md-7{
     background: #fff;
     padding: 20px;
