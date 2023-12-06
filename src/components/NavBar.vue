@@ -4,7 +4,7 @@
         
         
         <div class="name-holder">
-            <a href=""><h3>PARTYTION</h3></a>
+            <a href=""><h3>PARTYNATION</h3></a>
         </div>
         <nav class="nav" >
             <ul class="nav-links">
