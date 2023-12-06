@@ -13,7 +13,6 @@
                      <th scope="col">{{ $t('admin.table.client') }}</th>
                      <th scope="col">{{ $t('admin.table.type') }}</th>
                      <th scope="col">{{ $t('admin.table.staff') }}</th>
-                     <th scope="col">{{ $t('admin.table.cake') }}</th>
                      <th scope="col">{{ $t('admin.table.date') }}</th>
                      <th scope="col">{{ $t('admin.table.total') }}</th>
                      <th scope="col">{{ $t('admin.table.status') }}</th>
@@ -27,7 +26,6 @@
                      <td scope="row">{{party.id_clnt}}{{ this.clientParty[party.id_party] }}</td>
                      <td scope="row">{{party.id_type}}{{ this.typeParty[party.id_party] }}</td>
                      <td scope="row">{{party.id_staff}}{{ this.staffParty[party.id_party] }}</td>
-                     <td scope="row">{{party.id_cake}}{{ this.cakeParty[party.id_party] }}</td>
                      <td scope="row">{{party.date_party}}</td>
                      <td scope="row">{{totalParty[party.id_party]}}</td>
                      <td>
@@ -42,7 +40,6 @@
                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
                          </svg>
-                         <i class="bi bi-plus-circle-fill"></i>
                        </button>
                        <div id="myModal" class="modal" aria-hidden="true">
                          <div class="modal-content">
@@ -51,10 +48,11 @@
                              <h2>{{ $t('admin.modal.title') }}</h2>
                            </div>
                            <div class="modal-body">
+                            <form >
                                <table>
                                  <tr>
                                    <td>{{ $t('admin.modal.type') }}</td>
-                                   <select class="status" v-model="selectedParty.type_party" @change="saveType(selectedParty)">
+                                   <select class="status" id="typeModal" v-model="selectedParty.id_type">
                                       <option v-for="typeparty in typesparties" :key="typeparty.id_type" :value="typeparty.id_type">
                                         {{ typeparty.name_type }}
                                       </option>
@@ -63,7 +61,7 @@
                                  <tr>
                                    <td>{{ $t('admin.modal.staff') }}</td>
                                    <td>
-                                    <select class="status" v-model="selectedParty.staff_party" @change="saveStaff(selectedParty)">
+                                    <select class="status" id="staffModal" v-model="selectedParty.id_staff">
                                       <option v-for="staff in staffs" :key="staff.id_staff" :value="staff.id_staff">
                                         {{ staff.user_staff }}
                                       </option>
@@ -73,7 +71,7 @@
                                  <tr>
                                   <td>{{ $t('admin.modal.cake') }}</td>
                                    <td>
-                                      <select class="status" v-model="selectedParty.cake_party" @change="saveCake(selectedParty)">
+                                      <select class="status" id="cakeModal" v-model="selectedParty.id_cake">
                                         <option v-for="cake in cakes" :key="cake.id_cake" :value="cake.id_cake">
                                           {{ cake.name_cake }}
                                         </option>
@@ -81,9 +79,19 @@
                                    </td>
                                  </tr> 
                                  <tr>
+                                  <td>{{ $t('admin.modal.palette') }}</td>
+                                   <td>
+                                      <select class="status" id="palModal" v-model="selectedParty.id_pal">
+                                        <option v-for="pal in palettes" :key="pal.id_pal" :value="pal.id_pal">
+                                          {{ pal.name_pal }}
+                                        </option>
+                                      </select>
+                                   </td>
+                                 </tr>
+                                 <tr>
                                    <td>{{ $t('admin.modal.decos') }}</td>
                                    <td>
-                                      <select class="status" v-model="selectedParty.deco_party" @change="saveDeco(selectedParty)">
+                                      <select class="status" id="decoModal" v-model="selectedParty.id_deco">
                                         <option v-for="deco in decos" :key="deco.id_deco" :value="deco.id_deco">
                                           {{ deco.name_deco }}
                                         </option>
@@ -93,7 +101,7 @@
                                  <tr>
                                    <td>{{ $t('admin.modal.extra') }}</td>
                                    <td>
-                                      <select class="status" v-model="selectedParty.extra_party" @change="saveExtra(selectedParty)">
+                                      <select class="status" id="extraModal" v-model="selectedParty.id_extra">
                                         <option v-for="extra in extras" :key="extra.id_extra" :value="extra.id_extra">
                                           {{ extra.name_extra }}
                                         </option>
@@ -103,15 +111,16 @@
                                  <tr>
                                    <td>{{ $t('admin.modal.date') }}</td>
                                    <td>      
-                                       <input type="date" id="date" autocomplete="off" v-model="selectedParty.date_party" @change="saveDate(selectedParty)">
+                                       <input type="date" id="dateModal" autocomplete="off" v-model="selectedParty.date_party">
                                    </td>
                                  </tr> 
                                  <tr align="center">
                                    <td colspan="2" >      
-                                       <br><input type="submit" id="btnSave" value="Guardar" @onclick="saveAllEdit(selectedParty)">
+                                       <br><input type="submit" id="btnSave" value="Guardar" @click="saveAllEdit(selectedParty)">
                                    </td>
                                  </tr>
                                </table>
+                              </form>
                            </div>
                          </div>
                        </div>
@@ -195,8 +204,12 @@
  </template>
  <script>
  import axios from 'axios';
+  import NavBar from '../components/NavBar.vue';
  
  export default {
+    components: {
+      NavBar
+    },
     data() {
     return { 
       status:[],
@@ -204,6 +217,7 @@
       cakes:[],
       cakename: '',
       typesparties:[],
+      palettes:[],
       staffs:[],
       decos:[],
       extras:[],
@@ -212,7 +226,6 @@
       clientParty:[],
       staffParty:[],
       totalParty:[],
-      cakeParty:[],
       decosParty:[],
       nameDeco:[],
       extrasParty:[],
@@ -265,16 +278,45 @@
        .catch(console.log)
      },
     saveAllEdit(party){
-      var datosEnviar={type:2, clnt:1, pal:1, cake:1, pay:1, staff:1};
-       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?update='+party.id_party,{
-         method:"POST",
-         body:JSON.stringify(datosEnviar)
-       })
-       .then(response=>response.json())
-       .then((datosRespuesta)=>{
-         console.log(datosRespuesta)
-       })
-       .catch(console.log)
+      var datosEnviar={type:party.id_type, clnt:party.id_clnt, pal:party.id_pal, cake:party.id_cake, pay:party.id_pay, staff:party.id_staff};
+      console.log(datosEnviar);
+      /*fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?update='+party.id_party,{
+        method:"POST",
+        body:JSON.stringify(datosEnviar)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta)
+      })
+      .catch(console.log);*/
+      if(party.id_deco===undefined){console.log("Undefined Value: party.id_deco="+party.id_deco);}
+      else{
+      var datosDecos={id:party.id_party,deco:party.id_deco};
+      console.log(datosDecos);
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertDeco',{
+        method:"POST",
+        body:JSON.stringify(datosDecos)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta);
+      })
+      .catch(console.log);
+      }
+      if(party.id_extra===undefined){console.log("Undefined Value: party.id_extra="+party.id_extra);}
+      else{
+      var datosExtra={id:party.id_party,extra:party.id_extra};
+      console.log(datosDecos);
+      fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertExtra',{
+        method:"POST",
+        body:JSON.stringify(datosExtra)
+      })
+      .then(response=>response.json())
+      .then((datosRespuesta)=>{
+        console.log(datosRespuesta);
+      })
+      .catch(console.log);
+      }
     },
      addCakes(){
        //this.addFile();
@@ -335,16 +377,6 @@
          if(typeof datosRespuesta[0].success==='undefined')
          {
           this.totalParty[party.id_party]=datosRespuesta;
-         }
-       })
-       .catch(console.log);
-
-       fetch('http://localhost/daw/DesarrolloWeb/src/sql/parties.php?nameCake='+party.id_cake)
-       .then(response=>response.text())
-       .then((datosRespuesta)=>{
-         if(typeof datosRespuesta[0].success==='undefined')
-         {
-          this.cakeParty[party.id_party]=datosRespuesta;
          }
        })
        .catch(console.log);
@@ -438,6 +470,17 @@
          if(typeof datosRespuesta[0].success==='undefined')
          {
            this.cakes=datosRespuesta;
+         }
+       })
+       .catch(console.log); 
+
+       fetch('http://localhost/daw/DesarrolloWeb/src/sql/palettes.php')
+       .then(response=>response.json())
+       .then((datosRespuesta)=>{
+         this.palettes=[]
+         if(typeof datosRespuesta[0].success==='undefined')
+         {
+           this.palettes=datosRespuesta;
          }
        })
        .catch(console.log);

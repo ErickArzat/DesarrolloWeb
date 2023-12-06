@@ -85,6 +85,24 @@ if(isset($_GET["insert"])){
     exit();
 }
 
+if(isset($_GET["insertDeco"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $id=$data->id;
+    $deco=$data->deco;
+    $sql = mysqli_query($conexionBD,"INSERT INTO deco_party(id_party, id_deco) VALUES('$id','$deco') ");
+    echo json_encode(["success"=>1]);
+    exit();
+}
+
+if(isset($_GET["insertExtra"])){
+    $data = json_decode(file_get_contents("php://input"));
+    $id=$data->id;
+    $extra=$data->extra;
+    $sql = mysqli_query($conexionBD,"INSERT INTO extra_party(id_party, id_extra) VALUES('$id','$extra') ");
+    echo json_encode(["success"=>1]);
+    exit();
+}
+
 if(isset($_GET["update"])){
     
     $data = json_decode(file_get_contents("php://input"));
@@ -97,7 +115,19 @@ if(isset($_GET["update"])){
     $pay=$data->pay;
     $staff=$data->staff;
     
-    $sql = mysqli_query($conexionBD,"UPDATE parties SET id_type='$type',id_clnt='$clnt',id_pal='$pal',id_cake='$cake',id_pay='$pay',id_staff='$staff' WHERE id='$id'");
+    $sql = mysqli_query($conexionBD,"UPDATE parties SET id_type='$type',id_clnt='$clnt',id_pal='$pal',id_cake='$cake',id_pay='$pay',id_staff='$staff' WHERE id_party='$id'");
+    echo json_encode(["success"=>1]);
+    exit();
+}
+
+if(isset($_GET["updateDecos"])){
+    
+    $data = json_decode(file_get_contents("php://input"));
+
+    $id=(isset($data->id))?$data->id:$_GET["update"];
+    $deco=$data->deco;
+    
+    $sql = mysqli_query($conexionBD,"UPDATE deco_party SET id_deco='$deco' WHERE id_party='$id'");
     echo json_encode(["success"=>1]);
     exit();
 }

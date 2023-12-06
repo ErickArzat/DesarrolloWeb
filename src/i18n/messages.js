@@ -161,7 +161,7 @@ export default{
                 delete:"Borrar",
                 deco:"Decoraciones",
                 cake:"Pastel",
-                extra:"Extras"
+                extra:"Extras",
             },
             modal:{
                 title:"Editar Fiesta",
@@ -172,7 +172,8 @@ export default{
                 total:"Total: ",
                 decos:"Decorations: ",
                 extra:"Extras: ",
-                cake:"Pastel: "
+                cake:"Pastel: ",
+                palette:"Paleta de Colores: "
             },
             status:{
                 completed:"Completado",
@@ -338,7 +339,7 @@ export default{
                 delete: "Delete",
                 deco:"Decorations",
                 cake:"Pastel",
-                extra:"Extras"
+                extra:"Extras",
             },
             modal:{
                 title:"Edit Party",
@@ -349,7 +350,8 @@ export default{
                 total:"Total: ",
                 decos:"Decoraciones: ",
                 extra:"Extras: ",
-                cake:"Cake: "
+                cake:"Cake: ",
+                palette:"Color Palette: "
             },
             status:{
                 completed:"Completed",
