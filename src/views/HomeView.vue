@@ -130,31 +130,31 @@ export default {
     goBack() {
         if (this.contadorClicks === 0 && localStorage.getItem('selectedTipe') === null) {
           this.showErrorMessage = true;
-          this.errorMessage = 'Please select a type first';
+          this.errorMessage = this.$t('error_message.tipe_missing');
           return;
         }
         if (this.contadorClicks === 1 && localStorage.getItem('selectedColors') === null) {
           this.showErrorMessage = true;
-          this.errorMessage = 'Please select a type first';
+          this.errorMessage = this.$t('error_message.palette_missing');
           return;
         }
         if (this.contadorClicks === 2 && localStorage.getItem('selectedDecos') === null) {
           this.showErrorMessage = true;
-          this.errorMessage = 'Please select a type first';
+          this.errorMessage = this.$t('error_message.deco_missing');
           return;
         }
         if (this.contadorClicks === 3 && localStorage.getItem('selectedCake') === null) {
           this.showErrorMessage = true;
-          this.errorMessage = 'Please select a type first';
+          this.errorMessage = this.$t('error_message.cake_missing');
           return;
         }
         if (this.contadorClicks === 4 && localStorage.getItem('selectedExtras') === null) {
           this.showErrorMessage = true;
-          this.errorMessage = 'Please select a type first';
+          this.errorMessage = this.$t('error_message.extra_missing');
           return;
         }
         if (this.contadorClicks === 6) {
-          if (confirm('¿Estás seguro de que quieres continuar?')) {
+          if (confirm('¿Estás seguro de que quieres volver a empezar?')) {
             this.contadorClicks = -1;
             localStorage.removeItem('selectedTipe');
             localStorage.removeItem('selectedColors');

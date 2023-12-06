@@ -8,28 +8,35 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include("functions.php");
 $conexionBD = connection();
 
-if (isset($_GET["consultar"])) {
-    // Obtener el arreglo de IDs de extras
-    $ids = $_GET["consultar"];
-    
-    // Convertir el arreglo a una cadena separada por comas para usarlo en la consulta SQL
-    $ids_str = implode(',', $ids);
-    
-    // Preparar la consulta usando IN para buscar múltiples IDs
-    $sql = "SELECT * FROM extras WHERE id_extra IN ($ids_str)";
-    
-    $resultado = mysqli_query($conexionBD, $sql);
+if (isset($_GET["consultar"])){
+    $sql = mysqli_query($conexionBD,"SELECT * FROM extras WHERE id_extra=".$_GET["consultar"]);
+    if(mysqli_num_rows($sql) > 0){
+        $result = mysqli_fetch_all($sql,MYSQLI_ASSOC);
+        echo json_encode($result);
+        exit();
+    }
+    else{  echo json_encode(["success"=>0]); }
+}
+if (isset($_GET["consultar_multiples"]) && isset($_GET["arreglo_ids"])) {
+    $ids = $_GET["arreglo_ids"];
 
-    if ($resultado) {
-        if(mysqli_num_rows($resultado) > 0){
-            $result = mysqli_fetch_all($resultado, MYSQLI_ASSOC);
+    
+    if (is_array($ids) && count($ids) > 0) {
+        $cleaned_ids = array_map('intval', $ids);
+
+        $ids_str = implode(",", $cleaned_ids);
+
+        $sql = mysqli_query($conexionBD, "SELECT * FROM extras WHERE id_extra IN ($ids_str)");
+
+        if (mysqli_num_rows($sql) > 0) {
+            $result = mysqli_fetch_all($sql, MYSQLI_ASSOC);
             echo json_encode($result);
             exit();
         } else {
             echo json_encode(["success" => 0]);
         }
     } else {
-        echo json_encode(["success" => 0, "error" => mysqli_error($conexionBD)]);
+        echo json_encode(["success" => 0, "error" => "IDs inválidos o vacíos"]);
     }
 }
 
