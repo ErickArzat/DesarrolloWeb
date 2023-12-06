@@ -6,7 +6,7 @@
     </div>
     
     <div v-if="paidFor">
-        <h1>Creaste una fiesta</h1>
+        <h1 class="title" style="color: #5B83FF;">{{$t('payment.endMessage')}}</h1>
     </div>
     <div v-if="!paidFor">
       <div class="paypal-container" >
@@ -22,19 +22,18 @@ export default {
     return {
       loaded: false,
       paidFor: false,
-      product: {
-        price: 777.77,
-        description: "leg lamp from that one movie",
-        img: "./assets/lamp.jpg"
-      }
+      amountOrder: 100,
+      
     };
   },
   mounted: function() {
+
     const script = document.createElement("script");
     script.src =
       "https://www.paypal.com/sdk/js?client-id=Aa7qCdr0JqwHcahakv1W0tn-FeFO4YvaU_CCdFJDTUYNU8oDfGyuLuCBsY4qP43mdh8KmRubblW9DltB";
     script.addEventListener("load", this.setLoaded);
     document.body.appendChild(script);
+    
   },
   created(){
       this.selectedTipe = localStorage.getItem('selectedTipe');
@@ -45,24 +44,57 @@ export default {
       
     }, 
   methods: {
-    // calcPayment(){
-    //   fetch(`http://localhost/daw/DesarrolloWeb/src/sql/typesparties.php?consultar=1`, {
-    //     method: "POST",
-    //     body: JSON.stringify(datosEnviar)
-    //   })
-    // },
+    calcPayment() {
+      return Promise.all([
+        fetch(`http://localhost/daw/DesarrolloWeb/src/sql/typesparties.php?consultar=${this.selectedTipe}`),
+        fetch(`http://localhost/daw/DesarrolloWeb/src/sql/palettes.php?consultar=${this.selectedColors}`),
+        fetch(`http://localhost/daw/DesarrolloWeb/src/sql/cakes.php?consultar=${this.selectedCake}`)
+      ])
+      .then(responses => Promise.all(responses.map(response => response.json())))
+      .then(data => {
+        let monto = 0;
+        const [tipeResponse, colorsResponse, cakeResponse] = data;
+
+        const precioTipe = parseInt(tipeResponse[0].price_type);
+        console.log("Propiedades de tipo:", Object.keys(tipeResponse));
+        const precioColors = parseInt(colorsResponse[0].price_pal);
+        const precioCake = parseInt(cakeResponse[0].price_cake);
+        console.log(precioTipe);
+        monto += precioTipe;
+        monto += precioColors
+        monto += precioCake;
+        this.amountOrder = amount;
+        return monto;
+      })
+      .catch(error => {
+        console.error('Error al calcular el monto:', error);
+        return 0; 
+      });
+    },
     setLoaded: function() {
       this.loaded = true;
       window.paypal
         .Buttons({
-            createParty:() =>{
-
-            },
-          onApprove: async => {
+          createOrder: (data, actions) => {
+            return actions.order.create({
+              purchase_units: [
+                {
+                  description: "Tu fiesta personalizada",
+                  amount: {
+                    currency_code: "USD",
+                    value: this.amountOrder,
+                  }
+                }
+              ]
+            });
+          },
+          onApprove: async () => {
+            const order = await actions.order.capture();
+            const amount = await this.calcPayment(); 
             this.paidFor = true;
             
             var datosEnviar = {
-              amount: 200,
+              amount: amount,
               status: "pagado",
               date_pay: new Date().toISOString()
             };
@@ -95,9 +127,17 @@ export default {
                   party: id_party,
                   decos: this.selectedDecos
                 }; 
-                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?insertar=1`, {
+                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?insertar_multiples=1`, {
                 method: "POST",
                 body: JSON.stringify(decoraciones)
+                })
+                var extras = {
+                  party: id_party,
+                  extras: this.selectedExtras
+                }; 
+                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extra-party.php?insertar_multiples=1`, {
+                method: "POST",
+                body: JSON.stringify(extras)
                 })
               })
               .catch(error => {
@@ -112,7 +152,13 @@ export default {
             console.log(err);
           }
         })
+        
         .render(this.$refs.paypal);
+        localStorage.removeItem('selectedTipe');
+        localStorage.removeItem('selectedColors');
+        localStorage.removeItem('selectedDecos');
+        localStorage.removeItem('selectedCake');
+        localStorage.removeItem('selectedExtras');
     }
   }
 };
