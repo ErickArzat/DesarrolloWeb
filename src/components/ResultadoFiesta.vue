@@ -63,7 +63,7 @@
                 <label :for="'card-' + Extra.id_extra">
                     <div class="card-inner" >
                         <div class="card-body">
-                            <p class="card-text">{{ Extra.name_extra }}</p>
+                            <p class="card-text"></p>
                         </div>
                     </div>
                 </label>
@@ -84,6 +84,7 @@
         Decos: [],
         Cake: null,
         Extras: [],
+        nameExtra:[]
       };
     },
     mounted() {
@@ -140,29 +141,8 @@
           console.error('Error al consultar el Cake:', error);
         });
       }, 
-      consultarExtras() {
-        const ids_extras = this.selectedExtras.join(',');
-          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/extras.php?consultar_multiples=${ids_extras}`)
-          .then(response => response.json())
-              .then(data =>{
-                this.Extras = data; 
-              })
-              .catch(error =>{
-                console.error('Error al consultar los Extras: ')
-              });
-      }, 
-      consultarDecos() {
-          fetch(`http://localhost/daw/DesarrolloWeb/src/sql/decorations.php?consultar_multiples=${this.selectedDecos}`)
-          .then(response => response.json())
-              .then(data =>{
-                this.Decos = data; 
-              })
-              .catch(error =>{
-                console.error('Error al consultar los Extras: ')
-              });
-      }, 
-    }
-  };
+  },
+};
   </script>
 <style scoped>
 .card-inner {
