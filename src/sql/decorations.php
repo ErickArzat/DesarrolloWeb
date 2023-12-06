@@ -17,7 +17,20 @@ if (isset($_GET["consultar"])){
     }
     else{  echo json_encode(["success"=>0]); }
 }
+if (isset($_GET["consultar_multiples"]) && isset($_GET["arreglo_ids"])) {
+    $ids = $_GET["arreglo_ids"]; 
+    $ids_str = implode(",", $ids); 
 
+    $sql = mysqli_query($conexionBD, "SELECT * FROM decorations WHERE id_deco IN ($ids_str)");
+
+    if (mysqli_num_rows($sql) > 0) {
+        $result = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+        echo json_encode($result);
+        exit();
+    } else {
+        echo json_encode(["success" => 0]);
+    }
+}
 if (isset($_GET["borrar"])){
     $sql = mysqli_query($conexionBD,"DELETE FROM decorations WHERE id_deco=".$_GET["borrar"]);
     if($sql){
