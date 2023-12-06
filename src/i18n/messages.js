@@ -173,7 +173,8 @@ export default{
            },
            payment:{
                payment: "Hora de pagar"
-           }
+           }, 
+
            
     }, 
    

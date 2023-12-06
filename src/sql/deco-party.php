@@ -22,10 +22,18 @@ if (isset($_GET["consultar"])){
 if(isset($_GET["insertar"])){
     $data = json_decode(file_get_contents("php://input"));
     $party=$data->party;
-    $deco=$data->deco;
+    $decos=$data->deco;
     if(($party!="")&&($deco!="")){ 
-        $sql = mysqli_query($conexionBD,"INSERT INTO deco_party(id_party, id_deco) VALUES('$party','$deco') ");
-        echo json_encode(["success"=>1]);
+        foreach ($decos as $deco) {
+            $sql = mysqli_query($conexionBD, "INSERT INTO deco_party(id_party, id_deco) VALUES ('$party', '$deco')");
+            if(!$sql){
+                echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
+                exit();
+            }
+        }
+        echo json_encode(["success" => 1]);
+    } else {
+        echo json_encode(["success" => 0, "error" => "Faltan datos"]);
     }
     exit();
 }

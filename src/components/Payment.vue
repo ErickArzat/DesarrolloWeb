@@ -8,16 +8,15 @@
     <div v-if="paidFor">
         <h1>Creaste una fiesta</h1>
     </div>
-    <div class="paypal-container" >
-        <div ref="paypal"></div>
+    <div v-if="!paidFor">
+      <div class="paypal-container" >
+          <div ref="paypal"></div>
+      </div>
     </div>
 </template>
 <script>
-import axios from 'axios';
-
-// import image from "../assets/lamp.png"
 export default {
-  name: "HelloWorld",
+  name: "Payment",
 
   data: function() {
     return {
@@ -46,6 +45,12 @@ export default {
       
     }, 
   methods: {
+    // calcPayment(){
+    //   fetch(`http://localhost/daw/DesarrolloWeb/src/sql/typesparties.php?consultar=1`, {
+    //     method: "POST",
+    //     body: JSON.stringify(datosEnviar)
+    //   })
+    // },
     setLoaded: function() {
       this.loaded = true;
       window.paypal
@@ -53,25 +58,11 @@ export default {
             createParty:() =>{
 
             },
-          //  createOrder: (data, actions) => {
-          //    return actions.order.create({
-          //      purchase_units: [
-          //        {
-          //          description: this.product.description,
-          //          amount: {
-          //            currency_code: "USD",
-          //            value: this.product.price
-          //          }
-          //        }
-          //      ]
-          //    });
-          //  },
-          onApprove: async (data, actions) => {
-            const order = await actions.order.capture();
+          onApprove: async => {
             this.paidFor = true;
             
             var datosEnviar = {
-              amount: 20,
+              amount: 200,
               status: "pagado",
               date_pay: new Date().toISOString()
             };
@@ -82,7 +73,7 @@ export default {
             })
             .then(async response => {
               const responseData = await response.json();
-              const { id_pay } = responseData;
+              const id_pay = responseData.id_pay;
 
               var datosFiestas = {
                 type: this.selectedTipe,
@@ -90,17 +81,24 @@ export default {
                 palette: this.selectedColors,
                 cake: this.selectedCake,
                 payment: id_pay,
-                id_staff: 1,
-                date_party: new Date().toISOString()
+                staff: 1,
+                date: new Date().toISOString()
               };
-              
               fetch(`http://localhost/daw/DesarrolloWeb/src/sql/parties.php?insertar=1`, {
                 method: "POST",
                 body: JSON.stringify(datosFiestas)
               })
-              .then(async responseFiesta => {
-                const responseFiestaData = await responseFiesta.json();
-                console.log(responseFiestaData); 
+              .then(async response =>{
+                const responseData = await response.json();
+                const id_party = responseData.id_party;
+                var decoraciones = {
+                  party: id_party,
+                  decos: this.selectedDecos
+                }; 
+                fetch(`http://localhost/daw/DesarrolloWeb/src/sql/deco-party.php?insertar=1`, {
+                method: "POST",
+                body: JSON.stringify(decoraciones)
+                })
               })
               .catch(error => {
                 console.error('Error al enviar datos de la fiesta:', error);
