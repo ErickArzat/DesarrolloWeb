@@ -29,7 +29,14 @@ if(isset($_GET["insertar"])){
     $date_pay = $data-> date_pay;
     if(($amount!= '')&&($status!='')&&($date_pay!='')){
         $sql = mysqli_query($conexionBD,"INSERT INTO payments(amount, status, date_pay) VALUES('$amount','$status','$date_pay') ");
-        echo json_encode(["success"=>1]);
+        if($sql){
+            $lastInsertedId = mysqli_insert_id($conexionBD);
+            echo json_encode(["success" => 1, "id_pay" => $lastInsertedId]);
+        } else {
+            echo json_encode(["success" => 0, "error" => "Error al insertar en la base de datos: " . mysqli_error($conexionBD)]);
+        }
+    } else {
+        echo json_encode(["success" => 0, "error" => "Faltan datos"]);
     }
     exit();
 }
