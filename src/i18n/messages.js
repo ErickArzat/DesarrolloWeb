@@ -19,8 +19,8 @@ export default{
         pgraf2: "Te ayudamos a crear el evento de tus sueños: Bodas, Cumpleaños, XV años, etc."
        },
        homeview:{
-        next: 'Atras',
-        back: 'Siguiente',
+        next: 'Siguiente',
+        back: 'Atras',
         },
        services:{
         title:"Sevicios", 
@@ -46,7 +46,7 @@ export default{
             birthday:"Cumpleaños",
             graduation:"Graduación", 
             wedding: "Boda", 
-            babyShower: "Baby Shower",
+            babyShower: "B Shower",
             christening: "Bautizo",
             visitation: "Velorio"
         },
@@ -88,8 +88,8 @@ export default{
             candy: "Mesa Dulces", 
             invitations: "Invitaciones", 
             show: "Show"
-        }
-    
+        }, 
+        again: 'Otra vez',
        },
         landing:{
             title: '¡Hacemos de tus sueños una fiesta!',
@@ -172,8 +172,40 @@ export default{
             all_fields: 'Todos los campos son obligatorios', 
             email_form: 'Email no valida', 
             password_match: "Las contraseñas no coinciden"
-        }
-
+        },
+        resume:{
+            title:"¡Así es como está quedando tu fiesta!"
+        },
+        admin:{
+            table:{
+                title:"Fiestas",
+                id:"Id",
+                client:"Cliente",
+                type:"Tipo",
+                staff:"Staff",
+                date:"Fecha",
+                total:"Total",
+                status:"Estado",
+                details:"Detalles",
+            },
+            modal:{
+                title:"Detalle de la Fiesta",
+                client:"Cliente: ",
+                type:"Tipo: ",
+                staff:"Staff: ",
+                date:"Fecha: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completado",
+                waiting:"Pendiente",
+                inprogress:"En Curso"
+            }
+           },
+           payment:{
+               payment: "Hora de pagar"
+           }
+           
     }, 
    
      
@@ -223,7 +255,7 @@ export default{
             instagram: 'Instagram'
         },
         nav:{
-            meetus:"know us", 
+            meetus:"Know us", 
             plan:"Plan your Party", 
             parties:"Parties", 
             contactus:"Contact us", 
@@ -252,7 +284,7 @@ export default{
                 birthday:"Birthday",
                 graduation:"Graduation", 
                 wedding: "Wedding", 
-                babyShower: "Baby Shower",
+                babyShower: "B Shower",
                 christening: "Christening",
                 visitation: "Wake"
             },
@@ -294,7 +326,8 @@ export default{
                 candy: "Candy Table", 
                 invitations: "Invitations", 
                 show: "Show"
-            }
+            },
+            again: 'Again',
         },
         register:{
             new_account: "Don't have an account with us yet?", 
@@ -338,6 +371,38 @@ export default{
             priceLabel:"Price",
             imgLabel:"Image",
         },
+        resume:{
+            title:"This is how your party is turning out!"
+        },
 
+        admin:{
+            table:{
+                title:"Parties",
+                id:"Id",
+                client:"Client",
+                type:"Type",
+                staff:"Staff",
+                date:"Date",
+                total:"Total",
+                status:"Status",
+                details:"Details",
+            },
+            modal:{
+                title:"Party's Details",
+                client:"Client: ",
+                type:"Type: ",
+                staff:"Staff: ",
+                date:"Date: ",
+                total:"Total: "
+            },
+            status:{
+                completed:"Completed",
+                waiting:"Waiting",
+                inprogress:"In Progress"
+            }
+        },
+        payment:{
+            payment: "Time to Pay"
+        }
     }
 }

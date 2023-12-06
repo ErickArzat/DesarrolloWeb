@@ -46,77 +46,81 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Ganancias Anuales</h5>
-              <h6 class="card-subtitle mb-2 text-muted">$150K</h6>
-              <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-              <a href="#" class="card-link">Detalles</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Ganancias Mensuales</h5>
-              <h6 class="card-subtitle mb-2 text-muted">$12.5k</h6>
-              <p class="card-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-              <a href="#" class="card-link">Detalles</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Fiestas</h5>
+          <div class="info-card">
+            <div class="data-card">
+              <h5 class="name-card">{{ $t('admin.table.title') }}</h5>
               <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Ubicación</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Estado</th>
+                    <th scope="col">{{ $t('admin.table.id') }}</th>
+                    <th scope="col">{{ $t('admin.table.client') }}</th>
+                    <th scope="col">{{ $t('admin.table.type') }}</th>
+                    <th scope="col">{{ $t('admin.table.staff') }}</th>
+                    <th scope="col">{{ $t('admin.table.date') }}</th>
+                    <th scope="col">{{ $t('admin.table.total') }}</th>
+                    <th scope="col">{{ $t('admin.table.status') }}</th>
+                    <th scope="col">{{ $t('admin.table.details') }}</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark Otto</td>
-                    <td>Infantil</td>
-                    <td>-/-/-</td>
-                    <td>---</td>
-                    <td>$</td>
-                    <td><button class="estado">Completado</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob  Thompson</td>
-                    <td>Boda</td>
-                    <td>-/-/-</td>
-                    <td>---</td>
-                    <td>$</td>
-                    <td><button class="estado">Pendiente</button></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry Bruyne</td>
-                    <td>Graduación</td>
-                    <td>-/-/-</td>
-                    <td>---</td>
-                    <td>$</td>
-                    <td><button class="estado">En proceso</button></td>
+                  <tr v-for="party in parties" :key="party.id">
+                    <td scope="row">{{party.id}}</td>
+                    <td scope="row">{{party.client}}</td>
+                    <td scope="row">{{party.type}}</td>
+                    <td scope="row">{{party.staff}}</td>
+                    <td scope="row">{{party.date}}</td>
+                    <td scope="row">{{party.total}}</td>
+                    <td>
+                      <select class="status" v-model="party.status" @change="guardarSeleccion(party)">
+                        <option value="opcion1">{{ $t('admin.status.waiting') }}</option>
+                        <option value="opcion2">{{ $t('admin.status.inprogress') }}</option>
+                        <option value="opcion3">{{ $t('admin.status.completed') }}</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button id="myBtn" onclick="document.getElementById('myModal').style.display = 'block';">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#5B83FF" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                        <i class="bi bi-plus-circle-fill"></i>
+                      </button>
+                      <div id="myModal" class="modal">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <span class="close" onclick="document.getElementById('myModal').style.display = 'none';">&times;</span>
+                            <h2>{{ $t('admin.modal.title') }}</h2>
+                          </div>
+                          <div class="modal-body">
+                            <p>{{ $t('admin.modal.client') }}</p>
+                            <p>{{ $t('admin.modal.type') }}</p>
+                            <p>{{ $t('admin.modal.staff') }}</p>
+                            <p>{{ $t('admin.modal.date') }}</p>
+                            <p>{{ $t('admin.modal.total') }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 </tbody>
               </table>
+              <form v-on:submit.prevent="addCakes" method="post" enctype="multipart/form-data">
+                <div>
+                  <label for="cakeName">Nombre del Pastel:</label>
+                  <input type="text" v-model="cake.name" required>
+                </div>
+                <div>
+                  <label for="cakePrice">Precio del Pastel:</label>
+                  <input type="number" v-model="cake.price" required>
+                </div>
+                <div>
+                  <label for="cakeImage">Imagen del Pastel:</label>
+                  <input type="file" v-on:change="onFileChange" required>
+                </div>
+                <div>
+                  <button type="submit">Guardar Pastel</button>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>
