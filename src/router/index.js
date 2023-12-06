@@ -36,23 +36,7 @@ const router = createRouter({
       name: 'admin',
       component: () => import('../views/Admin.vue')
     }, 
-    {
-      path: '/Pago',
-      name: 'pago',
-      component: () => import('../views/Pago.vue')
-    },
-    {
-      path: '/listar',
-      name: 'listar',
-      component: listar
-    }, 
-    {
-      path: '/editar/:id_cake',
-      name: 'Editar',
-      component: Editar,
-      props: true
-    }, 
-
+    
   ]
 })
 

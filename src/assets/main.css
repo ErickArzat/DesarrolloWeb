@@ -58,13 +58,8 @@ body.no-scroll {
       border-radius: 10px;
       box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
       margin-bottom: 1rem;
-<<<<<<< HEAD
-      background-color: rgb(75, 96, 255);
-     
-=======
       background-color: #fff;
       color: #5B83FF;
->>>>>>> monica
     }
     .card input[type="radio"] {
         display: none; 
@@ -212,10 +207,6 @@ body.no-scroll {
     width: 80%;
     padding: 30px;
     position: relative; 
-  }
-  .row{
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-     
   }
   .col-md-7{
     background: #fff;
