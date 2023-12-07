@@ -29,7 +29,7 @@
             </div>
           </div>
         </div>
-        <div v-if="Decos && Decos.length > 0">
+        <!-- <div v-if="Decos && Decos.length > 0">
           <div class="card__container">
             <div class="card" v-for="Deco in Decos" :key="Decos.id_deco">
               <label :for="'card-' + Deco.id_cake">
@@ -42,7 +42,7 @@
             </label>
             </div>
           </div>
-        </div>
+        </div> -->
         <div v-if="Cake">
           <div class="card__container">
             <div class="card" :key="Cake.id_cake">
@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        <div v-if="Extras && Extras.length > 0">
+        <!-- <div v-if="Extras && Extras.length > 0">
           <div class="card__container">
             <div class="card" v-for="Extra in Extras" :key="Extra.id_extra">
                 <label :for="'card-' + Extra.id_extra">
@@ -68,8 +68,8 @@
                     </div>
                 </label>
             </div>
-          </div>
-        </div>
+          </div> -->
+        <!-- </div> -->
       </div>
     </div>
   </template>
@@ -99,9 +99,9 @@
       
       this.consultarType();
       this.consultarColor();
-      this.consultarDecos();
+      
       this.consultarCake();
-      this.consultarExtras();
+      
     }, 
     methods:{
       

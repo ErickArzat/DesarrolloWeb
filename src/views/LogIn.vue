@@ -16,9 +16,9 @@
           
       </form>
 
-      <div class="account_manager">
+      <!-- <div class="account_manager">
         <p>{{$t('register.new_account')}}</p><a class="underlineHover" href="/register">{{$t('register.go_register')}}</a>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -44,6 +44,7 @@ import VueAxios from 'vue-axios';
         this.login(userData);
       },
       login: function(userData){
+        console.log(userData);
         fetch("http://localhost/daw/DesarrolloWeb/src/sql/verificarLogin.php?login",{
         method: 'POST',
         headers: {

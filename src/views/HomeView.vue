@@ -172,17 +172,30 @@ export default {
           return;
         }
         if (this.contadorClicks === 6) {
-          if (confirm('¿Estás seguro de que quieres volver a empezar?')) {
+          const paidForCookie = document.cookie.split(';').find(cookie => cookie.trim().startsWith('paidFor'));
+          const paidFor = paidForCookie ? paidForCookie.split('=')[1] === 'true' : false;
+          if(!paidFor){
+            if (confirm('NO haz realizado el pago, ¿Quieres volver a empezar?')) {
+              this.contadorClicks = -1;
+              localStorage.removeItem('selectedTipe');
+              localStorage.removeItem('selectedColors');
+              localStorage.removeItem('selectedDecos');
+              localStorage.removeItem('selectedCake');
+              localStorage.removeItem('selectedExtras');
+              document.cookie = 'paidFor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            } else {
+              return;
+            }
+          }else{
             this.contadorClicks = -1;
-            localStorage.removeItem('selectedTipe');
-            localStorage.removeItem('selectedColors');
-            localStorage.removeItem('selectedDecos');
-            localStorage.removeItem('selectedCake');
-            localStorage.removeItem('selectedExtras');
-            document.cookie = 'paidFor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-          } else {
-            return;
+              localStorage.removeItem('selectedTipe');
+              localStorage.removeItem('selectedColors');
+              localStorage.removeItem('selectedDecos');
+              localStorage.removeItem('selectedCake');
+              localStorage.removeItem('selectedExtras');
+              document.cookie = 'paidFor=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
           }
+          
 
         }
         this.showErrorMessage = false;
@@ -350,7 +363,7 @@ export default {
 
 }
 
-.carousel__slide--active ~ .carousel__slide {
+.carousel_slide--active ~ .carousel_slide {
   transform: rotateY(20deg) scale(0.9);
 }
 

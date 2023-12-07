@@ -7,6 +7,7 @@
              <div class="data-card">
                <h5 class="name-card">{{ $t('admin.table.titleP') }}</h5>
                <table class="table">
+                >
                  <thead>
                    <tr>
                      <th scope="col">{{ $t('admin.table.id') }}</th>
@@ -20,6 +21,7 @@
                      <th scope="col">{{ $t('admin.table.delete') }}</th>
                    </tr>
                  </thead>
+                 
                  <tbody>
                    <tr v-for="party in parties" :key="party.id_party">
                      <td scope="row">{{party.id_party}}</td>
@@ -121,6 +123,7 @@
                                  </tr>
                                </table>
                               </form>
+                              
                            </div>
                          </div>
                        </div>
@@ -134,6 +137,8 @@
                      </td>
                    </tr>
                  </tbody>
+                 <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_fiestas.php" target="_blank">Descargar Fiestas</a><br>
+              <a href="http://localhost/daw/DesarrolloWeb/src/sql/descargar_payment.php" target="_blank">Descargar Pagos</a>
                </table>
              </div>
            </div>
@@ -164,6 +169,7 @@
                        </button>
                      </td>
                    </tr>
+
                  </tbody>
                </table>
              </div>
@@ -465,7 +471,7 @@
                 <h5 class="name-card">{{ $t('btn.add') }}</h5>
                 <div>
                   <label for="CakeNameInput" class="">{{ $t('addCake.nameLabel') }}:</label>
-                  <input type="text" class="" id="DecorationNameInput"  v-model="color.name_pal" required>
+                  <input type="text" class="" id="CakeNameInput"  v-model="color.name_pal" required>
                 </div>
                 <div>
                   <label for="CakePriceInput" class="">{{ $t('addCake.priceLabel') }}:</label>
@@ -595,7 +601,7 @@
       Decorations: [],
       Extras: [],
       Types: [],
-      file: null
+      file: []
     };
   },
   created() {
@@ -1095,7 +1101,9 @@
     },
     agregarPastel() {
       this.addFile();
+      console.log(this.file.name);
       var datosEnviar={name:this.color.name_pal,img:this.file.name,price:this.color.price_pal}
+      console.log(datosEnviar);
       fetch('http://localhost/daw/DesarrolloWeb/src/sql/cakes.php?insertar=1', {
         method: 'POST',
         body:JSON.stringify(datosEnviar),

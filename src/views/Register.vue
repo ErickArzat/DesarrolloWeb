@@ -87,8 +87,9 @@ guardarUsuarios(){
     lastname: this.form.lastname,
     email: this.form.email,
     user: this.form.user,
-    pass: this.form.pass
+    pass: this.form.password
   };
+  console.log(userData);
   fetch("http://localhost/daw/DesarrolloWeb/src/sql/guardarUsuario.php?guardar",{
     method: 'POST',
     headers: {
@@ -96,7 +97,10 @@ guardarUsuarios(){
     },
     body: JSON.stringify(userData)
   })
-    .then(response => response.json())
+    .then(response =>{
+      response.text().then(text => console.log(text));
+      return response.json();
+    }) 
     .then(data => {
       console.log(data);
       if(data.success){
